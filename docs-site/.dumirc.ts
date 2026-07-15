@@ -165,6 +165,11 @@ export default defineConfig({
   publicPath: docsBase,
   styles: [alibabaSansFontFaceStyle],
   links: [
+    {
+      rel: 'icon',
+      href: `${docsBase}favicon.svg`,
+      type: 'image/svg+xml',
+    },
     ...alibabaSansFonts.map(({ url }) => ({
       rel: 'preload',
       as: 'font',
