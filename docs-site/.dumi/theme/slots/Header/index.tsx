@@ -1,6 +1,6 @@
 import React from 'react';
 import { GithubOutlined, MenuOutlined } from '@ant-design/icons';
-import { Button, ConfigProvider, Drawer, Menu } from 'antd';
+import { Button, Col, ConfigProvider, Menu, Popover, Row, Tooltip } from 'antd';
 import { createStyles } from 'antd-style';
 import { useAppData, useLocation, useSiteData } from 'dumi';
 import DumiSearchBar from 'dumi/theme-default/slots/SearchBar';
@@ -13,28 +13,69 @@ const useStyle = createStyles(({ css, cssVar, token }) => ({
     position: sticky;
     top: 0;
     z-index: 1000;
-    width: 100%;
+    max-width: 100%;
     background: ${cssVar.colorBgContainer};
     box-shadow: ${cssVar.boxShadowTertiary};
     backdrop-filter: blur(8px);
-  `,
-  inner: css`
-    height: ${token.headerHeight}px;
-    max-width: 1440px;
-    margin-inline: auto;
-    padding-inline: ${cssVar.paddingLG}px;
-    display: flex;
-    align-items: center;
-    gap: ${cssVar.marginLG}px;
+
+    .dumi-default-search-bar {
+      display: inline-flex;
+      flex: auto;
+      align-items: center;
+      max-width: 220px;
+      height: 32px;
+      margin: 0;
+      margin-inline-end: 16px !important;
+      background: ${cssVar.colorBgContainer};
+      border-radius: ${cssVar.borderRadiusSM}px;
+      transition: background ${cssVar.motionDurationSlow};
+
+      > svg {
+        width: 14px;
+        flex-shrink: 0;
+        fill: #ced4d9;
+        margin-inline-start: -6px;
+      }
+
+      > input {
+        flex: 1;
+        min-width: 0;
+        height: 100%;
+        padding-inline-start: 32px;
+        border: 0;
+        background: transparent;
+
+        &:focus {
+          box-shadow: none;
+          background: transparent;
+        }
+
+        &::placeholder {
+          color: #ced4d9;
+        }
+      }
+
+      &:hover,
+      &:focus-within {
+        background: ${cssVar.colorFillSecondary};
+      }
+
+      .dumi-default-search-shortcut {
+        display: none;
+      }
+    }
   `,
   logo: css`
+    height: ${token.headerHeight}px;
+    padding-inline-start: 40px;
     display: inline-flex;
     align-items: center;
-    column-gap: ${cssVar.marginSM}px;
     color: ${cssVar.colorTextHeading};
-    font-weight: 700;
+    font-weight: bold;
     font-size: 18px;
-    font-family: Avenir, AlibabaSans, ${cssVar.fontFamily}, sans-serif;
+    font-family: Avenir, ${cssVar.fontFamily}, sans-serif;
+    line-height: ${token.headerHeight}px;
+    letter-spacing: -0.18px;
     text-decoration: none;
     white-space: nowrap;
 
@@ -47,46 +88,62 @@ const useStyle = createStyles(({ css, cssVar, token }) => ({
       height: 32px;
       display: inline-block;
     }
+
+    @media only screen and (max-width: ${token.mobileMaxWidth}px) {
+      padding-inline-start: 16px;
+      padding-inline-end: 0;
+    }
+  `,
+  logoTitle: css`
+    line-height: 32px;
+    margin-inline-start: ${cssVar.marginSM}px;
   `,
   nav: css`
-    flex: 1;
-    min-width: 0;
-    border-bottom: none !important;
+    height: 100%;
+    border: 0 !important;
+    font-size: ${cssVar.fontSize}px;
+    font-family: Avenir, ${cssVar.fontFamily}, sans-serif;
     background: transparent !important;
 
-    &${token.antCls}-menu-horizontal > ${token.antCls}-menu-item,
-    &${token.antCls}-menu-horizontal > ${token.antCls}-menu-submenu {
-      height: ${token.headerHeight}px;
-      line-height: ${token.headerHeight}px;
-      padding-inline: 10px;
+    &${token.antCls}-menu-horizontal {
+      border-bottom: none;
+
+      > ${token.antCls}-menu-item,
+      > ${token.antCls}-menu-submenu {
+        min-width: 56px;
+        height: ${token.headerHeight}px;
+        padding-inline-start: 8px;
+        padding-inline-end: 8px;
+        line-height: ${token.headerHeight}px;
+      }
     }
   `,
-  right: css`
-    display: inline-flex;
+  menuRow: css`
+    display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: ${cssVar.marginXXS}px;
-    flex: none;
-  `,
-  github: css`
-    width: 32px;
-    height: 32px;
-    border-radius: ${cssVar.borderRadiusSM}px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: ${cssVar.colorText};
-    transition: all ${cssVar.motionDurationSlow};
+    column-gap: 2px;
+    margin: 0;
+    padding-inline-end: ${cssVar.paddingMD}px;
 
-    &:hover {
-      color: ${cssVar.colorPrimary};
-      background: ${cssVar.colorFillTertiary};
+    > * {
+      flex: none;
+      margin: 0;
     }
   `,
+  github: css`
+    font-size: 16px;
+  `,
   mobileMenuButton: css`
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 18px;
+    margin-inline-end: 12px;
+  `,
+  popoverMenu: css`
+    width: 280px;
+
+    ${token.antCls}-popover-inner-content {
+      padding: 0;
+    }
   `,
 }));
 
@@ -144,64 +201,78 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.inner}>
-        <Link to="/" className={styles.logo}>
-          <img src={`${base}favicon.svg`} alt="Phoenix Mini LLM" draggable={false} />
-          <span>{themeConfig.name || 'Phoenix Mini LLM'}</span>
-        </Link>
-        {!isMobile && (
-          <ConfigProvider
-            theme={{
-              token: {
-                colorBgContainer: 'transparent',
-              },
-            }}
-          >
-            <Menu
-              mode="horizontal"
-              selectedKeys={selectedKey}
-              className={styles.nav}
-              items={menuItems}
-            />
-          </ConfigProvider>
+      <Row style={{ flexFlow: 'nowrap', height: 64 }}>
+        <Col flex="none">
+          <h1 style={{ margin: 0 }}>
+            <Link to="/" className={styles.logo}>
+              <img src={`${base}favicon.svg`} alt="Phoenix Mini LLM" draggable={false} />
+              <span className={styles.logoTitle}>{themeConfig.name || 'Phoenix Mini LLM'}</span>
+            </Link>
+          </h1>
+        </Col>
+        {!isMobile ? (
+          <Col flex="auto">
+            <div className={styles.menuRow}>
+              <DumiSearchBar />
+              <ConfigProvider
+                theme={{
+                  token: {
+                    colorBgContainer: 'transparent',
+                  },
+                }}
+              >
+                <Menu
+                  mode="horizontal"
+                  selectedKeys={selectedKey}
+                  className={styles.nav}
+                  items={menuItems}
+                />
+              </ConfigProvider>
+              {githubUrl && (
+                <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+                  <Tooltip title="GitHub" destroyOnHidden>
+                    <Button type="text" icon={<GithubOutlined />} className={styles.github} />
+                  </Tooltip>
+                </a>
+              )}
+            </div>
+          </Col>
+        ) : (
+          <Col flex="auto">
+            <div className={styles.menuRow}>
+              {githubUrl && (
+                <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+                  <Tooltip title="GitHub" destroyOnHidden>
+                    <Button type="text" icon={<GithubOutlined />} className={styles.github} />
+                  </Tooltip>
+                </a>
+              )}
+              <Popover
+                classNames={{ root: styles.popoverMenu }}
+                placement="bottomRight"
+                trigger="click"
+                open={menuOpen}
+                onOpenChange={setMenuOpen}
+                content={
+                  <Menu
+                    mode="inline"
+                    selectedKeys={selectedKey}
+                    items={menuItems}
+                    onClick={() => setMenuOpen(false)}
+                  />
+                }
+              >
+                <Button
+                  type="text"
+                  icon={<MenuOutlined />}
+                  className={styles.mobileMenuButton}
+                  aria-label="Open navigation"
+                />
+              </Popover>
+            </div>
+          </Col>
         )}
-        <div className={styles.right}>
-          {!isMobile && <DumiSearchBar />}
-          {githubUrl && (
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.github}
-              aria-label="GitHub"
-            >
-              <GithubOutlined />
-            </a>
-          )}
-          {isMobile && (
-            <Button
-              type="text"
-              icon={<MenuOutlined />}
-              className={styles.mobileMenuButton}
-              aria-label="Open navigation"
-              onClick={() => setMenuOpen(true)}
-            />
-          )}
-        </div>
-      </div>
-      <Drawer
-        title={themeConfig.name || 'Phoenix Mini LLM'}
-        placement="right"
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-      >
-        <Menu
-          mode="inline"
-          selectedKeys={selectedKey}
-          items={menuItems}
-          onClick={() => setMenuOpen(false)}
-        />
-      </Drawer>
+      </Row>
     </header>
   );
 };

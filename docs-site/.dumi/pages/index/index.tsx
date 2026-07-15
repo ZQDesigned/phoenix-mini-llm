@@ -1,10 +1,11 @@
 import React from 'react';
 import { ArrowRightOutlined } from '@ant-design/icons';
-import { Button, Card, Col, Row, Space, Tag, Typography } from 'antd';
+import { Card, Col, Row, Space, Tag, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 import { Helmet } from 'dumi';
 
 import Link from '../../theme/common/Link';
+import LinkButton from '../../theme/common/LinkButton';
 import Group from './components/Group';
 import PreviewBanner from './components/PreviewBanner';
 
@@ -47,26 +48,6 @@ const pitfalls = [
 ];
 
 const useStyle = createStyles(({ css, cssVar, token }) => ({
-  bannerPanel: css`
-    position: relative;
-    z-index: 1;
-    display: grid;
-    max-width: 920px;
-    margin-inline: auto;
-    gap: ${cssVar.marginLG}px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-
-    @media (max-width: 960px) {
-      grid-template-columns: 1fr;
-    }
-  `,
-  glassCard: css`
-    border-radius: 24px !important;
-    border: 1px solid rgba(22, 119, 255, 0.12) !important;
-    background: rgba(255, 255, 255, 0.82) !important;
-    box-shadow: 0 24px 80px rgba(10, 37, 64, 0.12) !important;
-    backdrop-filter: blur(16px);
-  `,
   sectionCard: css`
     height: 100%;
     border-radius: 20px !important;
@@ -126,6 +107,52 @@ const useStyle = createStyles(({ css, cssVar, token }) => ({
     background: rgba(255, 255, 255, 0.72);
     border: 1px solid rgba(22, 119, 255, 0.1);
   `,
+  recommendGrid: css`
+    display: grid;
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: ${cssVar.marginXXL}px;
+    box-sizing: border-box;
+    gap: calc(${cssVar.paddingMD} * 2);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    @media (max-width: 960px) {
+      grid-template-columns: 1fr;
+    }
+  `,
+  recommendCard: css`
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 188px;
+    padding: ${cssVar.paddingLG}px;
+    border: 1px solid ${cssVar.colorBorderSecondary};
+    border-radius: ${cssVar.borderRadiusLG}px;
+    background: color-mix(in srgb, ${cssVar.colorBgContainer} 72%, transparent);
+    backdrop-filter: blur(8px);
+    text-decoration: none;
+    transition:
+      border-color ${cssVar.motionDurationSlow},
+      background ${cssVar.motionDurationSlow},
+      transform ${cssVar.motionDurationSlow},
+      box-shadow ${cssVar.motionDurationSlow};
+
+    &:hover {
+      transform: translateY(-2px);
+      background: color-mix(in srgb, ${cssVar.colorBgContainer} 90%, transparent);
+      border-color: ${cssVar.colorPrimaryBorderHover};
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    }
+  `,
+  recommendFooter: css`
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: ${cssVar.colorTextSecondary};
+    font-size: ${cssVar.fontSize}px;
+  `,
 }));
 
 const Homepage: React.FC = () => {
@@ -146,54 +173,64 @@ const Homepage: React.FC = () => {
           description="面向初学者的大模型基础开发知识档案、完整复刻教程与真实踩坑记录。先懂原理，再从空目录一步一步写出和当前仓库一致的小型语言模型。"
           actions={
             <>
-              <Link to="/learning">
-                <Button size="large" type="primary">
-                  从零学习
-                </Button>
-              </Link>
-              <Link to="/tutorials">
-                <Button size="large">开始复刻</Button>
-              </Link>
-              <Link to="/pitfalls">
-                <Button size="large" type="text">
-                  查看踩坑记录
-                </Button>
-              </Link>
+              <LinkButton to="/learning" size="large" type="primary">
+                从零学习
+              </LinkButton>
+              <LinkButton to="/tutorials" size="large">
+                开始复刻
+              </LinkButton>
+              <LinkButton to="/pitfalls" size="large">
+                查看踩坑记录
+              </LinkButton>
             </>
           }
         >
-          <Space
-            size="middle"
-            wrap
-            style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}
-          >
-            <Tag color="blue">6GB VRAM 约束</Tag>
-            <Tag color="processing">Mac 开发 / Windows 训练</Tag>
-            <Tag color="purple">从零实现 Decoder-only Transformer</Tag>
-          </Space>
-          <div className={styles.bannerPanel}>
-            <Card className={styles.glassCard}>
+          <div className={styles.recommendGrid}>
+            <Link to="/learning" className={styles.recommendCard}>
               <Space direction="vertical" size="middle">
-                <Tag color="gold">项目边界</Tag>
+                <Tag color="blue">START</Tag>
                 <Typography.Title level={4} style={{ margin: 0 }}>
-                  小而完整，而不是盲目追大
+                  学习主线
                 </Typography.Title>
                 <Typography.Paragraph style={{ margin: 0 }}>
-                  目标是一个适合学习的 decoder-only 语言模型：语料准备、Tokenizer、模型、训练、采样与工程化链路都要完整，但规模必须服从 6GB 显存现实。
+                  从问题定义、张量、损失函数、Tokenizer、Attention 一路学到训练工程和推理采样。
                 </Typography.Paragraph>
               </Space>
-            </Card>
-            <Card className={styles.glassCard}>
+              <div className={styles.recommendFooter}>
+                <span>12 章顺序阅读</span>
+                <ArrowRightOutlined />
+              </div>
+            </Link>
+            <Link to="/tutorials" className={styles.recommendCard}>
               <Space direction="vertical" size="middle">
-                <Tag color="cyan">阅读顺序</Tag>
+                <Tag color="red">HOT</Tag>
                 <Typography.Title level={4} style={{ margin: 0 }}>
-                  先懂原理，再照着复刻，再回看坑点
+                  复刻教程
                 </Typography.Title>
                 <Typography.Paragraph style={{ margin: 0 }}>
-                  如果你几乎从零开始，先走完学习主线；开始实作后再进入复刻教程；遇到异常时，再回踩坑记录对照排查。
+                  不是“跑起来仓库”，而是从空目录开始，亲手做出与当前项目同构的小型语言模型工程。
                 </Typography.Paragraph>
               </Space>
-            </Card>
+              <div className={styles.recommendFooter}>
+                <span>10 个阶段</span>
+                <ArrowRightOutlined />
+              </div>
+            </Link>
+            <Link to="/pitfalls" className={styles.recommendCard}>
+              <Space direction="vertical" size="middle">
+                <Tag color="gold">GUIDE</Tag>
+                <Typography.Title level={4} style={{ margin: 0 }}>
+                  踩坑记录
+                </Typography.Title>
+                <Typography.Paragraph style={{ margin: 0 }}>
+                  保留这次开发里真实发生过的环境、路径、设备差异和部署问题，帮助你少走弯路。
+                </Typography.Paragraph>
+              </Space>
+              <div className={styles.recommendFooter}>
+                <span>按时间线回顾</span>
+                <ArrowRightOutlined />
+              </div>
+            </Link>
           </div>
         </PreviewBanner>
 

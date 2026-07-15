@@ -8,6 +8,12 @@ import Footer from '../Footer';
 import SiteContext from '../SiteContext';
 
 const useStyle = createStyles(({ css, cssVar, token }) => ({
+  root: css`
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  `,
   shell: css`
     flex: 1;
     min-width: 0;
@@ -47,7 +53,7 @@ const Content: React.FC<ContentProps> = ({ children }) => {
   const { isMobile } = React.useContext(SiteContext);
 
   return (
-    <>
+    <section className={styles.root}>
       <div className={`${styles.shell} phoenix-content-shell`}>
         <div className={styles.articleShell}>
           <article className={styles.articleWrapper}>{children}</article>
@@ -63,7 +69,7 @@ const Content: React.FC<ContentProps> = ({ children }) => {
         <PrevAndNext />
         <Footer />
       </div>
-    </>
+    </section>
   );
 };
 

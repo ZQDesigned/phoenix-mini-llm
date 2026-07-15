@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Flex, Typography } from 'antd';
 import { createStyles } from 'antd-style';
 
 import GroupMaskLayer from './GroupMaskLayer';
+import LuminousBg from './LuminousBg';
 
 const useStyle = createStyles(({ cssVar, css, cx }) => {
   const textShadow = `0 0 4px ${cssVar.colorBgContainer}`;
@@ -26,10 +27,6 @@ const useStyle = createStyles(({ cssVar, css, cx }) => {
       perspective: 800px;
       transform: translateZ(1000px);
       row-gap: ${cssVar.marginXL};
-      background:
-        radial-gradient(circle at 50% 14%, rgba(22, 119, 255, 0.16), transparent 28%),
-        radial-gradient(circle at 82% 18%, rgba(114, 46, 209, 0.12), transparent 24%),
-        linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
 
       &:hover {
         .${block} {
@@ -89,6 +86,9 @@ const PreviewBanner: React.FC<Readonly<React.PropsWithChildren<PreviewBannerProp
   return (
     <GroupMaskLayer>
       <div className={styles.holder}>
+        <Suspense fallback={null}>
+          <LuminousBg />
+        </Suspense>
         <Typography className={styles.typography}>
           <h1>{title}</h1>
           <p>{description}</p>
