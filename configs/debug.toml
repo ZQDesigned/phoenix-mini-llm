@@ -1,0 +1,52 @@
+run_name = "debug"
+
+[paths]
+data_dir = "data"
+artifacts_dir = "artifacts"
+runs_dir = "runs"
+checkpoints_dir = "checkpoints"
+
+[dataset]
+name = "roneneldan/TinyStories"
+streaming = true
+max_train_examples = 2048
+max_validation_examples = 256
+text_key = "text"
+
+[tokenizer]
+vocab_size = 2048
+min_frequency = 2
+special_tokens = ["<pad>", "<bos>", "<eos>", "<unk>"]
+
+[model]
+hidden_size = 128
+num_layers = 2
+num_heads = 4
+intermediate_size = 512
+max_seq_len = 64
+dropout = 0.1
+rope_theta = 10000.0
+rms_norm_eps = 1e-5
+
+[training]
+seed = 7
+batch_size = 4
+gradient_accumulation_steps = 1
+learning_rate = 0.0003
+weight_decay = 0.1
+adam_beta1 = 0.9
+adam_beta2 = 0.95
+warmup_steps = 10
+max_steps = 20
+eval_interval = 5
+save_interval = 10
+log_interval = 1
+gradient_clip_norm = 1.0
+num_workers = 0
+amp = false
+
+[generation]
+max_new_tokens = 32
+temperature = 0.8
+top_k = 20
+top_p = 0.95
