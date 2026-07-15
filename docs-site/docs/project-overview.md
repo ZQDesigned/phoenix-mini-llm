@@ -1,22 +1,6 @@
 ---
-hero:
-  title: Phoenix Mini LLM
-  description: 面向初学者的线性学习教材与工坊式复刻文档。目标不是让你“运行一个现成项目”，而是让你理解并亲手做出一个小型 decoder-only 语言模型。
-  actions:
-    - text: 从零学习
-      link: /learning
-    - text: 开始复刻
-      link: /tutorials
-features:
-  - title: 先学懂，再动手
-    emoji: 🧠
-    description: 学习主线按顺序覆盖张量、自动求导、Tokenizer、Attention、训练与采样，避免读者一开始就在项目细节里迷路。
-  - title: 照着做出同款项目
-    emoji: 🛠️
-    description: 复刻教程按阶段构建 `phoenix-mini-llm`，每一章都给出本章产物、关键文件、验证方法和对照检查点。
-  - title: 真实踩坑，不做粉饰
-    emoji: 🧭
-    description: 踩坑记录按开发顺序保留问题现场、误判过程、最终修复和后续预防方式。
+title: 项目总览
+description: Phoenix Mini LLM 文档站的总体阅读说明、项目边界与学习预期。
 ---
 
 # 阅读入口
@@ -25,17 +9,17 @@ features:
   <section className="phoenix-track-card">
     <h3>学习主线</h3>
     <p>适合第一次做语言模型项目的读者。你会从问题定义、张量和损失函数一路走到训练工程和推理采样。</p>
-    <a href="/learning">按章节开始学习</a>
+    <a href="#/learning">按章节开始学习</a>
   </section>
   <section className="phoenix-track-card">
     <h3>复刻教程</h3>
     <p>适合想从空目录一步一步做出同款项目的人。它不是运行说明，而是分阶段的构建工坊。</p>
-    <a href="/tutorials">进入 10 阶段复刻</a>
+    <a href="#/tutorials">进入 10 阶段复刻</a>
   </section>
   <section className="phoenix-track-card">
     <h3>踩坑记录</h3>
     <p>适合已经开始动手，但在环境、路径、数据处理、设备差异等问题上卡住的读者。</p>
-    <a href="/pitfalls">按时间线回顾问题</a>
+    <a href="#/pitfalls">按时间线回顾问题</a>
   </section>
 </div>
 
@@ -47,10 +31,10 @@ features:
 
 ## 推荐阅读顺序
 
-1. 如果你几乎从零开始，先读 [学习主线](/learning)。
+1. 如果你几乎从零开始，先读 [学习主线](#/learning)。
 2. 如果你已经懂 Python 但没做过语言模型项目，至少先补完 `01` 到 `08` 章再开始复刻。
-3. 开始实作后，按 [复刻教程](/tutorials) 的 `10` 个阶段走，不要跳步。
-4. 在任何一步出现非预期问题时，再回到 [踩坑记录](/pitfalls) 查找对应案例。
+3. 开始实作后，按 [复刻教程](#/tutorials) 的 `10` 个阶段走，不要跳步。
+4. 在任何一步出现非预期问题时，再回到 [踩坑记录](#/pitfalls) 查找对应案例。
 
 <Callout title="项目边界" tone="note">
   这套项目聚焦一个适合学习的小型 decoder-only 语言模型。目标是把从语料、Tokenizer、模型、训练到生成的链路做完整，而不是把参数规模堆到超出 6GB 显存约束的级别。

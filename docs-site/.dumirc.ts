@@ -4,6 +4,43 @@ const docsBase = process.env.DOCS_SITE_BASE || '/';
 const githubRepo = process.env.GITHUB_REPOSITORY || 'ZQDesigned/phoenix-mini-llm';
 const buildHash = process.env.GITHUB_SHA || 'local-build';
 const buildTime = new Date().toISOString();
+const projectOverviewPath = '/project-overview';
+
+const alibabaSansFonts = [
+  {
+    weight: 300,
+    url: 'https://mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*1GSgSYDD_aIAAAAAQsAAAAgAegCCAQ/AlibabaSans-Light.woff2',
+  },
+  {
+    weight: 400,
+    url: 'https://mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*2zEUQqnPNesAAAAAQtAAAAgAegCCAQ/AlibabaSans-Regular.woff2',
+  },
+  {
+    weight: 500,
+    url: 'https://mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*E_cxRbMlZqUAAAAAQuAAAAgAegCCAQ/AlibabaSans-Medium.woff2',
+  },
+  {
+    weight: 600,
+    url: 'https://mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*E_cxRbMlZqUAAAAAQuAAAAgAegCCAQ/AlibabaSans-Bold.woff2',
+  },
+  {
+    weight: 700,
+    url: 'https://mdn.alipayobjects.com/huamei_iwk9zp/afts/file/A*E_cxRbMlZqUAAAAAQuAAAAgAegCCAQ/AlibabaSans-Heavy.woff2',
+  },
+] as const;
+
+const alibabaSansFontFaceStyle = alibabaSansFonts
+  .map(
+    ({ weight, url }) => `
+@font-face {
+  font-family: 'AlibabaSans';
+  font-style: normal;
+  font-weight: ${weight};
+  font-display: optional;
+  src: url('${url}') format('woff2');
+}`,
+  )
+  .join('\n');
 
 const staleBundleRecoveryScript = `
 (() => {
@@ -115,6 +152,7 @@ const pitfalls = [
 const docsRoutePaths = Array.from(
   new Set([
     '/',
+    projectOverviewPath,
     ...learningChapters.map((item) => item.link),
     ...tutorialStages.map((item) => item.link),
     ...pitfalls.map((item) => item.link),
@@ -125,12 +163,25 @@ export default defineConfig({
   hash: true,
   base: docsBase,
   publicPath: docsBase,
+  styles: [alibabaSansFontFaceStyle],
+  links: [
+    ...alibabaSansFonts.map(({ url }) => ({
+      rel: 'preload',
+      as: 'font',
+      href: url,
+      type: 'font/woff2',
+      crossorigin: 'anonymous',
+    })),
+  ],
   favicons: [`${docsBase}favicon.svg`],
   metas: [
     { name: 'build-time', content: buildTime },
     { name: 'build-hash', content: buildHash },
   ],
   headScripts: [staleBundleRecoveryScript],
+  conventionRoutes: {
+    exclude: [/index\/components\//],
+  },
   exportStatic: {
     extraRoutePaths: docsRoutePaths,
   },
@@ -150,6 +201,7 @@ export default defineConfig({
       { title: '学习主线', link: '/learning' },
       { title: '复刻教程', link: '/tutorials' },
       { title: '踩坑记录', link: '/pitfalls' },
+      { title: '项目总览', link: projectOverviewPath },
       { title: '项目源码', link: `https://github.com/${githubRepo}` },
     ],
     sidebar: {

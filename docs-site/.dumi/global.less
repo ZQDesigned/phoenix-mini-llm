@@ -1,3 +1,4 @@
+@import 'dumi/theme-default/slots/SearchBar/index.less';
 @import '../src/components/components.less';
 
 :root {
@@ -9,123 +10,15 @@
   --phoenix-text-soft: #5e5549;
   --phoenix-accent: #c56a1a;
   --phoenix-accent-strong: #9f5314;
-}
-
-html {
-  scrollbar-width: thin;
-  scrollbar-color: #d8ccb8 transparent;
-}
-
-body {
-  background: var(--phoenix-bg);
-  color: var(--phoenix-text);
-  font-family:
-    'SF Pro Display',
-    'PingFang SC',
-    'Hiragino Sans GB',
-    'Microsoft YaHei',
-    sans-serif;
-}
-
-a {
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.16em;
-}
-
-.dumi-default-header {
-  border-bottom: 1px solid var(--phoenix-border);
-  background: rgba(251, 250, 247, 0.94);
-  backdrop-filter: blur(8px);
-}
-
-.dumi-default-header-left {
-  letter-spacing: 0.01em;
-}
-
-.dumi-default-navbar > li > a,
-.dumi-default-sidebar,
-.dumi-default-content,
-.dumi-default-hero-title,
-.dumi-default-hero-description {
-  color: var(--phoenix-text);
-}
-
-.dumi-default-sidebar {
-  background: transparent;
-}
-
-.dumi-default-content {
-  max-width: 860px;
-}
-
-.dumi-default-hero {
-  padding-block: 88px 48px;
-}
-
-.dumi-default-hero-title {
-  font-size: clamp(2.4rem, 6vw, 4.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-}
-
-.dumi-default-hero-description {
-  max-width: 760px;
-  color: var(--phoenix-text-soft);
-  font-size: 1.08rem;
-  line-height: 1.75;
-}
-
-.dumi-default-features {
-  margin-top: 24px;
-}
-
-.dumi-default-features-item {
-  border: 1px solid var(--phoenix-border);
-  border-radius: 20px;
-  background: var(--phoenix-surface);
-  box-shadow: none;
-}
-
-.dumi-default-features-item h3 {
-  color: var(--phoenix-text);
-}
-
-.dumi-default-features-item p {
-  color: var(--phoenix-text-soft);
-}
-
-.dumi-default-content h1,
-.dumi-default-content h2,
-.dumi-default-content h3 {
-  letter-spacing: -0.02em;
-}
-
-.dumi-default-content blockquote {
-  border-inline-start: 4px solid var(--phoenix-accent);
-  background: var(--phoenix-surface-strong);
-}
-
-.dumi-default-content table th {
-  background: #f6efe4;
-}
-
-.dumi-default-content code:not(pre code) {
-  border: 1px solid #ede2d1;
-  background: #f8f3ea;
-}
-
-.dumi-default-footer {
-  border-top: 1px solid var(--phoenix-border);
-  background: transparent;
-  color: var(--phoenix-text-soft);
+  --phoenix-accent-soft: #1677ff;
 }
 
 @media (max-width: 767px) {
-  .dumi-default-hero {
-    padding-block: 64px 28px;
+  .phoenix-content-shell {
+    display: block;
   }
 
-  .dumi-default-content {
-    max-width: 100%;
+  .phoenix-track-grid {
+    grid-template-columns: 1fr;
   }
 }
