@@ -18,21 +18,6 @@ const DocLayout: React.FC = () => {
   const { token } = theme.useToken();
   const hideLayout = searchParams.get('layout') === 'false';
 
-  const content = React.useMemo(() => {
-    if (pathname === '/' || pathname === '/index') {
-      return (
-        <IndexLayout
-          title={themeConfig.name}
-          desc="Phoenix Mini LLM: a learning-first documentation site and workshop for building a small decoder-only language model."
-        >
-          {outlet}
-        </IndexLayout>
-      );
-    }
-
-    return <SidebarLayout>{outlet}</SidebarLayout>;
-  }, [outlet, pathname, themeConfig.name]);
-
   return (
     <>
       <Helmet encodeSpecialCharacters={false}>
@@ -49,7 +34,16 @@ const DocLayout: React.FC = () => {
       >
         <GlobalStyles />
         {!hideLayout && <Header />}
-        {content}
+        {pathname === '/' || pathname === '/index' ? (
+          <IndexLayout
+            title={themeConfig.name}
+            desc="Phoenix Mini LLM: a learning-first documentation site and workshop for building a small decoder-only language model."
+          >
+            {outlet}
+          </IndexLayout>
+        ) : (
+          <SidebarLayout>{outlet}</SidebarLayout>
+        )}
       </ConfigProvider>
     </>
   );
