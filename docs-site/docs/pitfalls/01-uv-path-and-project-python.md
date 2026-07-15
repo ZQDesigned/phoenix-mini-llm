@@ -1,33 +1,80 @@
 ---
-title: 1. uv 在 PATH 中缺失
-group:
-  title: 开发早期
-  order: 0
-order: 1
+title: 01. uv 在 PATH 中缺失
 toc: content
 ---
 
-# 1. uv 在 PATH 中缺失
+import { Callout } from '../../src/components/Callout';
+
+# 01. uv 在 PATH 中缺失
+
+## 发生背景
+
+项目一开始就决定使用 `uv` 统一管理 Python 版本、虚拟环境和依赖。但在实际环境里，`uv` 虽然已经安装，当前 shell 却不一定把它的安装目录加入了 `PATH`。
 
 ## 现象
 
-终端里直接执行 `uv --version` 报 `command not found`，但用户环境实际上已经安装过 `uv`。
-
-## 原因
-
-`uv` 安装在 `~/.local/bin/uv`，当前 shell 没把这个目录放进 PATH。
-
-## 修复
-
-开发过程中临时使用显式路径：
+最典型的现象是：
 
 ```bash
-~/.local/bin/uv sync --python 3.12
+zsh: command not found: uv
 ```
 
-## 经验
+此时你明明已经执行过安装命令，却仍然无法直接运行 `uv sync` 或 `uv run ...`。
 
-复刻项目时不要只看“装没装包”，还要确认：
+## 一开始的错误判断
 
-- PATH 是否生效
-- 项目虚拟环境是否真的由目标 Python 版本创建
+最常见的误判是：
+
+- 以为 `uv` 根本没有安装成功
+- 以为是项目依赖坏了
+- 以为需要换回 `pip` 或 `venv`
+
+这些判断都会把你带向错误方向，因为问题根本不在项目本身，而在当前 shell 的 PATH 设置。
+
+## 最终原因
+
+`uv` 通常安装在用户目录下，例如：
+
+```text
+~/.local/bin/uv
+```
+
+如果你的 shell 启动脚本没有把这个目录加进 PATH，那么当前终端就无法直接找到它。
+
+## 诊断过程
+
+最有效的两步诊断是：
+
+```bash
+which uv
+ls ~/.local/bin/uv
+```
+
+如果第一条没有输出，而第二条能看到可执行文件，就说明：
+
+- `uv` 已安装
+- 但 PATH 没接上
+
+## 修复方式
+
+短期修复：
+
+```bash
+~/.local/bin/uv sync
+~/.local/bin/uv run pytest
+```
+
+长期修复：
+
+- 把 `~/.local/bin` 加入你的 `~/.zshrc` 或对应 shell 配置
+- 重新打开终端
+
+## 如何避免再次踩坑
+
+1. 第一次配置机器时，先确认 `which uv`。
+2. 不要把“命令找不到”直接归咎到项目依赖。
+3. 在文档和脚本里保留一条说明：如果 PATH 未配置，可显式使用 `~/.local/bin/uv`。
+
+<Callout title="这类问题属于环境层，不属于模型层" tone="note">
+  当你在复刻教程的第一步就卡住时，优先先排查命令解析和 PATH，而不是一上来怀疑 Python 代码或训练逻辑。
+</Callout>
