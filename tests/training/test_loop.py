@@ -141,3 +141,28 @@ def test_fit_can_resume_from_existing_step(tmp_path: Path) -> None:
     )
 
     assert summary.step == training_config.max_steps
+
+
+def test_fit_returns_immediately_when_resume_is_already_complete(tmp_path: Path) -> None:
+    model = build_model()
+    training_config = build_training_config()
+    optimizer = build_optimizer(model, training_config)
+    scheduler = build_scheduler(optimizer, training_config)
+    inputs = torch.randint(0, 64, (8, 8))
+    targets = torch.randint(0, 64, (8, 8))
+    train_loader = DataLoader(TensorDataset(inputs, targets), batch_size=2, shuffle=False)
+    val_loader = DataLoader(TensorDataset(inputs, targets), batch_size=2, shuffle=False)
+
+    summary = fit(
+        model=model,
+        train_dataloader=train_loader,
+        val_dataloader=val_loader,
+        optimizer=optimizer,
+        scheduler=scheduler,
+        training_config=training_config,
+        device=torch.device("cpu"),
+        checkpoint_dir=tmp_path,
+        start_step=training_config.max_steps,
+    )
+
+    assert summary.step == training_config.max_steps
