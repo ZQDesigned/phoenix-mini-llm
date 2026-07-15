@@ -50,7 +50,7 @@ const useStyle = createStyles(({ cssVar, css, cx }) => {
       p {
         margin-bottom: 0 !important;
         color: ${cssVar.colorTextTertiary} !important;
-        font-size: calc(${cssVar.fontSizeLG} * 1.3) !important;
+        font-size: calc(${cssVar.fontSizeLG} * 1.5) !important;
         font-weight: 400 !important;
       }
     `,
@@ -60,8 +60,6 @@ const useStyle = createStyles(({ cssVar, css, cx }) => {
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding-inline: ${cssVar.marginXXL}px;
-      box-sizing: border-box;
     `,
     btnWrap: css`
       margin-bottom: ${cssVar.marginXL};

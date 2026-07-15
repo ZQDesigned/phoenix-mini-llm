@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import React from 'react';
 import { createStaticStyles } from 'antd-style';
+import { useSearchParams } from 'dumi';
 
 import CommonHelmet from '../../common/CommonHelmet';
 import Content from '../../slots/Content';
@@ -14,10 +15,13 @@ const styles = createStaticStyles(({ css, cssVar }) => ({
 }));
 
 const SidebarLayout: React.FC<PropsWithChildren> = ({ children }) => {
+  const [searchParams] = useSearchParams();
+  const hideLayout = searchParams.get('layout') === 'false';
+
   return (
     <main className={`${styles.main} phoenix-sidebar-layout`}>
       <CommonHelmet />
-      <Sidebar />
+      {!hideLayout && <Sidebar />}
       <Content>{children}</Content>
     </main>
   );

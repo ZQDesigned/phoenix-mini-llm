@@ -1,12 +1,67 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, ConfigProvider, Menu } from 'antd';
 import { createStyles, useTheme } from 'antd-style';
+import { useSidebarData } from 'dumi';
 
 import useMenu from '../../../hooks/useMenu';
 import SiteContext from '../SiteContext';
 
 const useStyle = createStyles(({ css, cssVar, token }) => ({
+  asideContainer: css`
+    min-height: 100%;
+    padding-top: 0;
+    padding-bottom: ${cssVar.marginXXL}px !important;
+    padding-inline: ${cssVar.paddingXXS}px;
+    font-family: Avenir, ${cssVar.fontFamily}, sans-serif;
+
+    &${token.antCls}-menu-inline {
+      ${token.antCls}-menu-submenu-title h4,
+      > ${token.antCls}-menu-item,
+      ${token.antCls}-menu-item a {
+        overflow: hidden;
+        font-size: ${cssVar.fontSize}px;
+        text-overflow: ellipsis;
+      }
+
+      > ${token.antCls}-menu-item-group > ${token.antCls}-menu-item-group-title {
+        margin-top: ${cssVar.margin}px;
+        margin-bottom: ${cssVar.margin}px;
+        font-size: ${cssVar.fontSize}px;
+        font-weight: 600;
+        color: ${cssVar.colorTextSecondary};
+
+        &::after {
+          position: relative;
+          top: 12px;
+          display: block;
+          width: calc(100% - 20px);
+          height: 1px;
+          content: '';
+          background: ${cssVar.colorSplit};
+        }
+      }
+
+      > ${token.antCls}-menu-item,
+      > ${token.antCls}-menu-submenu > ${token.antCls}-menu-submenu-title,
+      > ${token.antCls}-menu-item-group > ${token.antCls}-menu-item-group-title,
+      > ${token.antCls}-menu-item-group > ${token.antCls}-menu-item-group-list > ${token.antCls}-menu-item,
+      &${token.antCls}-menu-inline > ${token.antCls}-menu-item-group > ${token.antCls}-menu-item-group-list > ${token.antCls}-menu-item {
+        padding-inline: 36px 12px !important;
+      }
+
+      ${token.antCls}-menu-item-group:first-child {
+        ${token.antCls}-menu-item-group-title {
+          margin-top: 0;
+        }
+      }
+    }
+
+    a[disabled] {
+      color: #ccc;
+    }
+  `,
   mainMenu: css`
+    z-index: 1;
     position: sticky;
     top: ${token.headerHeight}px;
     width: 100%;
@@ -14,37 +69,30 @@ const useStyle = createStyles(({ css, cssVar, token }) => ({
     overflow: hidden;
     scrollbar-width: thin;
     scrollbar-gutter: stable;
-
     &:hover {
       overflow-y: auto;
-    }
-  `,
-  asideContainer: css`
-    min-height: 100%;
-    padding-bottom: ${cssVar.marginXXL}px !important;
-    padding-inline: ${cssVar.paddingXXS}px;
-    font-family: Avenir, AlibabaSans, ${cssVar.fontFamily}, sans-serif;
-
-    &${token.antCls}-menu-inline > ${token.antCls}-menu-item-group > ${token.antCls}-menu-item-group-title {
-      margin-top: ${cssVar.margin}px;
-      margin-bottom: ${cssVar.margin}px;
-      font-size: ${cssVar.fontSize}px;
-      font-weight: 600;
-      color: ${cssVar.colorTextSecondary};
-    }
-
-    &${token.antCls}-menu-inline > ${token.antCls}-menu-item,
-    &${token.antCls}-menu-inline > ${token.antCls}-menu-item-group > ${token.antCls}-menu-item-group-list > ${token.antCls}-menu-item {
-      padding-inline: 36px 12px !important;
     }
   `,
 }));
 
 const Sidebar: React.FC = () => {
+  const sidebarData = useSidebarData();
   const { styles } = useStyle();
   const { isMobile, isDark } = React.useContext(SiteContext);
   const { colorBgContainer } = useTheme();
   const [menuItems, selectedKey] = useMenu();
+  const defaultOpenKeys = sidebarData?.map(({ title }) => title!).filter(Boolean) || [];
+  const [openKeys, setOpenKeys] = React.useState<string[]>(defaultOpenKeys);
+  const openKeySignature = openKeys.join(',');
+  const defaultOpenKeySignature = defaultOpenKeys.join(',');
+
+  useEffect(() => {
+    if (openKeySignature === defaultOpenKeySignature) {
+      return;
+    }
+
+    setOpenKeys(defaultOpenKeys);
+  }, [defaultOpenKeys, defaultOpenKeySignature, openKeySignature]);
 
   if (isMobile || !menuItems?.length) {
     return null;
@@ -69,6 +117,8 @@ const Sidebar: React.FC = () => {
           className={styles.asideContainer}
           theme={isDark ? 'dark' : 'light'}
           selectedKeys={[selectedKey]}
+          openKeys={openKeys}
+          onOpenChange={setOpenKeys}
         />
       </ConfigProvider>
     </Col>

@@ -6,6 +6,7 @@ import { Helmet } from 'dumi';
 
 import Link from '../../theme/common/Link';
 import LinkButton from '../../theme/common/LinkButton';
+import BannerRecommends from './components/BannerRecommends';
 import Group from './components/Group';
 import PreviewBanner from './components/PreviewBanner';
 
@@ -107,52 +108,6 @@ const useStyle = createStyles(({ css, cssVar, token }) => ({
     background: rgba(255, 255, 255, 0.72);
     border: 1px solid rgba(22, 119, 255, 0.1);
   `,
-  recommendGrid: css`
-    display: grid;
-    width: 100%;
-    max-width: 1200px;
-    margin-inline: auto;
-    padding-inline: ${cssVar.marginXXL}px;
-    box-sizing: border-box;
-    gap: calc(${cssVar.paddingMD} * 2);
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-
-    @media (max-width: 960px) {
-      grid-template-columns: 1fr;
-    }
-  `,
-  recommendCard: css`
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    min-height: 188px;
-    padding: ${cssVar.paddingLG}px;
-    border: 1px solid ${cssVar.colorBorderSecondary};
-    border-radius: ${cssVar.borderRadiusLG}px;
-    background: color-mix(in srgb, ${cssVar.colorBgContainer} 72%, transparent);
-    backdrop-filter: blur(8px);
-    text-decoration: none;
-    transition:
-      border-color ${cssVar.motionDurationSlow},
-      background ${cssVar.motionDurationSlow},
-      transform ${cssVar.motionDurationSlow},
-      box-shadow ${cssVar.motionDurationSlow};
-
-    &:hover {
-      transform: translateY(-2px);
-      background: color-mix(in srgb, ${cssVar.colorBgContainer} 90%, transparent);
-      border-color: ${cssVar.colorPrimaryBorderHover};
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    }
-  `,
-  recommendFooter: css`
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: ${cssVar.colorTextSecondary};
-    font-size: ${cssVar.fontSize}px;
-  `,
 }));
 
 const Homepage: React.FC = () => {
@@ -185,53 +140,7 @@ const Homepage: React.FC = () => {
             </>
           }
         >
-          <div className={styles.recommendGrid}>
-            <Link to="/learning" className={styles.recommendCard}>
-              <Space direction="vertical" size="middle">
-                <Tag color="blue">START</Tag>
-                <Typography.Title level={4} style={{ margin: 0 }}>
-                  学习主线
-                </Typography.Title>
-                <Typography.Paragraph style={{ margin: 0 }}>
-                  从问题定义、张量、损失函数、Tokenizer、Attention 一路学到训练工程和推理采样。
-                </Typography.Paragraph>
-              </Space>
-              <div className={styles.recommendFooter}>
-                <span>12 章顺序阅读</span>
-                <ArrowRightOutlined />
-              </div>
-            </Link>
-            <Link to="/tutorials" className={styles.recommendCard}>
-              <Space direction="vertical" size="middle">
-                <Tag color="red">HOT</Tag>
-                <Typography.Title level={4} style={{ margin: 0 }}>
-                  复刻教程
-                </Typography.Title>
-                <Typography.Paragraph style={{ margin: 0 }}>
-                  不是“跑起来仓库”，而是从空目录开始，亲手做出与当前项目同构的小型语言模型工程。
-                </Typography.Paragraph>
-              </Space>
-              <div className={styles.recommendFooter}>
-                <span>10 个阶段</span>
-                <ArrowRightOutlined />
-              </div>
-            </Link>
-            <Link to="/pitfalls" className={styles.recommendCard}>
-              <Space direction="vertical" size="middle">
-                <Tag color="gold">GUIDE</Tag>
-                <Typography.Title level={4} style={{ margin: 0 }}>
-                  踩坑记录
-                </Typography.Title>
-                <Typography.Paragraph style={{ margin: 0 }}>
-                  保留这次开发里真实发生过的环境、路径、设备差异和部署问题，帮助你少走弯路。
-                </Typography.Paragraph>
-              </Space>
-              <div className={styles.recommendFooter}>
-                <span>按时间线回顾</span>
-                <ArrowRightOutlined />
-              </div>
-            </Link>
-          </div>
+          <BannerRecommends />
         </PreviewBanner>
 
         <Group
@@ -259,6 +168,19 @@ const Homepage: React.FC = () => {
           title="复刻教程"
           description="10 个阶段按顺序构建 phoenix-mini-llm，每一章都对应实际文件、命令与验证点。"
           background="linear-gradient(180deg, #f7faff 0%, #eef4ff 100%)"
+          decoration={
+            <img
+              draggable={false}
+              src="https://gw.alipayobjects.com/zos/bmw-prod/ba37a413-28e6-4be4-b1c5-01be1a0ebb1c.svg"
+              alt="bg"
+              style={{
+                position: 'absolute',
+                insetInlineStart: 0,
+                top: -50,
+                height: 160,
+              }}
+            />
+          }
         >
           <Row gutter={[24, 24]}>
             {tutorialStages.map((stage) => (
