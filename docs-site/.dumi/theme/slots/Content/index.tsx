@@ -1,62 +1,33 @@
 import React from 'react';
-import { FloatButton } from 'antd';
-import { createStyles } from 'antd-style';
-
+import { Col, FloatButton } from 'antd';
+import { clsx } from 'clsx';
 import PrevAndNext from '../../common/PrevAndNext';
 import Footer from '../Footer';
 import SiteContext from '../SiteContext';
 import DocAnchor, { useStyle as useDocAnchorStyle } from './DocAnchor';
 
-const useStyle = createStyles(({ css, cssVar, token }) => ({
-  root: css`
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-  `,
-  shell: css`
-    flex: 1;
-    min-width: 0;
-    display: block;
-  `,
-  articleShell: css`
-    flex: 1;
-    min-width: 0;
-    padding-inline-start: 64px;
-  `,
-  articleWrapper: css`
-    max-width: 100%;
-    min-height: calc(100vh - ${token.headerHeight}px);
-  `,
-}));
-
 export interface ContentProps {
   children?: React.ReactNode;
+  className?: string;
 }
 
-const Content: React.FC<ContentProps> = ({ children }) => {
-  const { styles } = useStyle();
+const Content: React.FC<ContentProps> = ({ children, className }) => {
   const { styles: anchorStyles } = useDocAnchorStyle();
-  const { isMobile } = React.useContext(SiteContext);
+  const { direction } = React.useContext(SiteContext);
+  const isRTL = direction === 'rtl';
 
   return (
-    <section className={styles.root}>
-      <div className={`${styles.shell} phoenix-content-shell`}>
-        <div className={styles.articleShell}>
-          {!isMobile && <DocAnchor />}
-          <article
-            className={`${styles.articleWrapper} ${anchorStyles.articleWrapper} main-wrapper`}
-          >
-            {children}
-          </article>
+    <Col xxl={20} xl={19} lg={18} md={18} sm={24} xs={24} className={className}>
+      <DocAnchor />
+      <article className={clsx(anchorStyles.articleWrapper, 'main-wrapper', { rtl: isRTL })}>
+        <div style={{ minHeight: 'calc(100vh - 64px)' }}>
+          {children}
           <FloatButton.BackTop />
         </div>
-      </div>
-      <div>
-        <PrevAndNext />
-        <Footer />
-      </div>
-    </section>
+      </article>
+      <PrevAndNext rtl={isRTL} />
+      <Footer />
+    </Col>
   );
 };
 

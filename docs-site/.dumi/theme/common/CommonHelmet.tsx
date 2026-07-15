@@ -7,15 +7,18 @@ const CommonHelmet: React.FC = () => {
   const siteName = themeConfig.name || 'Phoenix Mini LLM';
 
   const [title, description] = React.useMemo<[string, string]>(() => {
-    if (!meta.frontmatter.title) {
-      return [`${siteName}`, meta.frontmatter.description || ''];
+    let helmetTitle: string;
+
+    if (!meta.frontmatter.subtitle && !meta.frontmatter.title) {
+      helmetTitle = `404 Not Found - ${siteName}`;
+    } else if (meta.frontmatter.subtitle) {
+      helmetTitle = `${meta.frontmatter.subtitle} ${meta.frontmatter.title || ''} - ${siteName}`;
+    } else {
+      helmetTitle = `${meta.frontmatter.title || ''} - ${siteName}`;
     }
 
-    return [
-      `${meta.frontmatter.title} - ${siteName}`,
-      meta.frontmatter.description || '',
-    ];
-  }, [meta.frontmatter.description, meta.frontmatter.title, siteName]);
+    return [helmetTitle, meta.frontmatter.description || ''];
+  }, [meta.frontmatter.description, meta.frontmatter.subtitle, meta.frontmatter.title, siteName]);
 
   return (
     <Helmet>
