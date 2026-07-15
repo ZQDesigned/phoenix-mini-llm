@@ -8,7 +8,7 @@
 2. Pack tokens into fixed-length language-modeling sequences.
 3. Train a decoder-only Transformer with cross-platform device handling.
 4. Evaluate checkpoints and generate sample text.
-5. Study the standalone documentation site for theory, pitfalls, and a reproducible tutorial.
+5. Study the in-repository documentation site for the learning track, build-from-zero tutorial, and pitfalls timeline.
 
 ## Quick Start
 
@@ -62,9 +62,9 @@ docs-site/
 
 It contains:
 
-- a beginner knowledge archive
-- a chronological pitfalls journal
-- a full reproduction tutorial
+- `learning/`: a linear beginner curriculum
+- `tutorials/`: a stage-by-stage rebuild guide
+- `pitfalls/`: a chronological engineering log
 
 Typical site commands:
 

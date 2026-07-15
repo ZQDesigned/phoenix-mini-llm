@@ -1,40 +1,86 @@
 ---
 hero:
   title: Phoenix Mini LLM
-  description: 面向初学者的小型大语言模型学习档案，覆盖从 Python 工程到 tokenizer、Transformer、训练、推理与跨平台落地的完整路径。
+  description: 面向初学者的线性学习教材与工坊式复刻文档。目标不是让你“运行一个现成项目”，而是让你理解并亲手做出一个小型 decoder-only 语言模型。
   actions:
-    - text: 按顺序学习
-      link: /knowledge
-    - text: 直接复刻项目
-      link: /tutorials/reproduce-phoenix-mini-llm
+    - text: 从零学习
+      link: /learning
+    - text: 开始复刻
+      link: /tutorials
 features:
-  - title: 从零到可运行
-    emoji: 🔧
-    description: 不是只讲概念，而是围绕 phoenix-mini-llm 的真实代码、真实配置和真实训练脚本来解释每一步。
-  - title: 踩坑按时间记录
+  - title: 先学懂，再动手
+    emoji: 🧠
+    description: 学习主线按顺序覆盖张量、自动求导、Tokenizer、Attention、训练与采样，避免读者一开始就在项目细节里迷路。
+  - title: 照着做出同款项目
+    emoji: 🛠️
+    description: 复刻教程按阶段构建 `phoenix-mini-llm`，每一章都给出本章产物、关键文件、验证方法和对照检查点。
+  - title: 真实踩坑，不做粉饰
     emoji: 🧭
-    description: 所有关键问题都按开发顺序留档，包含症状、原因、修复方法和以后如何预防。
-  - title: 可直接照做
-    emoji: 📚
-    description: 教程把知识档案和实操步骤打通，读者可以一边补基础，一边完整复刻同一个项目。
+    description: 踩坑记录按开发顺序保留问题现场、误判过程、最终修复和后续预防方式。
 ---
 
-## 这份文档站适合谁
+import { TrackCardGrid } from '../src/components/TrackCardGrid';
+import { Callout } from '../src/components/Callout';
 
-- 想从 0 开始理解“小型 LLM 是怎样被做出来的”。
-- 想手写一个能在 6GB 显存目标下启动训练流程的 decoder-only Transformer。
-- 想在 macOS 上开发，再迁移到 Windows + NVIDIA GPU 上正式训练。
+# 阅读入口
+
+<TrackCardGrid
+  cards={[
+    {
+      title: '学习主线',
+      description:
+        '适合第一次做语言模型项目的读者。你会从问题定义、张量和损失函数一路走到训练工程和推理采样。',
+      href: '/learning',
+      action: '按章节开始学习',
+    },
+    {
+      title: '复刻教程',
+      description:
+        '适合想从空目录一步一步做出同款项目的人。它不是运行说明，而是分阶段的构建工坊。',
+      href: '/tutorials',
+      action: '进入 10 阶段复刻',
+    },
+    {
+      title: '踩坑记录',
+      description:
+        '适合已经开始动手，但在环境、路径、数据处理、设备差异等问题上卡住的读者。',
+      href: '/pitfalls',
+      action: '按时间线回顾问题',
+    },
+  ]}
+/>
+
+## 这份站点适合谁
+
+- 想系统理解“小型 LLM 项目到底由哪些部分组成”的初学者。
+- 想在 macOS 上开发、在 Windows + NVIDIA GPU 上正式训练的人。
+- 想自己写出训练、评估、生成链路，而不是只调用高级封装库的人。
 
 ## 推荐阅读顺序
 
-1. 从 [知识档案总览](/knowledge) 开始，依次读完 1 到 9。
-2. 然后阅读 [踩坑记录总览](/pitfalls)，理解真实工程中最容易出错的部分。
-3. 最后按照 [完整复刻 phoenix-mini-llm](/tutorials/reproduce-phoenix-mini-llm) 执行命令和检查点。
+1. 如果你几乎从零开始，先读 [学习主线](/learning)。
+2. 如果你已经懂 Python 但没做过语言模型项目，至少先补完 `01` 到 `08` 章再开始复刻。
+3. 开始实作后，按 [复刻教程](/tutorials) 的 `10` 个阶段走，不要跳步。
+4. 在任何一步出现非预期问题时，再回到 [踩坑记录](/pitfalls) 查找对应案例。
 
-## 项目范围
+<Callout title="项目边界" tone="note">
+  这套项目聚焦一个适合学习的小型 decoder-only 语言模型。目标是把从语料、Tokenizer、模型、训练到生成的链路做完整，而不是把参数规模堆到超出 6GB 显存约束的级别。
+</Callout>
 
-这套项目和文档聚焦三个目标：
+## 读完整个站点后你应该能做到什么
 
-- 做出一个从数据准备到训练、评估、生成都跑得通的小模型项目。
-- 用尽量少但足够真实的模块，覆盖 tokenizer、Transformer、checkpoint、采样和跨平台设备处理。
-- 保留学习路线，而不是只给出一个已经封装好的黑盒。
+- 解释 token、embedding、cross-entropy、attention、checkpoint 和 KV cache 在项目里的作用。
+- 从空目录开始配置 `uv`、组织源码包、准备数据、训练 tokenizer、实现训练脚本和生成脚本。
+- 理解为什么 `phoenix-mini-llm` 采用当前的项目结构，以及这些设计如何兼顾学习性和工程可维护性。
+
+## 代码与文档的关系
+
+```text
+mini-llm/
+├── src/phoenix_mini_llm/   # 模型、数据、训练、推理代码
+├── tests/                  # 项目测试
+├── docs-site/              # dumi 文档站
+└── README.md               # 仓库总览
+```
+
+文档不会把代码抽象成一个“另一个世界里的示例项目”。它描述的就是这个仓库本身。
