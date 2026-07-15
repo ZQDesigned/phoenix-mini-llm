@@ -11,84 +11,230 @@ toc: content
 
 ## 本章目标
 
-把前九章拼起来，真正跑一次从数据准备到生成的完整链路，并确认你的项目已经与 `phoenix-mini-llm` 仓库对齐。完成后你应该能：
+这一章不是再介绍新代码，而是把前面 9 章产物真的跑起来，确认你做出的工程和当前仓库在运行路径上对齐。完成后，你应该能独立完成：
 
-- 成功准备数据
-- 用 debug 配置训练
-- 评估 checkpoint
-- 从 prompt 生成文本
+- `debug` 配置的全链路 smoke run。
+- `dev` 配置的较完整本地实验。
+- `train` 配置的正式训练准备。
+- checkpoint 恢复、评估和生成。
 
-## 你会执行哪些命令
+## 先明确“复现成功”是什么意思
+
+这里的“复现”不是指：
+
+- 每一步 loss 数值逐位相同。
+- 每次生成都输出完全一样的句子。
+
+这里的“复现成功”指的是：
+
+- 目录结构一致。
+- 训练、评估、生成命令一致。
+- 产物文件命名与位置一致。
+- 模型规模与配置一致。
+- 训练趋势、checkpoint 节奏与推理链路一致。
+
+## 第一步：从 `debug` 配置做全链路 smoke run
+
+先执行：
 
 ```bash
-uv sync --python 3.12
 uv run phoenix-prepare-data --config configs/debug.toml
 uv run phoenix-train --config configs/debug.toml
 uv run phoenix-evaluate --config configs/debug.toml --checkpoint latest
-uv run phoenix-generate --config configs/debug.toml --checkpoint latest --prompt "Once upon a time"
+uv run phoenix-generate --config configs/debug.toml --checkpoint latest --prompt "Once upon a"
 ```
 
-## 如何理解“基线成功”
+### `debug` 配置的预期特征
 
-这里的基线成功不是：
+- 数据规模最小。
+- 模型只有 `2` 层、`hidden_size=128`。
+- 训练总步数只有 `20`。
+- checkpoint 应该在第 `10` 步和第 `20` 步保存。
 
-- 文本已经像大模型一样惊艳
-- 训练损失已经非常低
-- 你得到一个随时能上线的推理系统
+跑完后，你至少应该看到：
 
-而是：
+```text
+artifacts/tokenizer/tokenizer.json
+artifacts/prepare_metadata.json
+data/train.npy
+data/validation.npy
+checkpoints/debug/step-000010.pt
+checkpoints/debug/step-000020.pt
+runs/debug/train_summary.json
+```
 
-- 数据准备链路通了
-- tokenizer 工件正确
-- 训练脚本能稳定跑步数、评估和存 checkpoint
-- 生成脚本能读 checkpoint 并产出合理格式的文本
+## 第二步：检查 `train_summary.json`
 
-## 你要检查哪些结果
+训练总结文件应该出现在：
 
-### 1. 数据侧
+```text
+runs/debug/train_summary.json
+```
 
-- `data/train.npy`
-- `data/validation.npy`
-- metadata JSON
-- tokenizer 工件目录
+它至少包含：
 
-### 2. 训练侧
+```json
+{
+  "step": 20,
+  "last_train_loss": 6.3,
+  "best_eval_loss": 6.1
+}
+```
 
-- runs 或日志中能看到 step 递增
-- checkpoints 目录有保存结果
-- 训练损失不是完全静止或立即 NaN
+具体数值会浮动，但：
 
-### 3. 评估与生成侧
+- `step` 应该等于配置里的 `max_steps`
+- `best_eval_loss` 应该是一个有限正数
+- 整个训练过程不应出现 NaN
 
-- 评估命令能读到 checkpoint
-- 生成命令能正确编码 prompt、滚动生成并解码输出
+## 第三步：验证 `latest` checkpoint 解析是否正确
 
-## 如果结果不理想，先查哪里
+当前项目允许：
 
-1. 先看 `prepare_data` 是否真的生成了足够样本。
-2. 再看 tokenizer special token id 是否和配置一致。
-3. 再看训练损失是否下降，以及是否存在明显重复输出。
-4. 最后回查设备和 AMP 设置。
+```bash
+uv run phoenix-evaluate --config configs/debug.toml --checkpoint latest
+```
+
+这依赖于 `resolve_checkpoint_path()` 在 `checkpoints/<run_name>/` 下自动选择最后一个 `step-*.pt` 文件。你可以额外验证：
+
+```bash
+uv run python - <<'PY'
+from phoenix_mini_llm.cli.common import resolve_checkpoint_path
+from phoenix_mini_llm.config import load_run_config
+
+config = load_run_config("configs/debug.toml")
+print(resolve_checkpoint_path(config, "latest"))
+PY
+```
+
+## 第四步：继续跑 `dev` 配置
+
+当 `debug` 已经稳定后，执行：
+
+```bash
+uv run phoenix-prepare-data --config configs/dev.toml
+uv run phoenix-train --config configs/dev.toml
+```
+
+### `dev` 配置的意义
+
+- 数据量更大。
+- 模型变成 `4` 层、`hidden_size=256`。
+- 训练步数增加到 `200`。
+- 更适合在 Mac 本地或轻量 GPU 上观察完整链路是否稳定。
+
+如果 `debug` 能跑但 `dev` 出问题，通常说明：
+
+- 数据量一增大就暴露出 shape / 内存问题。
+- 梯度累积、评估间隔或 checkpoint 间隔逻辑有 bug。
+
+## 第五步：理解 `train` 配置代表的是真实训练约束
+
+`configs/train.toml` 对应的是正式训练起点：
+
+- `hidden_size = 384`
+- `num_layers = 6`
+- `num_heads = 6`
+- `max_seq_len = 256`
+- `gradient_accumulation_steps = 8`
+- `amp = true`
+- `max_steps = 2000`
+
+这套配置更接近你在 Windows CUDA 环境中真正要跑的实验。你不一定要现在一次跑完，但必须确认：
+
+- 数据准备命令可执行
+- 训练入口参数正确
+- 目录和 checkpoint 节奏正确
+
+## 第六步：验证恢复训练
+
+当前项目训练入口支持：
+
+```bash
+uv run phoenix-train --config configs/debug.toml --resume latest
+```
+
+这意味着你应该能：
+
+1. 先跑出一个中间 checkpoint。
+2. 中断训练。
+3. 通过 `--resume latest` 从最近 checkpoint 继续。
+
+对正式实验来说，这不是附加功能，而是必要功能。
+
+## 第七步：验证生成链路
+
+在 `debug` 或 `dev` checkpoint 可用后，尝试不同 prompt：
+
+```bash
+uv run phoenix-generate --config configs/debug.toml --checkpoint latest --prompt "The phoenix"
+uv run phoenix-generate --config configs/debug.toml --checkpoint latest --prompt "In a tiny village"
+```
+
+你现在关注的不是“文本是否像产品级模型那样自然”，而是：
+
+- prompt 能否被编码
+- 模型能否连续生成
+- EOS 终止逻辑是否有效
+- top-k / top-p / temperature 的接口是否工作
+
+## 最后一轮总验收
+
+在你认为自己已经复现完成之后，至少做一次完整检查：
+
+```bash
+uv run pytest
+uv run ruff check .
+uv run pyright
+uv run phoenix-prepare-data --config configs/debug.toml
+uv run phoenix-train --config configs/debug.toml
+uv run phoenix-evaluate --config configs/debug.toml --checkpoint latest
+uv run phoenix-generate --config configs/debug.toml --checkpoint latest --prompt "Once upon a"
+```
+
+如果这一整套都稳定通过，你就已经不只是“会运行这个仓库”，而是真正重新构造出了它。
+
+## 常见误判
+
+### 误判 1：只要生成出一句话就算复现成功
+
+不对。你还需要确认：
+
+- 配置规模一致
+- checkpoint 节奏一致
+- 训练与评估命令一致
+- 测试与静态检查都通过
+
+### 误判 2：本地 `debug` 跑通就等于正式训练没问题
+
+不对。`debug` 只证明链路正确，不证明显存、吞吐、混合精度、长上下文都没问题。
+
+### 误判 3：跨平台 loss 不逐位一致就是错误
+
+Mac MPS 和 Windows CUDA 不会保证每一步浮点结果完全一样。真正应该追求的是：
+
+- 训练趋势合理
+- 评估损失有限且可下降
+- 生成链路稳定
 
 <Callout title="最常见的误判" tone="warning">
-  第一次跑出文本时，不要因为输出还不够漂亮就立刻判定“模型全错了”。先确认训练链路、checkpoint、采样和 tokenizer 是否一致，再判断是否需要更长训练或更好的配置。
+  如果你把“跑起来一次”误当成“已经完成复刻”，你后面一旦要改结构、调参数或 debug，就会发现自己并没有真正掌握这个工程。复刻成功的标准，是你知道每个文件为什么存在、每条命令为什么这么写、每个工件后面依赖哪段代码。
 </Callout>
 
-## 仓库对齐检查清单
+## 本章完成后的阶段检查点
 
-- 目录结构与 `src/phoenix_mini_llm/` 分层一致。
-- CLI 名称与仓库 README 一致。
-- `configs/debug.toml`、`configs/dev.toml`、`configs/train.toml` 都存在。
-- 测试目录按 data / models / training / inference 划分。
+```bash
+git add .
+git commit -m "tutorial-step-10"
+```
 
-## 复刻完成后下一步做什么
+## 到这里你应该具备什么能力
 
-如果你已经成功完成这一步，接下来不要急着直接扩参数规模。更合理的下一步是：
+当你按顺序完成这 10 章之后，你应该已经能够：
 
-1. 回去读不够稳的学习章节。
-2. 复查踩坑记录，补上你当时绕过但没真正理解的问题。
-3. 先改一个小配置，再重新训练，观察结果变化。
+- 从空目录搭出与当前仓库同构的小型语言模型工程。
+- 理解数据、Tokenizer、模型、训练、推理各层之间的接口。
+- 在 Mac 开发 / Windows 训练的跨平台约束下维护项目。
+- 独立定位大部分训练、配置、路径与推理阶段问题。
 
-## 建议本地检查点名称
-
-`tutorial-step-10`
+如果你在某一层仍然觉得“不知道为什么这样写”，不要回去复制仓库代码，而是回到对应的 [学习主线](/learning) 章节，把那一层的原理重新补牢。
