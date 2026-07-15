@@ -7,8 +7,6 @@ order: 9
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 10. 跑出仓库对齐的基线结果
 
 ## 本章目标

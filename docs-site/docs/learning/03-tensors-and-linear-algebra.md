@@ -7,8 +7,6 @@ order: 2
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 03. Tensor 与线性代数直觉
 
 ## 这一章要解决什么问题

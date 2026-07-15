@@ -7,8 +7,6 @@ order: 9
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 10. 训练工程
 
 ## 这一章要解决什么问题

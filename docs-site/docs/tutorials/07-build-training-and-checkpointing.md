@@ -7,8 +7,6 @@ order: 6
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 07. 写正式训练器与 Checkpoint 链路
 
 ## 本章目标

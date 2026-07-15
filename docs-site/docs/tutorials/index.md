@@ -6,9 +6,6 @@ nav:
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-import { StageChecklist } from '../../src/components/StageChecklist';
-
 # 复刻总览
 
 这一部分的目标不是教你“如何运行仓库里已有的脚本”，而是带你从空目录开始，把一个和当前 `phoenix-mini-llm` 同等结构、同等职责划分的小型语言模型项目一步一步搭出来。
@@ -27,26 +24,18 @@ import { StageChecklist } from '../../src/components/StageChecklist';
 
 ## 10 个阶段
 
-<StageChecklist
-  items={[
-    <a href="/tutorials/01-bootstrap-the-project">01. 建立项目骨架</a>,
-    <a href="/tutorials/02-prepare-the-corpus">02. 准备语料与数据管线</a>,
-    <a href="/tutorials/03-train-the-tokenizer">03. 训练 Tokenizer</a>,
-    <a href="/tutorials/04-build-a-tiny-training-loop">04. 写最小训练闭环</a>,
-    <a href="/tutorials/05-implement-attention-and-blocks">
-      05. 实现 Attention 与 Transformer Block
-    </a>,
-    <a href="/tutorials/06-assemble-the-model">06. 拼出 phoenix-mini-llm 主模型</a>,
-    <a href="/tutorials/07-build-training-and-checkpointing">
-      07. 写正式训练器与 Checkpoint 链路
-    </a>,
-    <a href="/tutorials/08-build-generation-and-sampling">08. 写生成与采样逻辑</a>,
-    <a href="/tutorials/09-polish-tests-and-commands">
-      09. 补齐工程化细节、测试与命令
-    </a>,
-    <a href="/tutorials/10-reproduce-the-baseline">10. 跑出仓库对齐的基线结果</a>,
-  ]}
-/>
+<ol className="phoenix-stage-checklist">
+  <li><a href="/tutorials/01-bootstrap-the-project">01. 建立项目骨架</a></li>
+  <li><a href="/tutorials/02-prepare-the-corpus">02. 准备语料与数据管线</a></li>
+  <li><a href="/tutorials/03-train-the-tokenizer">03. 训练 Tokenizer</a></li>
+  <li><a href="/tutorials/04-build-a-tiny-training-loop">04. 写最小训练闭环</a></li>
+  <li><a href="/tutorials/05-implement-attention-and-blocks">05. 实现 Attention 与 Transformer Block</a></li>
+  <li><a href="/tutorials/06-assemble-the-model">06. 拼出 phoenix-mini-llm 主模型</a></li>
+  <li><a href="/tutorials/07-build-training-and-checkpointing">07. 写正式训练器与 Checkpoint 链路</a></li>
+  <li><a href="/tutorials/08-build-generation-and-sampling">08. 写生成与采样逻辑</a></li>
+  <li><a href="/tutorials/09-polish-tests-and-commands">09. 补齐工程化细节、测试与命令</a></li>
+  <li><a href="/tutorials/10-reproduce-the-baseline">10. 跑出仓库对齐的基线结果</a></li>
+</ol>
 
 ## 每一章都会给你什么
 

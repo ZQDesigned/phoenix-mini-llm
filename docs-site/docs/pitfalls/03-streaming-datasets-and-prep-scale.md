@@ -3,8 +3,6 @@ title: 03. 流式数据集与子集规模
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 03. 流式数据集与子集规模
 
 ## 发生背景

@@ -6,8 +6,6 @@ nav:
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 踩坑记录总览
 
 这一部分只记录真实出现过的问题，不负责重新讲一遍完整理论。它的价值在于告诉你：一个本来看似合理的实现，为什么会在工程现场出错。

@@ -19,36 +19,25 @@ features:
     description: 踩坑记录按开发顺序保留问题现场、误判过程、最终修复和后续预防方式。
 ---
 
-import { TrackCardGrid } from '../src/components/TrackCardGrid';
-import { Callout } from '../src/components/Callout';
-
 # 阅读入口
 
-<TrackCardGrid
-  cards={[
-    {
-      title: '学习主线',
-      description:
-        '适合第一次做语言模型项目的读者。你会从问题定义、张量和损失函数一路走到训练工程和推理采样。',
-      href: '/learning',
-      action: '按章节开始学习',
-    },
-    {
-      title: '复刻教程',
-      description:
-        '适合想从空目录一步一步做出同款项目的人。它不是运行说明，而是分阶段的构建工坊。',
-      href: '/tutorials',
-      action: '进入 10 阶段复刻',
-    },
-    {
-      title: '踩坑记录',
-      description:
-        '适合已经开始动手，但在环境、路径、数据处理、设备差异等问题上卡住的读者。',
-      href: '/pitfalls',
-      action: '按时间线回顾问题',
-    },
-  ]}
-/>
+<div className="phoenix-track-grid">
+  <section className="phoenix-track-card">
+    <h3>学习主线</h3>
+    <p>适合第一次做语言模型项目的读者。你会从问题定义、张量和损失函数一路走到训练工程和推理采样。</p>
+    <a href="/learning">按章节开始学习</a>
+  </section>
+  <section className="phoenix-track-card">
+    <h3>复刻教程</h3>
+    <p>适合想从空目录一步一步做出同款项目的人。它不是运行说明，而是分阶段的构建工坊。</p>
+    <a href="/tutorials">进入 10 阶段复刻</a>
+  </section>
+  <section className="phoenix-track-card">
+    <h3>踩坑记录</h3>
+    <p>适合已经开始动手，但在环境、路径、数据处理、设备差异等问题上卡住的读者。</p>
+    <a href="/pitfalls">按时间线回顾问题</a>
+  </section>
+</div>
 
 ## 这份站点适合谁
 

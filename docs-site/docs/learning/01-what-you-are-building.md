@@ -7,8 +7,6 @@ order: 0
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 01. 你到底在做什么
 
 ## 这一章要解决什么问题

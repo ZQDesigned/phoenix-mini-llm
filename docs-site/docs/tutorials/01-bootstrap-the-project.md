@@ -7,8 +7,6 @@ order: 0
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 01. 建立项目骨架
 
 ## 本章目标

@@ -3,8 +3,6 @@ title: 07. GitHub Pages 子路径构建
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 07. GitHub Pages 子路径构建
 
 ## 发生背景

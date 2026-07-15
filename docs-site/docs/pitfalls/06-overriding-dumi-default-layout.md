@@ -3,8 +3,6 @@ title: 06. 过度覆写 dumi 默认布局
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 06. 过度覆写 dumi 默认布局
 
 ## 发生背景

@@ -7,8 +7,6 @@ order: 1
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 02. 准备语料与数据管线
 
 ## 本章目标

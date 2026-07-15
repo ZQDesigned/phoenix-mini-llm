@@ -3,8 +3,6 @@ title: 01. uv 在 PATH 中缺失
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 01. uv 在 PATH 中缺失
 
 ## 发生背景

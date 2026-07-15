@@ -7,8 +7,6 @@ order: 5
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 06. 拼出 phoenix-mini-llm 主模型
 
 ## 本章目标

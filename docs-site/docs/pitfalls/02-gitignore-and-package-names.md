@@ -3,8 +3,6 @@ title: 02. .gitignore 误伤 data 包
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 02. .gitignore 误伤 data 包
 
 ## 发生背景

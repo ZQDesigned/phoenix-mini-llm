@@ -7,8 +7,6 @@ order: 8
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 09. 补齐工程化细节、测试与命令
 
 ## 本章目标

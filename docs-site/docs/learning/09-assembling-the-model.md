@@ -7,8 +7,6 @@ order: 8
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 09. 把模型拼起来
 
 ## 这一章要解决什么问题

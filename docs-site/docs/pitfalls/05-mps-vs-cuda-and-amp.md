@@ -3,8 +3,6 @@ title: 05. MPS 与 CUDA 的精度差异
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 05. MPS 与 CUDA 的精度差异
 
 ## 发生背景

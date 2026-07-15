@@ -3,8 +3,6 @@ title: 04. Tokenizer 元数据同步
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 04. Tokenizer 元数据同步
 
 ## 发生背景

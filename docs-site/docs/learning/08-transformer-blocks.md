@@ -7,8 +7,6 @@ order: 7
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 08. Transformer Block
 
 ## 这一章要解决什么问题

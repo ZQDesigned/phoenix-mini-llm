@@ -7,8 +7,6 @@ order: 5
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 06. 语言模型训练目标
 
 ## 这一章要解决什么问题

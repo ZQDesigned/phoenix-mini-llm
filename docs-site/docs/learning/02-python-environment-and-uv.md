@@ -7,8 +7,6 @@ order: 1
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 02. Python 环境与 uv
 
 ## 这一章要解决什么问题

@@ -7,8 +7,6 @@ order: 3
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 04. 写最小训练闭环
 
 ## 本章目标

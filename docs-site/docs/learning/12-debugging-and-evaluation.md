@@ -7,8 +7,6 @@ order: 11
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 12. 调试与评估
 
 ## 这一章要解决什么问题

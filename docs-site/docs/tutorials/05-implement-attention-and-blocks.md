@@ -7,8 +7,6 @@ order: 4
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 05. 实现 Attention 与 Transformer Block
 
 ## 本章目标

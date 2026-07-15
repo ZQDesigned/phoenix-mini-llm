@@ -7,8 +7,6 @@ order: 2
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 03. 训练 Tokenizer
 
 ## 本章目标

@@ -7,8 +7,6 @@ order: 7
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 08. 写生成与采样逻辑
 
 ## 本章目标

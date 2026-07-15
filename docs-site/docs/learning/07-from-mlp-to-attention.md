@@ -7,8 +7,6 @@ order: 6
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 07. 从 MLP 到 Attention
 
 ## 这一章要解决什么问题

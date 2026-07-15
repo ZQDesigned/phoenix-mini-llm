@@ -7,8 +7,6 @@ order: 10
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 11. 推理与采样
 
 ## 这一章要解决什么问题

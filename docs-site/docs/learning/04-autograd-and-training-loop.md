@@ -7,8 +7,6 @@ order: 3
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 04. 自动求导与训练闭环
 
 ## 这一章要解决什么问题

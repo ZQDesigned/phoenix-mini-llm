@@ -56,9 +56,21 @@ const pitfalls = [
   },
 ];
 
+const docsRoutePaths = Array.from(
+  new Set([
+    '/',
+    ...learningChapters.map((item) => item.link),
+    ...tutorialStages.map((item) => item.link),
+    ...pitfalls.map((item) => item.link),
+  ]),
+);
+
 export default defineConfig({
   base: docsBase,
   publicPath: docsBase,
+  exportStatic: {
+    extraRoutePaths: docsRoutePaths,
+  },
   resolve: {
     docDirs: ['docs'],
     forceKebabCaseRouting: true,

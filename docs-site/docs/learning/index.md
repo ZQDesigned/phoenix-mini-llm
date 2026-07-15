@@ -6,8 +6,6 @@ nav:
 toc: content
 ---
 
-import { Callout } from '../../src/components/Callout';
-
 # 学习主线总览
 
 这一部分是一套严格按顺序阅读的线性教材。它不是术语索引，也不是项目 API 参考，而是专门为第一次做这类项目的读者准备的学习路径。
