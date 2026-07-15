@@ -1,6 +1,11 @@
 import { defineConfig } from 'dumi';
 
+const docsBase = process.env.DOCS_SITE_BASE || '/';
+const githubRepo = process.env.GITHUB_REPOSITORY || 'ZQDesigned/phoenix-mini-llm';
+
 export default defineConfig({
+  base: docsBase,
+  publicPath: docsBase,
   resolve: {
     docDirs: ['docs'],
     forceKebabCaseRouting: true,
@@ -10,7 +15,7 @@ export default defineConfig({
     footer: 'Phoenix Mini LLM Docs',
     prefersColor: { default: 'light', switch: false },
     socialLinks: {
-      github: 'https://github.com/umijs/dumi',
+      github: `https://github.com/${githubRepo}`,
     },
     nav: [
       { title: '首页', link: '/' },
