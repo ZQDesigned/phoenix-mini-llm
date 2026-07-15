@@ -1,11 +1,11 @@
 import React from 'react';
 import { FloatButton } from 'antd';
 import { createStyles } from 'antd-style';
-import Toc from 'dumi/theme-default/slots/Toc';
 
 import PrevAndNext from '../../common/PrevAndNext';
 import Footer from '../Footer';
 import SiteContext from '../SiteContext';
+import DocAnchor, { useStyle as useDocAnchorStyle } from './DocAnchor';
 
 const useStyle = createStyles(({ css, cssVar, token }) => ({
   root: css`
@@ -17,30 +17,16 @@ const useStyle = createStyles(({ css, cssVar, token }) => ({
   shell: css`
     flex: 1;
     min-width: 0;
-    display: flex;
-    gap: ${cssVar.marginXL}px;
+    display: block;
   `,
   articleShell: css`
     flex: 1;
     min-width: 0;
     padding-inline-start: 64px;
-    padding-inline-end: 48px;
   `,
   articleWrapper: css`
-    max-width: 860px;
+    max-width: 100%;
     min-height: calc(100vh - ${token.headerHeight}px);
-  `,
-  tocShell: css`
-    width: 220px;
-    flex: none;
-    margin-inline-end: 24px;
-    position: sticky;
-    top: calc(${token.headerHeight}px + ${cssVar.marginLG}px);
-    align-self: flex-start;
-    max-height: calc(100vh - ${token.headerHeight}px - ${cssVar.marginLG}px * 2);
-    overflow: auto;
-    scrollbar-width: thin;
-    scrollbar-gutter: stable;
   `,
 }));
 
@@ -50,20 +36,19 @@ export interface ContentProps {
 
 const Content: React.FC<ContentProps> = ({ children }) => {
   const { styles } = useStyle();
+  const { styles: anchorStyles } = useDocAnchorStyle();
   const { isMobile } = React.useContext(SiteContext);
 
   return (
     <section className={styles.root}>
       <div className={`${styles.shell} phoenix-content-shell`}>
         <div className={styles.articleShell}>
-          <article className={styles.articleWrapper}>{children}</article>
+          {!isMobile && <DocAnchor />}
+          <article className={`${styles.articleWrapper} ${anchorStyles.articleWrapper}`}>
+            {children}
+          </article>
           <FloatButton.BackTop />
         </div>
-        {!isMobile && (
-          <aside className={`${styles.tocShell} toc`}>
-            <Toc />
-          </aside>
-        )}
       </div>
       <div>
         <PrevAndNext />
