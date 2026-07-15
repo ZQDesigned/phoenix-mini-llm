@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+import tomllib
 from dataclasses import dataclass
 from pathlib import Path
-import tomllib
 
 
 @dataclass(slots=True)
@@ -13,7 +13,7 @@ class ProjectPaths:
     runs_dir: Path
     checkpoints_dir: Path
 
-    def resolve(self) -> "ProjectPaths":
+    def resolve(self) -> ProjectPaths:
         return ProjectPaths(
             project_root=self.project_root.resolve(),
             data_dir=self._resolve_path(self.data_dir),

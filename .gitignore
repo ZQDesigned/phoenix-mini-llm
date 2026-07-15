@@ -10,15 +10,14 @@ htmlcov/
 .DS_Store
 .idea/
 
-data/
-artifacts/
-runs/
-checkpoints/
-outputs/
+/data/
+/artifacts/
+/runs/
+/checkpoints/
+/outputs/
 
 docs/superpowers/
 
-node_modules/
-docs-dist/
-dist/
-
+/node_modules/
+/docs-dist/
+/dist/
