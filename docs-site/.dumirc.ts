@@ -45,8 +45,29 @@ const alibabaSansFontFaceStyle = alibabaSansFonts
 const staleBundleRecoveryScript = `
 (() => {
   const reloadKey = 'phoenix-mini-llm:stale-bundle:' + ${JSON.stringify(buildHash)};
+  const reloadQueryKey = '__phoenix_reload';
   const staleBundlePattern =
     /Callout is not defined|ChunkLoadError|Loading (CSS )?chunk [^ ]+ failed/i;
+
+  const cleanupReloadQuery = () => {
+    const url = new URL(window.location.href);
+
+    if (!url.searchParams.has(reloadQueryKey)) {
+      return;
+    }
+
+    url.searchParams.delete(reloadQueryKey);
+    window.history.replaceState(window.history.state, '', url.toString());
+  };
+
+  const buildReloadUrl = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set(
+      reloadQueryKey,
+      ${JSON.stringify(buildHash)} + '-' + Date.now().toString(36),
+    );
+    return url.toString();
+  };
 
   const reloadOnce = () => {
     try {
@@ -59,7 +80,7 @@ const staleBundleRecoveryScript = `
       // Ignore storage availability issues and still attempt a reload.
     }
 
-    window.location.reload();
+    window.location.replace(buildReloadUrl());
   };
 
   const getMessage = (value) => {
@@ -73,6 +94,14 @@ const staleBundleRecoveryScript = `
 
     if (typeof value.message === 'string') {
       return value.message;
+    }
+
+    if (value.error) {
+      return getMessage(value.error);
+    }
+
+    if (value.reason) {
+      return getMessage(value.reason);
     }
 
     return '';
@@ -89,10 +118,12 @@ const staleBundleRecoveryScript = `
   );
 
   window.addEventListener('unhandledrejection', (event) => {
-    if (staleBundlePattern.test(getMessage(event.reason))) {
+    if (staleBundlePattern.test(getMessage(event))) {
       reloadOnce();
     }
   });
+
+  window.addEventListener('load', cleanupReloadQuery, { once: true });
 })();
 `;
 
