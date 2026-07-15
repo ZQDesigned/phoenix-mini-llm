@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { GithubOutlined, MenuOutlined } from '@ant-design/icons';
-import { Button, Col, ConfigProvider, Menu, Popover, Row, Tooltip } from 'antd';
+import { Button, Col, ConfigProvider, Menu, Popover, Row, Select, Tooltip } from 'antd';
 import { createStyles } from 'antd-style';
 import { useAppData, useLocation, useSiteData } from 'dumi';
 import DumiSearchBar from 'dumi/theme-default/slots/SearchBar';
+import packageInfo from '../../../../package.json';
 
 import Link from '../../common/Link';
 import ThemeSwitch from '../../common/ThemeSwitch';
+import DirectionIcon from '../../icons/DirectionIcon';
 import SiteContext from '../SiteContext';
+import SwitchBtn from './SwitchBtn';
+
+const RESPONSIVE_XS = 1120;
+const RESPONSIVE_SM = 1200;
 
 const useStyle = createStyles(({ css, cssVar, token }) => ({
   header: css`
@@ -63,6 +69,22 @@ const useStyle = createStyles(({ css, cssVar, token }) => ({
 
       .dumi-default-search-shortcut {
         display: none;
+      }
+
+      .dumi-default-search-popover {
+        inset-inline-start: ${cssVar.paddingSM}px;
+        inset-inline-end: unset;
+        z-index: 1;
+
+        &::before {
+          inset-inline-start: 100px;
+          inset-inline-end: unset;
+        }
+
+        > section {
+          scrollbar-width: thin;
+          scrollbar-gutter: stable;
+        }
       }
     }
   `,
@@ -135,12 +157,25 @@ const useStyle = createStyles(({ css, cssVar, token }) => ({
   github: css`
     font-size: 16px;
   `,
+  dataDirectionIcon: css`
+    width: 20px;
+  `,
+  versionSelect: css`
+    width: 88px;
+    min-width: 88px;
+    margin-inline-end: 6px;
+
+    .rc-virtual-list-holder {
+      scrollbar-width: thin;
+      scrollbar-gutter: stable;
+    }
+  `,
   mobileMenuButton: css`
     font-size: 18px;
     margin-inline-end: 12px;
   `,
   popoverMenu: css`
-    width: 280px;
+    width: 300px;
 
     ${token.antCls}-popover-inner-content {
       padding: 0;
@@ -165,11 +200,27 @@ const Header: React.FC = () => {
   const { themeConfig } = useSiteData();
   const { base = '/' } = useAppData();
   const { pathname } = useLocation();
-  const { isMobile } = React.useContext(SiteContext);
-  const [menuOpen, setMenuOpen] = React.useState(false);
+  const { direction, isMobile, updateSiteConfig } = React.useContext(SiteContext);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(1400);
 
   const navItems = (themeConfig.nav || []) as NavItem[];
   const githubUrl = themeConfig.socialLinks?.github;
+  const isHome = pathname === '/' || pathname === '/index';
+
+  useEffect(() => {
+    const onWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    onWindowResize();
+    window.addEventListener('resize', onWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', onWindowResize);
+    };
+  }, []);
+
   const selectedKey = React.useMemo(() => {
     const currentPath = normalizePath(pathname);
     const internalItems = navItems.filter((item) => !isExternalLink(item.link));
@@ -200,10 +251,84 @@ const Header: React.FC = () => {
     [navItems],
   );
 
+  const versionOptions = useMemo(
+    () => [
+      {
+        value: packageInfo.version,
+        label: packageInfo.version,
+      },
+    ],
+    [],
+  );
+
+  const onDirectionChange = useCallback(() => {
+    updateSiteConfig({ direction: direction !== 'rtl' ? 'rtl' : 'ltr' });
+  }, [direction, updateSiteConfig]);
+
+  const directionSwitch = (
+    <SwitchBtn
+      key="direction"
+      onClick={onDirectionChange}
+      value={direction === 'rtl' ? 2 : 1}
+      label1={<DirectionIcon className={styles.dataDirectionIcon} direction="ltr" />}
+      tooltip1="LTR"
+      label2={<DirectionIcon className={styles.dataDirectionIcon} direction="rtl" />}
+      tooltip2="RTL"
+      pure
+      aria-label="RTL Switch Button"
+    />
+  );
+
+  const versionNode = (
+    <Select
+      key="version"
+      size="small"
+      variant="filled"
+      className={styles.versionSelect}
+      value={packageInfo.version}
+      options={versionOptions}
+      disabled
+      popupMatchSelectWidth={false}
+      getPopupContainer={(trigger) => trigger.parentNode}
+    />
+  );
+
+  const githubNode =
+    githubUrl && (
+      <a key="github" href={githubUrl} target="_blank" rel="noopener noreferrer">
+        <Tooltip title="GitHub" destroyOnHidden>
+          <Button type="text" icon={<GithubOutlined />} className={styles.github} />
+        </Tooltip>
+      </a>
+    );
+
+  let responsive: null | 'narrow' | 'crowded' = null;
+  if (windowWidth < RESPONSIVE_XS) {
+    responsive = 'crowded';
+  } else if (windowWidth < RESPONSIVE_SM) {
+    responsive = 'narrow';
+  }
+
+  let desktopActions = [versionNode, directionSwitch, <ThemeSwitch key="theme" />, githubNode];
+
+  if (responsive === 'crowded') {
+    desktopActions = [directionSwitch, <ThemeSwitch key="theme" />, githubNode];
+  }
+
+  const mobileActions = [versionNode, directionSwitch, <ThemeSwitch key="theme" />, githubNode]
+    .filter(Boolean);
+
+  const colProps = isHome
+    ? [{ flex: 'none' }, { flex: 'auto' }]
+    : [
+        { xxl: 4, xl: 5, lg: 6, md: 6, sm: 24, xs: 24 },
+        { xxl: 20, xl: 19, lg: 18, md: 18, sm: 0, xs: 0 },
+      ];
+
   return (
     <header className={styles.header}>
       <Row style={{ flexFlow: 'nowrap', height: 64 }}>
-        <Col flex="none">
+        <Col {...colProps[0]}>
           <h1 style={{ margin: 0 }}>
             <Link to="/" className={styles.logo}>
               <img src={`${base}favicon.svg`} alt="Phoenix Mini LLM" draggable={false} />
@@ -212,7 +337,7 @@ const Header: React.FC = () => {
           </h1>
         </Col>
         {!isMobile ? (
-          <Col flex="auto">
+          <Col {...colProps[1]}>
             <div className={styles.menuRow}>
               <DumiSearchBar />
               <ConfigProvider
@@ -229,14 +354,7 @@ const Header: React.FC = () => {
                   items={menuItems}
                 />
               </ConfigProvider>
-              <ThemeSwitch />
-              {githubUrl && (
-                <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-                  <Tooltip title="GitHub" destroyOnHidden>
-                    <Button type="text" icon={<GithubOutlined />} className={styles.github} />
-                  </Tooltip>
-                </a>
-              )}
+              {desktopActions}
             </div>
           </Col>
         ) : (
@@ -256,12 +374,17 @@ const Header: React.FC = () => {
                 open={menuOpen}
                 onOpenChange={setMenuOpen}
                 content={
-                  <Menu
-                    mode="inline"
-                    selectedKeys={selectedKey}
-                    items={menuItems}
-                    onClick={() => setMenuOpen(false)}
-                  />
+                  <>
+                    <Menu
+                      mode="inline"
+                      selectedKeys={selectedKey}
+                      items={menuItems}
+                      onClick={() => setMenuOpen(false)}
+                    />
+                    <div style={{ display: 'flex', alignItems: 'center', padding: '12px 16px' }}>
+                      {mobileActions}
+                    </div>
+                  </>
                 }
               >
                 <Button
