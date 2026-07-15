@@ -2,18 +2,111 @@
 @import '../src/components/components.less';
 
 :root {
-  --phoenix-bg: #fbfaf7;
-  --phoenix-surface: #fffdf9;
-  --phoenix-surface-strong: #fff8ef;
-  --phoenix-border: #eadfce;
-  --phoenix-text: #1f1a14;
-  --phoenix-text-soft: #5e5549;
-  --phoenix-accent: #c56a1a;
-  --phoenix-accent-strong: #9f5314;
-  --phoenix-accent-soft: #1677ff;
+  --phoenix-bg: #f5f5f5;
+  --phoenix-surface: #ffffff;
+  --phoenix-surface-strong: #fafafa;
+  --phoenix-border: #d9d9d9;
+  --phoenix-text: rgba(0, 0, 0, 0.88);
+  --phoenix-text-soft: rgba(0, 0, 0, 0.65);
+  --phoenix-accent: #1677ff;
+  --phoenix-accent-strong: #0958d9;
+  --phoenix-accent-soft: #69b1ff;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #eaeaea transparent;
+  overscroll-behavior-x: contain;
+
+  @supports (text-autospace: normal) {
+    text-autospace: normal;
+  }
+}
+
+.rc-footer {
+  position: relative;
+  clear: both;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: #000;
+}
+
+.rc-footer a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.rc-footer a:hover {
+  color: #40a9ff;
+}
+
+.rc-footer-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 0 20px;
+}
+
+.rc-footer-columns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.rc-footer-column {
+  margin-bottom: 60px;
+}
+
+.rc-footer-column h2 {
+  position: relative;
+  margin: 0 auto;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.rc-footer-item {
+  margin: 12px 0;
+}
+
+.rc-footer-item-separator {
+  margin: 0 0.3em;
+}
+
+.rc-footer-bottom-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 16px;
+  line-height: 32px;
+  text-align: center;
 }
 
 @media (max-width: 767px) {
+  .rc-footer {
+    text-align: center;
+  }
+
+  .rc-footer-container {
+    padding: 40px 0;
+  }
+
+  .rc-footer-columns {
+    display: block;
+  }
+
+  .rc-footer-column {
+    display: block;
+    margin-bottom: 40px;
+  }
+
+  .rc-footer-column:last-child {
+    margin-bottom: 0;
+  }
+
   .phoenix-content-shell {
     display: block;
   }

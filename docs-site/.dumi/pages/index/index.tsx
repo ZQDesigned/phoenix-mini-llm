@@ -6,6 +6,7 @@ import { Helmet } from 'dumi';
 
 import Link from '../../theme/common/Link';
 import Group from './components/Group';
+import PreviewBanner from './components/PreviewBanner';
 
 const learningChapters = [
   { title: '01. 你到底在做什么', link: '/learning/01-what-you-are-building' },
@@ -46,56 +47,18 @@ const pitfalls = [
 ];
 
 const useStyle = createStyles(({ css, cssVar, token }) => ({
-  banner: css`
-    position: relative;
-    min-height: 640px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:
-      radial-gradient(circle at 18% 22%, rgba(22, 119, 255, 0.16), transparent 28%),
-      radial-gradient(circle at 82% 18%, rgba(114, 46, 209, 0.12), transparent 24%),
-      linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
-  `,
-  bannerInner: css`
-    width: 100%;
-    max-width: 1208px;
-    padding: 120px ${cssVar.marginXXL}px 92px;
-    display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(320px, 0.9fr);
-    gap: ${cssVar.marginXXL}px;
-    align-items: center;
-
-    @media (max-width: 960px) {
-      grid-template-columns: 1fr;
-      padding-top: 96px;
-    }
-  `,
-  bannerText: css`
-    position: relative;
-    z-index: 1;
-
-    h1 {
-      margin-bottom: ${cssVar.marginLG}px;
-      font-weight: 900 !important;
-      font-size: calc(${cssVar.fontSizeHeading1} * 1.9) !important;
-      line-height: 1.05 !important;
-      letter-spacing: -0.04em;
-    }
-
-    p {
-      margin-bottom: ${cssVar.marginXL}px !important;
-      color: ${cssVar.colorTextTertiary} !important;
-      font-size: calc(${cssVar.fontSizeLG} * 1.22) !important;
-      line-height: 1.9 !important;
-    }
-  `,
   bannerPanel: css`
     position: relative;
     z-index: 1;
     display: grid;
+    max-width: 920px;
+    margin-inline: auto;
     gap: ${cssVar.marginLG}px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    @media (max-width: 960px) {
+      grid-template-columns: 1fr;
+    }
   `,
   glassCard: css`
     border-radius: 24px !important;
@@ -177,20 +140,12 @@ const Homepage: React.FC = () => {
           content="面向初学者的大模型基础开发知识档案、完整复刻教程与真实踩坑记录。"
         />
       </Helmet>
-      <section className={styles.banner}>
-        <div className={styles.bannerInner}>
-          <div className={styles.bannerText}>
-            <Space size="middle" wrap style={{ marginBottom: 24 }}>
-              <Tag color="blue">6GB VRAM 约束</Tag>
-              <Tag color="processing">Mac 开发 / Windows 训练</Tag>
-              <Tag color="purple">从零实现 Decoder-only Transformer</Tag>
-            </Space>
-            <Typography.Title>让你真正把一个小型语言模型从空目录做出来</Typography.Title>
-            <Typography.Paragraph>
-              Phoenix Mini LLM 不是“运行一个现成仓库”的说明书，而是一套按顺序展开的学习工坊。
-              你会先学清楚张量、损失函数、Tokenizer、Attention 与训练工程，再按教程一步一步写出和当前仓库一致的实现。
-            </Typography.Paragraph>
-            <Space size="middle" wrap>
+      <section className="home-page-wrapper">
+        <PreviewBanner
+          title="Phoenix Mini LLM"
+          description="面向初学者的大模型基础开发知识档案、完整复刻教程与真实踩坑记录。先懂原理，再从空目录一步一步写出和当前仓库一致的小型语言模型。"
+          actions={
+            <>
               <Link to="/learning">
                 <Button size="large" type="primary">
                   从零学习
@@ -204,8 +159,18 @@ const Homepage: React.FC = () => {
                   查看踩坑记录
                 </Button>
               </Link>
-            </Space>
-          </div>
+            </>
+          }
+        >
+          <Space
+            size="middle"
+            wrap
+            style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}
+          >
+            <Tag color="blue">6GB VRAM 约束</Tag>
+            <Tag color="processing">Mac 开发 / Windows 训练</Tag>
+            <Tag color="purple">从零实现 Decoder-only Transformer</Tag>
+          </Space>
           <div className={styles.bannerPanel}>
             <Card className={styles.glassCard}>
               <Space direction="vertical" size="middle">
@@ -230,75 +195,75 @@ const Homepage: React.FC = () => {
               </Space>
             </Card>
           </div>
-        </div>
-      </section>
+        </PreviewBanner>
 
-      <Group
-        id="learning"
-        title="学习主线"
-        description="12 章基础知识档案，覆盖从文本与 token 到训练工程与推理采样的完整前置知识。"
-        background="#ffffff"
-        collapse
-      >
-        <div className={styles.denseGrid}>
-          {learningChapters.map((chapter) => (
-            <Card key={chapter.link} className={styles.chapterCard}>
-              <Typography.Title level={5}>{chapter.title}</Typography.Title>
-              <Link to={chapter.link} className={styles.sectionLink}>
-                进入章节
-                <ArrowRightOutlined />
-              </Link>
-            </Card>
-          ))}
-        </div>
-      </Group>
-
-      <Group
-        id="tutorials"
-        title="复刻教程"
-        description="10 个阶段按顺序构建 phoenix-mini-llm，每一章都对应实际文件、命令与验证点。"
-        background="linear-gradient(180deg, #f7faff 0%, #eef4ff 100%)"
-      >
-        <Row gutter={[24, 24]}>
-          {tutorialStages.map((stage) => (
-            <Col xs={24} md={12} lg={8} key={stage.link}>
-              <Card className={styles.sectionCard}>
-                <Typography.Title level={5}>{stage.title}</Typography.Title>
-                <Typography.Paragraph style={{ margin: 0 }}>
-                  对应仓库中的真实实现阶段，而不是抽象演示项目。跟着这一条线走，最终做出的就是当前项目本身。
-                </Typography.Paragraph>
-                <Link to={stage.link} className={styles.sectionLink}>
-                  打开阶段教程
+        <Group
+          id="learning"
+          title="学习主线"
+          description="12 章基础知识档案，覆盖从文本与 token 到训练工程与推理采样的完整前置知识。"
+          background="#ffffff"
+          collapse
+        >
+          <div className={styles.denseGrid}>
+            {learningChapters.map((chapter) => (
+              <Card key={chapter.link} className={styles.chapterCard}>
+                <Typography.Title level={5}>{chapter.title}</Typography.Title>
+                <Link to={chapter.link} className={styles.sectionLink}>
+                  进入章节
                   <ArrowRightOutlined />
                 </Link>
               </Card>
-            </Col>
-          ))}
-        </Row>
-      </Group>
+            ))}
+          </div>
+        </Group>
 
-      <Group
-        id="pitfalls"
-        title="踩坑记录"
-        description="按开发顺序保留环境、路径、数据、设备差异与部署问题，避免把时间浪费在重复误判上。"
-        background="#f5f8ff"
-        collapse
-      >
-        <div className={styles.listColumn}>
-          {pitfalls.map((item, index) => (
-            <div className={styles.listItem} key={item.link}>
-              <Space>
-                <Tag color="blue">{String(index + 1).padStart(2, '0')}</Tag>
-                <Typography.Text>{item.title}</Typography.Text>
-              </Space>
-              <Link to={item.link} className={styles.sectionLink}>
-                查看记录
-                <ArrowRightOutlined />
-              </Link>
-            </div>
-          ))}
-        </div>
-      </Group>
+        <Group
+          id="tutorials"
+          title="复刻教程"
+          description="10 个阶段按顺序构建 phoenix-mini-llm，每一章都对应实际文件、命令与验证点。"
+          background="linear-gradient(180deg, #f7faff 0%, #eef4ff 100%)"
+        >
+          <Row gutter={[24, 24]}>
+            {tutorialStages.map((stage) => (
+              <Col xs={24} md={12} lg={8} key={stage.link}>
+                <Card className={styles.sectionCard}>
+                  <Typography.Title level={5}>{stage.title}</Typography.Title>
+                  <Typography.Paragraph style={{ margin: 0 }}>
+                    对应仓库中的真实实现阶段，而不是抽象演示项目。跟着这一条线走，最终做出的就是当前项目本身。
+                  </Typography.Paragraph>
+                  <Link to={stage.link} className={styles.sectionLink}>
+                    打开阶段教程
+                    <ArrowRightOutlined />
+                  </Link>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Group>
+
+        <Group
+          id="pitfalls"
+          title="踩坑记录"
+          description="按开发顺序保留环境、路径、数据、设备差异与部署问题，避免把时间浪费在重复误判上。"
+          background="#f5f8ff"
+          collapse
+        >
+          <div className={styles.listColumn}>
+            {pitfalls.map((item, index) => (
+              <div className={styles.listItem} key={item.link}>
+                <Space>
+                  <Tag color="blue">{String(index + 1).padStart(2, '0')}</Tag>
+                  <Typography.Text>{item.title}</Typography.Text>
+                </Space>
+                <Link to={item.link} className={styles.sectionLink}>
+                  查看记录
+                  <ArrowRightOutlined />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </Group>
+      </section>
     </>
   );
 };

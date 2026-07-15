@@ -1,4 +1,4 @@
-import { createElement, type ReactNode } from 'react';
+import * as React from 'react';
 
 type CalloutTone = 'note' | 'warning' | 'success';
 
@@ -9,12 +9,12 @@ export default function Callout({
 }: {
   title: string;
   tone?: CalloutTone;
-  children?: ReactNode;
+  children?: React.ReactNode;
 }) {
-  return createElement(
+  return React.createElement(
     'div',
     { className: `phoenix-callout phoenix-callout--${tone}` },
-    createElement('strong', { className: 'phoenix-callout__title' }, title),
-    createElement('div', null, children),
+    React.createElement('strong', { className: 'phoenix-callout__title' }, title),
+    React.createElement('div', null, children),
   );
 }

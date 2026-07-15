@@ -4,6 +4,7 @@ import { createStaticStyles, useTheme } from 'antd-style';
 import { clsx } from 'clsx';
 
 import SiteContext from '../../../theme/slots/SiteContext';
+import GroupMaskLayer from './GroupMaskLayer';
 
 const styles = createStaticStyles(({ css, cssVar }) => ({
   box: css`
@@ -12,6 +13,11 @@ const styles = createStaticStyles(({ css, cssVar }) => ({
     background-size: cover;
     background-position: 50% 0%;
     background-repeat: no-repeat;
+  `,
+  container: css`
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
   `,
   typographyWrapper: css`
     text-align: center;
@@ -22,6 +28,11 @@ const styles = createStaticStyles(({ css, cssVar }) => ({
     box-sizing: border-box;
     padding-inline: ${cssVar.marginXXL}px;
   `,
+  withoutChildren: css`
+    min-height: 300px;
+    border-radius: ${cssVar.borderRadiusLG}px;
+    background-color: #e9e9e9;
+  `,
 }));
 
 export interface GroupProps {
@@ -30,20 +41,40 @@ export interface GroupProps {
   titleColor?: string;
   description?: React.ReactNode;
   background?: string;
+  /** 是否不使用两侧 margin */
   collapse?: boolean;
   decoration?: React.ReactNode;
+  backgroundPrefetchList?: string[];
+  extra?: React.ReactNode;
 }
 
-const Group: React.FC<React.PropsWithChildren<GroupProps>> = ({
-  id,
-  title,
-  titleColor,
-  description,
-  children,
-  decoration,
-  background,
-  collapse,
-}) => {
+const Group: React.FC<React.PropsWithChildren<GroupProps>> = (props) => {
+  const {
+    id,
+    title,
+    titleColor,
+    description,
+    children,
+    decoration,
+    background,
+    collapse,
+    backgroundPrefetchList,
+    extra,
+  } = props;
+
+  React.useEffect(() => {
+    if (!backgroundPrefetchList?.length) {
+      return;
+    }
+
+    backgroundPrefetchList.forEach((url) => {
+      if (url && url.startsWith('https')) {
+        const image = new Image();
+        image.src = url;
+      }
+    });
+  }, [backgroundPrefetchList]);
+
   const token = useTheme();
   const { isMobile } = React.useContext(SiteContext);
 
@@ -60,21 +91,31 @@ const Group: React.FC<React.PropsWithChildren<GroupProps>> = ({
       }
       className={styles.box}
     >
-      {decoration}
-      <div style={{ paddingBlock: token.marginFarSM }}>
+      <div className={styles.container}>{decoration}</div>
+      <GroupMaskLayer style={{ paddingBlock: token.marginFarSM }}>
         <div className={styles.typographyWrapper}>
-          <Typography.Title
-            id={id}
-            level={1}
+          <div
             style={{
-              fontWeight: 900,
-              color: titleColor,
-              margin: 0,
-              fontSize: isMobile ? token.fontSizeHeading2 : token.fontSizeHeading1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: token.paddingXS,
             }}
           >
-            {title}
-          </Typography.Title>
+            <Typography.Title
+              id={id}
+              level={1}
+              style={{
+                fontWeight: 900,
+                color: titleColor,
+                margin: 0,
+                fontSize: isMobile ? token.fontSizeHeading2 : token.fontSizeHeading1,
+              }}
+            >
+              {title}
+            </Typography.Title>
+            {extra}
+          </div>
           <Typography.Paragraph
             style={{
               color: titleColor,
@@ -85,8 +126,10 @@ const Group: React.FC<React.PropsWithChildren<GroupProps>> = ({
             {description}
           </Typography.Paragraph>
         </div>
-        <div className={clsx({ [styles.marginStyle]: !collapse })}>{children}</div>
-      </div>
+        <div className={clsx({ [styles.marginStyle]: !collapse })}>
+          {children ? <div>{children}</div> : <div className={styles.withoutChildren} />}
+        </div>
+      </GroupMaskLayer>
     </div>
   );
 };
