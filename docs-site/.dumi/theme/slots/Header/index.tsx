@@ -6,6 +6,7 @@ import { useAppData, useLocation, useSiteData } from 'dumi';
 import DumiSearchBar from 'dumi/theme-default/slots/SearchBar';
 
 import Link from '../../common/Link';
+import ThemeSwitch from '../../common/ThemeSwitch';
 import SiteContext from '../SiteContext';
 
 const useStyle = createStyles(({ css, cssVar, token }) => ({
@@ -228,6 +229,7 @@ const Header: React.FC = () => {
                   items={menuItems}
                 />
               </ConfigProvider>
+              <ThemeSwitch />
               {githubUrl && (
                 <a href={githubUrl} target="_blank" rel="noopener noreferrer">
                   <Tooltip title="GitHub" destroyOnHidden>

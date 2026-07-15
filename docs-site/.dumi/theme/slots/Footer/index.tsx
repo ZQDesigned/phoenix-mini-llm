@@ -8,6 +8,7 @@ import type { FooterColumn } from 'rc-footer/lib/column';
 
 import Link from '../../common/Link';
 import SiteContext from '../SiteContext';
+import AdditionalInfo from './AdditionalInfo';
 
 const useStyle = createStyles(({ css, cssVar, token }, isMobile: boolean) => {
   const background = new FastColor(getAlphaColor('#f0f3fa', '#fff'))
@@ -15,6 +16,9 @@ const useStyle = createStyles(({ css, cssVar, token }, isMobile: boolean) => {
     .toHexString();
 
   return {
+    holder: css`
+      background: ${background};
+    `,
     footer: css`
     background: ${background};
     color: ${cssVar.colorTextSecondary};
@@ -31,6 +35,10 @@ const useStyle = createStyles(({ css, cssVar, token }, isMobile: boolean) => {
 
     .rc-footer-column {
       margin-bottom: ${isMobile ? 60 : 0}px;
+
+      :last-child {
+        margin-bottom: ${isMobile ? 20 : 0}px;
+      }
     }
 
     .rc-footer-container {
@@ -130,6 +138,13 @@ const Footer: React.FC = () => {
         </>
       }
     />
+  );
+
+  return (
+    <>
+      <div className={styles.holder}>{footerNode}</div>
+      <AdditionalInfo />
+    </>
   );
 };
 
