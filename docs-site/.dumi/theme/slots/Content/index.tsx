@@ -44,7 +44,9 @@ const Content: React.FC<ContentProps> = ({ children }) => {
       <div className={`${styles.shell} phoenix-content-shell`}>
         <div className={styles.articleShell}>
           {!isMobile && <DocAnchor />}
-          <article className={`${styles.articleWrapper} ${anchorStyles.articleWrapper}`}>
+          <article
+            className={`${styles.articleWrapper} ${anchorStyles.articleWrapper} main-wrapper`}
+          >
             {children}
           </article>
           <FloatButton.BackTop />

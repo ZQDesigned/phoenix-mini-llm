@@ -19,7 +19,7 @@ const SidebarLayout: React.FC<PropsWithChildren> = ({ children }) => {
   const hideLayout = searchParams.get('layout') === 'false';
 
   return (
-    <main className={`${styles.main} phoenix-sidebar-layout`}>
+    <main className={`${styles.main} main phoenix-sidebar-layout`}>
       <CommonHelmet />
       {!hideLayout && <Sidebar />}
       <Content>{children}</Content>

@@ -114,7 +114,7 @@ const DocAnchor: React.FC<DocAnchorProps> = ({ showDebug, debugDemos = [] }) => 
   }
 
   return (
-    <section className={styles.tocWrapper}>
+    <section className={`${styles.tocWrapper} toc`}>
       <Anchor
         affix={false}
         className={styles.anchorToc}

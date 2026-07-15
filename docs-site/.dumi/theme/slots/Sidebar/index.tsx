@@ -114,7 +114,7 @@ const Sidebar: React.FC = () => {
           items={menuItems}
           mode="inline"
           inlineIndent={30}
-          className={styles.asideContainer}
+          className={`${styles.asideContainer} aside-container`}
           theme={isDark ? 'dark' : 'light'}
           selectedKeys={[selectedKey]}
           openKeys={openKeys}

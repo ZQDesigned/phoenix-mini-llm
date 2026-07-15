@@ -125,7 +125,7 @@ const PrevAndNext: React.FC = () => {
   }
 
   return (
-    <section className={styles.prevNextNav}>
+    <section className={`${styles.prevNextNav} prev-next-nav`}>
       {prev &&
         React.cloneElement(prev.label as ReactElement<{ className?: string }>, {
           children: (
