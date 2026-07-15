@@ -1,0 +1,17 @@
+{
+  "name": "phoenix-mini-llm-docs",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Documentation site for phoenix-mini-llm.",
+  "scripts": {
+    "prepare": "dumi setup",
+    "dev": "dumi dev",
+    "build": "dumi build",
+    "preview": "dumi preview"
+  },
+  "dependencies": {
+    "dumi": "^2.4.45",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}

@@ -21,3 +21,7 @@ docs/superpowers/
 /node_modules/
 /docs-dist/
 /dist/
+/docs-site/node_modules/
+/docs-site/dist/
+/docs-site/.dumi/tmp/
+/docs-site/.dumi/tmp-production/

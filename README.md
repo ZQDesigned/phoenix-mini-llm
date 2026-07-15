@@ -34,6 +34,7 @@ If `uv` is already in your shell PATH, you can drop the explicit `~/.local/bin/`
 ├── scripts/
 ├── src/
 │   └── phoenix_mini_llm/
+├── docs-site/
 ├── tests/
 └── README.md
 ```
@@ -53,10 +54,10 @@ If `uv` is already in your shell PATH, you can drop the explicit `~/.local/bin/`
 
 ## Documentation Site
 
-The standalone dumi documentation site lives outside this repository at:
+The dumi documentation site now lives inside this repository at:
 
 ```text
-../phoenix-mini-llm-docs
+docs-site/
 ```
 
 It contains:
@@ -64,6 +65,14 @@ It contains:
 - a beginner knowledge archive
 - a chronological pitfalls journal
 - a full reproduction tutorial
+
+Typical site commands:
+
+```bash
+cd docs-site
+npm install
+npm run build
+```
 
 ## Tooling
 

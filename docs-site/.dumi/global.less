@@ -1,0 +1,49 @@
+:root {
+  --site-bg: linear-gradient(180deg, #f5ede1 0%, #fbf8f1 42%, #f2f0ea 100%);
+  --card-bg: rgba(255, 255, 255, 0.74);
+  --card-border: rgba(122, 86, 54, 0.16);
+  --brand: #8f4f22;
+  --brand-deep: #4f2a15;
+  --text-main: #2d231d;
+}
+
+body {
+  font-family: 'IBM Plex Sans', 'Source Han Sans SC', 'Noto Sans SC', sans-serif;
+  background: var(--site-bg);
+  color: var(--text-main);
+}
+
+.dumi-default-hero {
+  padding: 72px 0 44px;
+}
+
+.dumi-default-hero-title {
+  font-family: 'IBM Plex Serif', 'Source Han Serif SC', serif;
+  letter-spacing: 0.01em;
+}
+
+.dumi-default-features .dumi-default-features-item,
+.dumi-default-content,
+.dumi-default-sidebar,
+.dumi-default-header-content {
+  backdrop-filter: blur(12px);
+}
+
+.dumi-default-features .dumi-default-features-item,
+.dumi-default-sidebar,
+.dumi-default-content {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
+  box-shadow: 0 18px 45px rgba(74, 51, 34, 0.08);
+}
+
+.dumi-default-navbar > li > a[aria-current='page'],
+.dumi-default-sidebar a[aria-current='page'] {
+  color: var(--brand);
+}
+
+.dumi-default-header-left .dumi-default-logo {
+  color: var(--brand-deep);
+  font-family: 'IBM Plex Serif', serif;
+}
