@@ -227,6 +227,7 @@ export default defineConfig({
   },
   themeConfig: {
     name: 'Phoenix Mini LLM',
+    docsBase,
     footer: 'Phoenix Mini LLM Documentation',
     prefersColor: { default: 'light', switch: false },
     socialLinks: {

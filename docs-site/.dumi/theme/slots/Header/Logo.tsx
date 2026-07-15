@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createStyles } from 'antd-style';
-import { useAppData, useSiteData } from 'dumi';
+import { useSiteData } from 'dumi';
 
 import Link from '../../common/Link';
 import type { SharedProps } from './interface';
@@ -45,13 +45,14 @@ const useStyle = createStyles(({ css, cssVar, token }) => ({
 
 const Logo: React.FC<SharedProps> = () => {
   const { styles } = useStyle();
-  const { base = '/' } = useAppData();
   const { themeConfig } = useSiteData();
+  const logoBase =
+    typeof themeConfig.docsBase === 'string' && themeConfig.docsBase ? themeConfig.docsBase : '/';
 
   return (
     <h1 style={{ margin: 0 }}>
       <Link to="/" className={styles.logo}>
-        <img src={`${base}favicon.svg`} draggable={false} alt="Phoenix Mini LLM" />
+        <img src={`${logoBase}favicon.svg`} draggable={false} alt="Phoenix Mini LLM" />
         <span className={styles.title}>{themeConfig.name || 'Phoenix Mini LLM'}</span>
       </Link>
     </h1>
