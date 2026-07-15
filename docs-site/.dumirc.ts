@@ -2,6 +2,62 @@ import { defineConfig } from 'dumi';
 
 const docsBase = process.env.DOCS_SITE_BASE || '/';
 const githubRepo = process.env.GITHUB_REPOSITORY || 'ZQDesigned/phoenix-mini-llm';
+const buildHash = process.env.GITHUB_SHA || 'local-build';
+const buildTime = new Date().toISOString();
+
+const staleBundleRecoveryScript = `
+(() => {
+  const reloadKey = 'phoenix-mini-llm:stale-bundle:' + ${JSON.stringify(buildHash)};
+  const staleBundlePattern =
+    /Callout is not defined|ChunkLoadError|Loading (CSS )?chunk [^ ]+ failed/i;
+
+  const reloadOnce = () => {
+    try {
+      if (sessionStorage.getItem(reloadKey)) {
+        return;
+      }
+
+      sessionStorage.setItem(reloadKey, '1');
+    } catch (error) {
+      // Ignore storage availability issues and still attempt a reload.
+    }
+
+    window.location.reload();
+  };
+
+  const getMessage = (value) => {
+    if (!value) {
+      return '';
+    }
+
+    if (typeof value === 'string') {
+      return value;
+    }
+
+    if (typeof value.message === 'string') {
+      return value.message;
+    }
+
+    return '';
+  };
+
+  window.addEventListener(
+    'error',
+    (event) => {
+      if (staleBundlePattern.test(getMessage(event))) {
+        reloadOnce();
+      }
+    },
+    true,
+  );
+
+  window.addEventListener('unhandledrejection', (event) => {
+    if (staleBundlePattern.test(getMessage(event.reason))) {
+      reloadOnce();
+    }
+  });
+})();
+`;
 
 const learningChapters = [
   { title: '学习主线总览', link: '/learning' },
@@ -66,8 +122,15 @@ const docsRoutePaths = Array.from(
 );
 
 export default defineConfig({
+  hash: true,
   base: docsBase,
   publicPath: docsBase,
+  favicons: [`${docsBase}favicon.svg`],
+  metas: [
+    { name: 'build-time', content: buildTime },
+    { name: 'build-hash', content: buildHash },
+  ],
+  headScripts: [staleBundleRecoveryScript],
   exportStatic: {
     extraRoutePaths: docsRoutePaths,
   },
