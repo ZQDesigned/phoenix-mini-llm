@@ -9,7 +9,7 @@
           <p class="phoenix-home-eyebrow">Phoenix Mini LLM</p>
           <h1>从零开发并真正理解一个小型语言模型。</h1>
           <p class="phoenix-home-lead">
-            这是一套面向初学者的学习与复刻文档。它把数学基础、神经网络、文本处理、Transformer、训练、采样与排错串成一条连续路径，并落到同一个真实仓库里。
+            一套面向初学者的学习与复刻文档，把数学基础、神经网络、文本处理、Transformer、训练、采样与排错串成一条连续路径，并落到同一个真实仓库里。
           </p>
           <div class="phoenix-home-actions">
             <a class="md-button md-button--primary" href="{{ 'learning/' | url }}">阅读学习主线</a>
@@ -18,12 +18,12 @@
         </div>
         <aside class="phoenix-home-hero__panel" aria-label="项目概览">
           <p class="phoenix-home-panel__eyebrow">Project Snapshot</p>
-          <h2>先建立知识地图，再复做同款工程，最后形成独立排错能力。</h2>
-          <ul class="phoenix-home-panel__list">
+          <h2>小而完整，能解释、能训练、能复刻。</h2>
+          <ul>
             <li>13 卷知识主线，按认知依赖顺序展开。</li>
-            <li>10 章复刻教程，从空目录做到完整训练与生成。</li>
-            <li>面向 6GB 显存约束，强调小而完整的 decoder-only LLM。</li>
-            <li>支持 macOS 开发与 Windows + CUDA 训练的跨平台路径。</li>
+            <li>10 章复刻教程，从空目录做到训练与生成。</li>
+            <li>面向 6GB 显存约束，聚焦 decoder-only LLM。</li>
+            <li>支持 macOS 开发与 Windows + CUDA 训练。</li>
           </ul>
           <dl class="phoenix-home-metrics">
             <div>
@@ -47,119 +47,4 @@
       </div>
     </div>
   </section>
-{% endblock %}
-
-{% block content %}
-  <div class="phoenix-home-page">
-    <section class="phoenix-home-section">
-      <p class="phoenix-home-eyebrow">Start Here</p>
-      <h2>首页只做一件事：把你送到正确的入口。</h2>
-      <p class="phoenix-home-section__lead">
-        如果你是从 0 开始学，就按学习主线顺序往下读；如果你已经有 Python 基础但没做过 LLM，就先看总序，再进入复刻教程；如果你正在复做并遇到偏差，回踩坑记录查根因。
-      </p>
-      <div class="phoenix-home-card-grid">
-        <a class="phoenix-home-card" href="{{ 'learning/' | url }}">
-          <span class="phoenix-home-card__index">01</span>
-          <h3>学习主线</h3>
-          <p>从数学对象、概率、神经网络到序列建模、Attention、Transformer、训练与推理，按知识前置关系展开。</p>
-          <span class="phoenix-home-card__cta">顺序阅读 13 卷内容</span>
-        </a>
-        <a class="phoenix-home-card" href="{{ 'tutorials/' | url }}">
-          <span class="phoenix-home-card__index">02</span>
-          <h3>复刻教程</h3>
-          <p>从项目骨架、语料、Tokenizer、模型、训练器、Checkpoint 到采样与评估，自己做出与仓库一致的实现。</p>
-          <span class="phoenix-home-card__cta">跟着 10 章教程复做</span>
-        </a>
-        <a class="phoenix-home-card" href="{{ 'pitfalls/' | url }}">
-          <span class="phoenix-home-card__index">03</span>
-          <h3>踩坑记录</h3>
-          <p>记录环境、路径、设备精度、数据处理与 GitHub Pages 发布中的真实问题，方便在偏差出现时快速定位。</p>
-          <span class="phoenix-home-card__cta">按时间顺序查问题</span>
-        </a>
-      </div>
-    </section>
-
-    <section class="phoenix-home-section phoenix-home-section--split">
-      <div class="phoenix-home-reading-path">
-        <p class="phoenix-home-eyebrow">Reading Path</p>
-        <h2>推荐的阅读与复做节奏</h2>
-        <div class="phoenix-home-step-list">
-          <div class="phoenix-home-step">
-            <span>Step 1</span>
-            <h3>先搭认知地图</h3>
-            <p>先读学习总序以及前十卷，把“token 为什么存在”“目标为什么右移一位”“Attention 为什么出现”这条因果链搭完整。</p>
-          </div>
-          <div class="phoenix-home-step">
-            <span>Step 2</span>
-            <h3>再按章节自己复做</h3>
-            <p>跟着教程从空目录起步，不跳步骤，不直接抄最终代码，而是把 tokenizer、模型、训练器和采样逻辑逐步拼出来。</p>
-          </div>
-          <div class="phoenix-home-step">
-            <span>Step 3</span>
-            <h3>遇到偏差再回日志校正</h3>
-            <p>当环境、路径、MPS/CUDA 精度或发布链路出现差异时，再回踩坑记录按真实案例检查约束和修复方式。</p>
-          </div>
-        </div>
-      </div>
-      <div class="phoenix-home-sidepanels">
-        <div class="phoenix-home-note">
-          <p class="phoenix-home-eyebrow">Scope</p>
-          <h3>这套项目关注什么</h3>
-          <ul>
-            <li>一个适合学习的小型 decoder-only 语言模型</li>
-            <li>从语料、Tokenizer、模型、训练到生成的完整链路</li>
-            <li>在有限显存约束下仍可解释、可训练、可复刻的实现</li>
-          </ul>
-        </div>
-        <div class="phoenix-home-note phoenix-home-note--muted">
-          <p class="phoenix-home-eyebrow">Boundary</p>
-          <h3>这套项目不追求什么</h3>
-          <ul>
-            <li>不把重点放在超大参数规模或营销式“大模型感”包装</li>
-            <li>不把文档写成只会复制命令的部署说明</li>
-            <li>不把工程脚手架包装成无法解释的黑箱</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="phoenix-home-section">
-      <p class="phoenix-home-eyebrow">Outcome</p>
-      <h2>学完后你应该具备的能力</h2>
-      <div class="phoenix-home-outcome-grid">
-        <div class="phoenix-home-outcome">
-          <h3>解释机制</h3>
-          <p>能解释 token、embedding、cross-entropy、attention、KV cache 在同一台模型中的角色与关系。</p>
-        </div>
-        <div class="phoenix-home-outcome">
-          <h3>独立落地</h3>
-          <p>能从空目录配置 `uv`、组织 Python 包、准备语料和 tokenizer，并把训练与推理链路接完整。</p>
-        </div>
-        <div class="phoenix-home-outcome">
-          <h3>跨平台推进</h3>
-          <p>能在 macOS 上验证实现，在 Windows + CUDA 上做正式训练，并提前处理设备与路径差异。</p>
-        </div>
-        <div class="phoenix-home-outcome">
-          <h3>系统排错</h3>
-          <p>当 loss 不降、采样异常、路径错乱或 Pages 发布偏差时，知道该优先检查哪一层。</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="phoenix-home-quickstart">
-      <div class="phoenix-home-quickstart__copy">
-        <p class="phoenix-home-eyebrow">Quick Start</p>
-        <h2>如果你现在就想开始，从这里进入。</h2>
-        <p>零基础读者建议从学习主线总序开始；已经有 Python 基础但没做过 LLM 的读者，可以先读总序，再直接进入教程第 1 章。</p>
-        <div class="phoenix-home-actions">
-          <a class="md-button md-button--primary" href="{{ 'learning/' | url }}">阅读学习总序</a>
-          <a class="md-button" href="{{ 'tutorials/01-bootstrap-the-project/' | url }}">打开教程第 1 章</a>
-          <a class="md-button" href="{{ config.repo_url }}" target="_blank" rel="noreferrer">查看 GitHub 仓库</a>
-        </div>
-      </div>
-      <pre class="phoenix-home-command"><code>cd docs-site
-uv sync --python 3.12
-uv run mkdocs serve</code></pre>
-    </section>
-  </div>
 {% endblock %}
