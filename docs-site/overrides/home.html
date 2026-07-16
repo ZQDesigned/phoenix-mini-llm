@@ -3,28 +3,41 @@
 {% block tabs %}
   {{ super() }}
   <section class="phoenix-home-hero">
-    <div class="md-grid md-typeset">
-      <div class="phoenix-home-hero__inner">
+    <div class="md-grid">
+      <div class="phoenix-home-hero__inner md-typeset">
         <div class="phoenix-home-hero__content">
-          <p class="phoenix-home-eyebrow">Phoenix Mini LLM</p>
-          <h1>从零开发并真正理解一个小型语言模型。</h1>
+          <p class="phoenix-home-chip">Phoenix Mini LLM</p>
+          <h1>从零开发并真正理解一个小型语言模型</h1>
           <p class="phoenix-home-lead">
             一套面向初学者的学习与复刻文档，把数学基础、神经网络、文本处理、Transformer、训练、采样与排错串成一条连续路径，并落到同一个真实仓库里。
           </p>
+          <div class="phoenix-home-keylines" aria-label="学习范围与项目边界">
+            <div>
+              <strong>13 卷知识主线</strong>
+              <span>从数学基础、神经网络到 Transformer、训练与推理，按认知依赖顺序展开。</span>
+            </div>
+            <div>
+              <strong>10 章复刻教程</strong>
+              <span>从空目录搭项目、准备语料、训练模型，再到采样、生成与评估。</span>
+            </div>
+            <div>
+              <strong>围绕消费级小显存显卡设计</strong>
+              <span>聚焦小而完整的 decoder-only LLM，追求完整链路与可解释性，而不是参数规模。</span>
+            </div>
+          </div>
           <div class="phoenix-home-actions">
             <a class="md-button md-button--primary" href="{{ 'learning/' | url }}">阅读学习主线</a>
             <a class="md-button" href="{{ 'tutorials/' | url }}">进入复刻教程</a>
           </div>
         </div>
         <aside class="phoenix-home-hero__panel" aria-label="项目概览">
-          <p class="phoenix-home-panel__eyebrow">Project Snapshot</p>
-          <h2>小而完整，能解释、能训练、能复刻。</h2>
-          <ul>
-            <li>13 卷知识主线，按认知依赖顺序展开。</li>
-            <li>10 章复刻教程，从空目录做到训练与生成。</li>
-            <li>面向 6GB 显存约束，聚焦 decoder-only LLM。</li>
-            <li>支持 macOS 开发与 Windows + CUDA 训练。</li>
-          </ul>
+          <div class="phoenix-home-panel__header">
+            <p class="phoenix-home-panel__eyebrow">项目概览</p>
+            <h2>先建立认知地图，再按教程自己复做，最后用踩坑记录校正偏差。</h2>
+          </div>
+          <p class="phoenix-home-panel__summary">
+            文档站与仓库围绕同一个小型语言模型组织，支持 macOS 上开发验证，以及 Windows + CUDA 上正式训练。
+          </p>
           <dl class="phoenix-home-metrics">
             <div>
               <dt>13</dt>
