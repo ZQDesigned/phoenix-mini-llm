@@ -28,14 +28,14 @@ pre,
     radial-gradient(circle at top right, rgba(22, 119, 255, 0.12), transparent 26%),
     linear-gradient(180deg, rgba(22, 119, 255, 0.06), rgba(22, 119, 255, 0) 78%);
   border-bottom: 1px solid rgba(5, 5, 5, 0.06);
-  padding: clamp(2.25rem, 5vw, 3.5rem) 0 clamp(1.8rem, 3vw, 2.5rem);
+  padding: clamp(1.9rem, 4vw, 2.9rem) 0 clamp(1.45rem, 2.6vw, 2.1rem);
 }
 
 .phoenix-home-hero__inner {
   align-items: center;
   display: grid;
-  gap: 2rem;
-  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  gap: clamp(1.5rem, 2.4vw, 2.2rem);
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.92fr);
 }
 
 .phoenix-home-eyebrow,
@@ -50,27 +50,27 @@ pre,
 
 .phoenix-home-hero__content h1 {
   color: var(--phoenix-ink);
-  font-size: clamp(2.4rem, 4.6vw, 4.2rem);
+  font-size: clamp(2rem, 3.45vw, 3.35rem);
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.04;
-  margin: 0 0 1rem;
-  max-width: 10ch;
+  line-height: 1.08;
+  margin: 0 0 0.85rem;
+  max-width: 11.25ch;
 }
 
 .phoenix-home-lead {
   color: var(--phoenix-text-soft);
-  font-size: 1.02rem;
-  line-height: 1.78;
+  font-size: 0.98rem;
+  line-height: 1.72;
   margin: 0;
-  max-width: 39rem;
+  max-width: 36rem;
 }
 
 .phoenix-home-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.7rem;
-  margin-top: 1.35rem;
+  margin-top: 1.2rem;
 }
 
 .phoenix-home-actions .md-button {
@@ -86,12 +86,12 @@ pre,
   border-radius: 1.15rem;
   box-shadow: var(--phoenix-shadow);
   color: var(--phoenix-ink);
-  padding: 1.25rem 1.35rem;
+  padding: 1.15rem 1.25rem;
 }
 
 .phoenix-home-hero__panel h2 {
   color: var(--phoenix-ink);
-  font-size: 1.2rem;
+  font-size: 1.08rem;
   line-height: 1.3;
   margin: 0 0 0.85rem;
 }
@@ -110,27 +110,27 @@ pre,
   display: grid;
   gap: 0.8rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 1rem 0 0;
+  margin: 0.95rem 0 0;
 }
 
 .phoenix-home-metrics div {
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--phoenix-line);
   border-radius: 0.95rem;
-  padding: 0.8rem 0.9rem;
+  padding: 0.72rem 0.82rem;
 }
 
 .phoenix-home-metrics dt {
   color: var(--phoenix-ink);
-  font-size: 1rem;
+  font-size: 0.96rem;
   font-weight: 800;
   line-height: 1.1;
 }
 
 .phoenix-home-metrics dd {
   color: var(--phoenix-muted);
-  font-size: 0.84rem;
-  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  margin: 0.32rem 0 0;
 }
 
 .phoenix-home-page .grid.cards,
@@ -183,7 +183,7 @@ pre,
 
 @media (max-width: 44.9375em) {
   .phoenix-home-hero__content h1 {
-    font-size: clamp(2.2rem, 11vw, 3.2rem);
+    font-size: clamp(1.95rem, 8.4vw, 2.75rem);
   }
 
   .phoenix-home-metrics {
