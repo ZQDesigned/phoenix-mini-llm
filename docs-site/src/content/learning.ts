@@ -224,7 +224,40 @@ export const learningBookParts: LearningPart[] = [
     link: '/learning/part-7-inference-evaluation-and-debugging',
     summary:
       '理解自回归生成、采样策略、KV cache、困惑度、定性评估与链路排障，让模型不只会训练，还能被可靠地使用和判断。',
-    chapters: [],
+    chapters: [
+      {
+        title: '01. 自回归生成、prefill 与 decode',
+        link: '/learning/part-7-inference-evaluation-and-debugging/01-autoregressive-generation-prefill-and-decode',
+      },
+      {
+        title: '02. 从 logits 到下一个 token',
+        link: '/learning/part-7-inference-evaluation-and-debugging/02-from-logits-to-the-next-token',
+      },
+      {
+        title: '03. greedy、temperature、top-k 与 top-p 各在控制什么',
+        link: '/learning/part-7-inference-evaluation-and-debugging/03-what-greedy-temperature-top-k-and-top-p-actually-control',
+      },
+      {
+        title: '04. EOS、停止条件与重复问题',
+        link: '/learning/part-7-inference-evaluation-and-debugging/04-eos-stopping-criteria-and-repetition',
+      },
+      {
+        title: '05. KV cache 到底缓存了什么',
+        link: '/learning/part-7-inference-evaluation-and-debugging/05-what-kv-cache-is-actually-saving',
+      },
+      {
+        title: '06. 为什么训练 loss 与生成质量不总同步',
+        link: '/learning/part-7-inference-evaluation-and-debugging/06-why-training-loss-and-generation-quality-do-not-always-move-together',
+      },
+      {
+        title: '07. 困惑度、验证集与定性样例怎样一起评估',
+        link: '/learning/part-7-inference-evaluation-and-debugging/07-how-to-use-perplexity-validation-and-qualitative-samples-together',
+      },
+      {
+        title: '08. 极小样本过拟合与系统化排错',
+        link: '/learning/part-7-inference-evaluation-and-debugging/08-overfit-a-tiny-batch-and-debug-the-whole-pipeline',
+      },
+    ],
   },
   {
     title: 'Part 8. 从小模型走向更大世界',

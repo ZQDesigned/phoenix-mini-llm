@@ -190,6 +190,14 @@ toc: content
 ### Part 7. 推理、评估与调试
 
 - [分册总览](/learning/part-7-inference-evaluation-and-debugging)
+- [01. 自回归生成、prefill 与 decode](/learning/part-7-inference-evaluation-and-debugging/01-autoregressive-generation-prefill-and-decode)
+- [02. 从 logits 到下一个 token](/learning/part-7-inference-evaluation-and-debugging/02-from-logits-to-the-next-token)
+- [03. greedy、temperature、top-k 与 top-p 各在控制什么](/learning/part-7-inference-evaluation-and-debugging/03-what-greedy-temperature-top-k-and-top-p-actually-control)
+- [04. EOS、停止条件与重复问题](/learning/part-7-inference-evaluation-and-debugging/04-eos-stopping-criteria-and-repetition)
+- [05. KV cache 到底缓存了什么](/learning/part-7-inference-evaluation-and-debugging/05-what-kv-cache-is-actually-saving)
+- [06. 为什么训练 loss 与生成质量不总同步](/learning/part-7-inference-evaluation-and-debugging/06-why-training-loss-and-generation-quality-do-not-always-move-together)
+- [07. 困惑度、验证集与定性样例怎样一起评估](/learning/part-7-inference-evaluation-and-debugging/07-how-to-use-perplexity-validation-and-qualitative-samples-together)
+- [08. 极小样本过拟合与系统化排错](/learning/part-7-inference-evaluation-and-debugging/08-overfit-a-tiny-batch-and-debug-the-whole-pipeline)
 
 模型训练完并不意味着理解就完成了。这里处理：
 
