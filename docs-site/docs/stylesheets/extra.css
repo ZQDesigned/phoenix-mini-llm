@@ -249,7 +249,7 @@ pre,
   margin: 0;
 }
 
-.phoenix-home-metrics div {
+.phoenix-home-metric {
   background: var(--md-sys-color-surface-container-high);
   border-radius: var(--md-sys-shape-corner-large);
   align-items: center;
@@ -260,7 +260,7 @@ pre,
   text-align: center;
 }
 
-.phoenix-home-metrics dt {
+.phoenix-home-metric__value {
   color: var(--md-sys-color-on-surface);
   display: block;
   font-size: var(--md-sys-typescale-title-large-size);
@@ -268,15 +268,17 @@ pre,
   line-height: var(--md-sys-typescale-title-large-line-height);
   margin: 0;
   text-align: center;
+  width: 100%;
 }
 
-.phoenix-home-metrics dd {
+.phoenix-home-metric__label {
   color: var(--md-sys-color-on-surface-variant);
   display: block;
   font-size: var(--md-sys-typescale-body-medium-size);
   line-height: var(--md-sys-typescale-body-medium-line-height);
   margin: 0.25rem 0 0;
   text-align: center;
+  width: 100%;
 }
 
 .phoenix-home-page .grid.cards,
