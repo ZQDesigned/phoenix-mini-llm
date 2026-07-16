@@ -31,7 +31,7 @@ export const learningBookParts: LearningPart[] = [
     title: 'Part 1. 入门与学习地图',
     link: '/learning/part-1-orientation',
     summary:
-      '先建立正确目标、基本术语和学习顺序，明确语言模型到底是什么，为什么应该从小模型学到大模型。',
+      '先建立目标、术语和阅读方法，理解语言模型是什么，为什么应该先做小而完整的模型，再进入真正的基础知识。',
     chapters: [
       {
         title: '01. 什么是语言模型',
@@ -48,83 +48,160 @@ export const learningBookParts: LearningPart[] = [
     ],
   },
   {
-    title: 'Part 2. 数学与神经网络基础',
-    link: '/learning/part-2-neural-network-foundations',
+    title: 'Part 2. 数学预备、表示与概率直觉',
+    link: '/learning/part-2-mathematical-prerequisites',
     summary:
-      '从机器学习、向量空间、线性层、激活函数、概率与损失函数开始，补齐理解语言模型所必需的神经网络地基。',
+      '在进入神经网络之前，先补齐数值表示、维度、矩阵运算、函数复合、概率分布与信息量这些真正决定理解质量的前置地基。',
+    chapters: [
+      {
+        title: '01. 为什么学语言模型还要先学数学',
+        link: '/learning/part-2-mathematical-prerequisites/01-why-you-still-need-math-for-language-models',
+      },
+      {
+        title: '02. 标量、向量、矩阵、张量与 shape',
+        link: '/learning/part-2-mathematical-prerequisites/02-scalars-vectors-matrices-tensors-and-shapes',
+      },
+      {
+        title: '03. 矩阵乘法、线性变换与维度流动',
+        link: '/learning/part-2-mathematical-prerequisites/03-matrix-multiplication-linear-transformations-and-dimensional-flow',
+      },
+      {
+        title: '04. 函数、复合与非线性为什么重要',
+        link: '/learning/part-2-mathematical-prerequisites/04-functions-composition-and-why-nonlinearity-matters',
+      },
+      {
+        title: '05. 概率分布、期望与不确定性',
+        link: '/learning/part-2-mathematical-prerequisites/05-probability-distributions-expectation-and-uncertainty',
+      },
+      {
+        title: '06. 对数、信息量与为什么损失常写成对数概率',
+        link: '/learning/part-2-mathematical-prerequisites/06-logarithms-information-and-why-loss-uses-log-probability',
+      },
+    ],
+  },
+  {
+    title: 'Part 3. 机器学习、张量与神经网络基础',
+    link: '/learning/part-3-machine-learning-and-neural-networks',
+    summary:
+      '从“学习到底在学什么”出发，讲清线性层、表示空间、softmax、交叉熵、梯度、优化和泛化，完成进入 LLM 之前的神经网络主地基。',
     chapters: [
       {
         title: '01. 机器学习到底在学什么',
-        link: '/learning/part-2-neural-network-foundations/01-what-does-it-mean-to-learn',
+        link: '/learning/part-3-machine-learning-and-neural-networks/01-what-does-it-mean-to-learn',
       },
       {
         title: '02. 向量、矩阵、张量与 shape',
-        link: '/learning/part-2-neural-network-foundations/02-vectors-matrices-and-tensors',
+        link: '/learning/part-3-machine-learning-and-neural-networks/02-vectors-matrices-and-tensors',
       },
       {
         title: '03. 线性层、激活函数与表示空间',
-        link: '/learning/part-2-neural-network-foundations/03-linear-layers-activations-and-representations',
+        link: '/learning/part-3-machine-learning-and-neural-networks/03-linear-layers-activations-and-representations',
       },
       {
         title: '04. 概率、softmax 与交叉熵',
-        link: '/learning/part-2-neural-network-foundations/04-probability-softmax-and-cross-entropy',
+        link: '/learning/part-3-machine-learning-and-neural-networks/04-probability-softmax-and-cross-entropy',
       },
       {
         title: '05. 梯度、反向传播与优化',
-        link: '/learning/part-2-neural-network-foundations/05-gradients-backpropagation-and-optimization',
+        link: '/learning/part-3-machine-learning-and-neural-networks/05-gradients-backpropagation-and-optimization',
       },
       {
         title: '06. 过拟合、泛化与验证集',
-        link: '/learning/part-2-neural-network-foundations/06-overfitting-generalization-and-validation',
+        link: '/learning/part-3-machine-learning-and-neural-networks/06-overfitting-generalization-and-validation',
+      },
+      {
+        title: '07. 为什么序列数据比普通表格数据更难',
+        link: '/learning/part-3-machine-learning-and-neural-networks/07-why-sequence-data-is-harder-than-tabular-data',
       },
     ],
   },
   {
-    title: 'Part 3. 文本为什么能变成训练数据',
-    link: '/learning/part-3-text-as-data',
+    title: 'Part 4. 文本、编码与 Tokenizer',
+    link: '/learning/part-4-text-and-tokenization',
     summary:
-      '把自然语言视为数据对象，系统理解语料、编码、分词、词表、样本打包与 next-token prediction。',
+      '把自然语言重新看作可训练数据，系统解释语料、编码、规范化、tokenizer、词表、样本打包与 next-token 监督是怎样接上的。',
     chapters: [
       {
         title: '01. 语料、样本与数据分布',
-        link: '/learning/part-3-text-as-data/01-corpora-samples-and-data-distribution',
+        link: '/learning/part-4-text-and-tokenization/01-corpora-samples-and-data-distribution',
       },
       {
         title: '02. Unicode、字节与文本规范化',
-        link: '/learning/part-3-text-as-data/02-unicode-bytes-and-text-normalization',
+        link: '/learning/part-4-text-and-tokenization/02-unicode-bytes-and-text-normalization',
       },
       {
         title: '03. Token、词表与 special token',
-        link: '/learning/part-3-text-as-data/03-tokens-vocabularies-and-special-tokens',
+        link: '/learning/part-4-text-and-tokenization/03-tokens-vocabularies-and-special-tokens',
+      },
+      {
+        title: '04. 子词分词、BPE 与 tokenizer 训练',
+        link: '/learning/part-4-text-and-tokenization/04-subword-tokenization-bpe-and-tokenizer-training',
+      },
+      {
+        title: '05. 从 token 流到固定长度训练样本',
+        link: '/learning/part-4-text-and-tokenization/05-from-token-streams-to-fixed-length-training-samples',
+      },
+      {
+        title: '06. 为什么训练目标表现成右移一位',
+        link: '/learning/part-4-text-and-tokenization/06-why-the-objective-looks-like-a-one-token-shift',
       },
     ],
   },
   {
-    title: 'Part 4. Transformer 与语言模型主体',
-    link: '/learning/part-4-transformers-and-language-models',
+    title: 'Part 5. 序列建模、Attention 与 Transformer',
+    link: '/learning/part-5-sequence-modeling-and-transformers',
     summary:
-      '从早期序列建模困境切入，讲清 attention、causal mask、位置方法、Transformer block 与 decoder-only 架构。',
+      '从序列建模为什么困难讲到 attention 解决了什么，再进入 causal mask、位置方法、Transformer block 与完整 decoder-only 主体。',
+    chapters: [
+      {
+        title: '01. 为什么早期序列建模会遇到瓶颈',
+        link: '/learning/part-5-sequence-modeling-and-transformers/01-why-earlier-sequence-models-hit-limits',
+      },
+      {
+        title: '02. Attention 真正要解决什么问题',
+        link: '/learning/part-5-sequence-modeling-and-transformers/02-what-problem-attention-actually-solves',
+      },
+      {
+        title: '03. Query、Key、Value 与加权读取',
+        link: '/learning/part-5-sequence-modeling-and-transformers/03-query-key-value-and-weighted-reading',
+      },
+      {
+        title: '04. 因果注意力与 mask',
+        link: '/learning/part-5-sequence-modeling-and-transformers/04-causal-attention-and-masking',
+      },
+      {
+        title: '05. 位置方法到底在补什么',
+        link: '/learning/part-5-sequence-modeling-and-transformers/05-what-positional-methods-actually-add',
+      },
+      {
+        title: '06. Transformer block 为什么能反复堆叠',
+        link: '/learning/part-5-sequence-modeling-and-transformers/06-why-transformer-blocks-stack-so-well',
+      },
+      {
+        title: '07. 一个完整 decoder-only 模型怎样组装',
+        link: '/learning/part-5-sequence-modeling-and-transformers/07-how-a-complete-decoder-only-model-is-assembled',
+      },
+    ],
+  },
+  {
+    title: 'Part 6. 训练一个小型语言模型',
+    link: '/learning/part-6-training-a-small-language-model',
+    summary:
+      '把训练过程重新展开成可解释系统，覆盖 batch、tokens、steps、优化器、学习率、显存约束、稳定性技巧与实验管理。',
     chapters: [],
   },
   {
-    title: 'Part 5. 训练一个小型语言模型',
-    link: '/learning/part-5-training-a-small-language-model',
+    title: 'Part 7. 推理、评估与调试',
+    link: '/learning/part-7-inference-evaluation-and-debugging',
     summary:
-      '解释训练循环、优化器、学习率、batch、稳定性技巧、显存约束与实验管理，让模型真的学起来。',
+      '理解自回归生成、采样策略、KV cache、困惑度、定性评估与链路排障，让模型不只会训练，还能被可靠地使用和判断。',
     chapters: [],
   },
   {
-    title: 'Part 6. 推理、评估与调试',
-    link: '/learning/part-6-inference-evaluation-and-debugging',
+    title: 'Part 8. 从小模型走向更大世界',
+    link: '/learning/part-8-where-to-go-next',
     summary:
-      '理解自回归生成、采样策略、KV cache、困惑度、定性评估、链路验证和常见故障定位方法。',
-    chapters: [],
-  },
-  {
-    title: 'Part 7. 从小模型走向更大模型',
-    link: '/learning/part-7-where-to-go-next',
-    summary:
-      '把你亲手做出的基础模型放回更大的版图中，理解预训练、微调、对齐、量化、LoRA 与后续学习路径。',
+      '把小模型学习成果放回更大的版图中，理解预训练、微调、对齐、LoRA、量化、部署与后续学习方向之间的关系。',
     chapters: [],
   },
 ];
@@ -154,9 +231,6 @@ export const learningSidebarGroups = [
   },
   ...learningBookParts.map((part) => ({
     title: part.title,
-    children: [
-      { title: '分册总览', link: part.link },
-      ...part.chapters,
-    ],
+    children: [{ title: '分册总览', link: part.link }, ...part.chapters],
   })),
 ];
