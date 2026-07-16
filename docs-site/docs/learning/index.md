@@ -172,6 +172,13 @@ toc: content
 ### Part 6. 训练一个小型语言模型
 
 - [分册总览](/learning/part-6-training-a-small-language-model)
+- [01. batch、token、step 与 epoch 到底在统计什么](/learning/part-6-training-a-small-language-model/01-what-batches-tokens-steps-and-epochs-really-count)
+- [02. 优化器到底在改什么](/learning/part-6-training-a-small-language-model/02-what-the-optimizer-is-actually-changing)
+- [03. 学习率、warmup 与为什么训练会在早期崩掉](/learning/part-6-training-a-small-language-model/03-learning-rate-warmup-and-why-early-training-breaks)
+- [04. 小显存下为什么要做梯度累积](/learning/part-6-training-a-small-language-model/04-why-gradient-accumulation-matters-under-small-vram)
+- [05. 混合精度、GradScaler 与设备差异](/learning/part-6-training-a-small-language-model/05-mixed-precision-gradscaler-and-device-differences)
+- [06. 梯度裁剪、NaN 与不稳定更新](/learning/part-6-training-a-small-language-model/06-gradient-clipping-nan-and-unstable-updates)
+- [07. checkpoint、验证集与实验记录](/learning/part-6-training-a-small-language-model/07-checkpoints-validation-and-experiment-records)
 
 这里开始把视角从结构转向训练系统。后续会系统展开：
 

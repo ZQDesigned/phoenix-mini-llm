@@ -188,7 +188,36 @@ export const learningBookParts: LearningPart[] = [
     link: '/learning/part-6-training-a-small-language-model',
     summary:
       '把训练过程重新展开成可解释系统，覆盖 batch、tokens、steps、优化器、学习率、显存约束、稳定性技巧与实验管理。',
-    chapters: [],
+    chapters: [
+      {
+        title: '01. batch、token、step 与 epoch 到底在统计什么',
+        link: '/learning/part-6-training-a-small-language-model/01-what-batches-tokens-steps-and-epochs-really-count',
+      },
+      {
+        title: '02. 优化器到底在改什么',
+        link: '/learning/part-6-training-a-small-language-model/02-what-the-optimizer-is-actually-changing',
+      },
+      {
+        title: '03. 学习率、warmup 与为什么训练会在早期崩掉',
+        link: '/learning/part-6-training-a-small-language-model/03-learning-rate-warmup-and-why-early-training-breaks',
+      },
+      {
+        title: '04. 小显存下为什么要做梯度累积',
+        link: '/learning/part-6-training-a-small-language-model/04-why-gradient-accumulation-matters-under-small-vram',
+      },
+      {
+        title: '05. 混合精度、GradScaler 与设备差异',
+        link: '/learning/part-6-training-a-small-language-model/05-mixed-precision-gradscaler-and-device-differences',
+      },
+      {
+        title: '06. 梯度裁剪、NaN 与不稳定更新',
+        link: '/learning/part-6-training-a-small-language-model/06-gradient-clipping-nan-and-unstable-updates',
+      },
+      {
+        title: '07. checkpoint、验证集与实验记录',
+        link: '/learning/part-6-training-a-small-language-model/07-checkpoints-validation-and-experiment-records',
+      },
+    ],
   },
   {
     title: 'Part 7. 推理、评估与调试',
