@@ -21,37 +21,35 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DOCS_SITE_BASE: /${{ github.event.repository.name }}/
-      GITHUB_REPOSITORY: ${{ github.repository }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Python
+        uses: actions/setup-python@v6
         with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: docs-site/package-lock.json
+          python-version: '3.12'
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Install docs dependencies
         working-directory: docs-site
-        run: npm ci
+        run: uv sync --frozen
 
       - name: Build docs site
         working-directory: docs-site
-        run: npm run build
+        run: uv run mkdocs build --strict
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
-          path: docs-site/dist
+          path: docs-site/site
 
   deploy:
     runs-on: ubuntu-latest

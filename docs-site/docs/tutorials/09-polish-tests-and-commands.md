@@ -209,7 +209,7 @@ uv run python scripts/evaluate.py --config configs/debug.toml --checkpoint lates
 
 > **相关踩坑**
 >
->   如果你在 Mac 上能跑、到 Windows 上就出问题，先看 [05. MPS 与 CUDA 的精度差异](/pitfalls/05-mps-vs-cuda-and-amp)。
+>   如果你在 Mac 上能跑、到 Windows 上就出问题，先看 [05. MPS 与 CUDA 的精度差异](/pitfalls/05-mps-vs-cuda-and-amp.md)。
 
 ## 本章完成后的阶段检查点
 

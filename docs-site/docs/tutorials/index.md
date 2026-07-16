@@ -19,20 +19,20 @@ toc: content
 
 这里的目标是第三种路径：
 
-1. 你先通过 [学习主线](/learning) 搭起必要概念。
+1. 你先通过 [学习主线](/learning/index.md) 搭起必要概念。
 2. 然后跟着 10 个阶段，从项目骨架、数据、Tokenizer、模型、训练、采样一路写到基线复现。
 3. 每一章都明确告诉你要改哪些文件、先做什么、如何验证、哪些结果算“和仓库一致”。
 
 ## 开始之前，你应该准备好什么
 
 - 能在终端里使用 `uv`、`git`、`pytest`。
-- 已经通读过 [学习主线总览](/learning)。
+- 已经通读过 [学习主线总览](/learning/index.md)。
 - 至少读完这些前置章节：
-  - [01. 你到底在做什么](/learning/01-what-you-are-building)
-  - [02. Python 环境与 uv](/learning/02-python-environment-and-uv)
-  - [05. 从文本到 Token](/learning/05-text-to-tokens)
-  - [08. Transformer Block](/learning/08-transformer-blocks)
-  - [10. 训练工程](/learning/10-training-engineering)
+  - [卷一. 入门与学习地图](/learning/volume-01-orientation/index.md)
+  - [卷七. 文本怎样进入模型：语料、编码与分词](/learning/volume-07-text-and-tokenization/index.md)
+  - [卷十. 从 Attention 到完整的 Decoder-only Transformer](/learning/volume-10-sequence-modeling-and-transformers/index.md)
+  - [卷十一. 训练一个小型语言模型](/learning/volume-11-training-a-small-language-model/index.md)
+  - [01. 建立项目骨架](/tutorials/01-bootstrap-the-project.md)
 
 > **正确的阅读方式**
 >
@@ -42,16 +42,16 @@ toc: content
 
 | 阶段 | 你会完成什么 | 关键文件 | 本章结束后必须能做到什么 |
 | --- | --- | --- | --- |
-| [01. 建立项目骨架](/tutorials/01-bootstrap-the-project) | 初始化 `uv` 项目、源码包结构、配置体系与命令入口 | `pyproject.toml`, `configs/*.toml`, `src/phoenix_mini_llm/config.py` | 能加载配置，能通过 `uv run python -c "import phoenix_mini_llm"` |
-| [02. 准备语料与数据管线](/tutorials/02-prepare-the-corpus) | 下载 TinyStories 子集、标准化文本、打包成训练序列 | `src/phoenix_mini_llm/data/*.py` | 能把文本整理成 `train.npy` / `validation.npy` 需要的中间结构 |
-| [03. 训练 Tokenizer](/tutorials/03-train-the-tokenizer) | 训练 BPE Tokenizer，写出元数据与准备 CLI | `src/phoenix_mini_llm/data/tokenizer.py`, `src/phoenix_mini_llm/cli/prepare_data.py` | 能生成 `tokenizer.json`、`prepare_metadata.json`、打包后的 `.npy` |
-| [04. 写最小训练闭环](/tutorials/04-build-a-tiny-training-loop) | 写出最小训练步、评估步与恢复基础 | `src/phoenix_mini_llm/training/loop.py` | 能在一个极小模型上完成一次前向、反向、优化更新 |
-| [05. 实现 Attention 与 Transformer Block](/tutorials/05-implement-attention-and-blocks) | 写 RoPE、RMSNorm、SwiGLU、Causal Self-Attention | `src/phoenix_mini_llm/models/rope.py`, `src/phoenix_mini_llm/models/layers.py` | 能得到因果掩码正确、支持 KV Cache 的单层 Block |
-| [06. 拼出主模型](/tutorials/06-assemble-the-model) | 组装完整 `PhoenixMiniLM` 并共享词嵌入 / 输出头权重 | `src/phoenix_mini_llm/models/transformer.py` | 模型前向能输出 `logits`、`loss` 和 `past_key_values` |
-| [07. 写正式训练器与 Checkpoint 链路](/tutorials/07-build-training-and-checkpointing) | 写优化器、调度器、Checkpoint 与训练 CLI | `src/phoenix_mini_llm/training/*.py`, `src/phoenix_mini_llm/cli/train.py` | 能保存 `step-000250.pt` 这类检查点并支持恢复 |
-| [08. 写生成与采样逻辑](/tutorials/08-build-generation-and-sampling) | 写 top-k / top-p 采样和自回归生成 | `src/phoenix_mini_llm/inference/*.py`, `src/phoenix_mini_llm/cli/generate.py` | 能从 checkpoint 出发生成文本 |
-| [09. 补齐工程化细节、测试与命令](/tutorials/09-polish-tests-and-commands) | 整理脚本包装、设备检测、随机种子与测试矩阵 | `scripts/*.py`, `tests/**`, `src/phoenix_mini_llm/utils/*.py` | `uv run pytest` 全绿，CLI 行为稳定 |
-| [10. 跑出仓库对齐的基线结果](/tutorials/10-reproduce-the-baseline) | 用 `debug` / `dev` / `train` 配置跑出真实工件与检查点 | `configs/*.toml`, 运行命令与产物目录 | 你能独立复现实验，而不依赖现成输出 |
+| [01. 建立项目骨架](/tutorials/01-bootstrap-the-project.md) | 初始化 `uv` 项目、源码包结构、配置体系与命令入口 | `pyproject.toml`, `configs/*.toml`, `src/phoenix_mini_llm/config.py` | 能加载配置，能通过 `uv run python -c "import phoenix_mini_llm"` |
+| [02. 准备语料与数据管线](/tutorials/02-prepare-the-corpus.md) | 下载 TinyStories 子集、标准化文本、打包成训练序列 | `src/phoenix_mini_llm/data/*.py` | 能把文本整理成 `train.npy` / `validation.npy` 需要的中间结构 |
+| [03. 训练 Tokenizer](/tutorials/03-train-the-tokenizer.md) | 训练 BPE Tokenizer，写出元数据与准备 CLI | `src/phoenix_mini_llm/data/tokenizer.py`, `src/phoenix_mini_llm/cli/prepare_data.py` | 能生成 `tokenizer.json`、`prepare_metadata.json`、打包后的 `.npy` |
+| [04. 写最小训练闭环](/tutorials/04-build-a-tiny-training-loop.md) | 写出最小训练步、评估步与恢复基础 | `src/phoenix_mini_llm/training/loop.py` | 能在一个极小模型上完成一次前向、反向、优化更新 |
+| [05. 实现 Attention 与 Transformer Block](/tutorials/05-implement-attention-and-blocks.md) | 写 RoPE、RMSNorm、SwiGLU、Causal Self-Attention | `src/phoenix_mini_llm/models/rope.py`, `src/phoenix_mini_llm/models/layers.py` | 能得到因果掩码正确、支持 KV Cache 的单层 Block |
+| [06. 拼出主模型](/tutorials/06-assemble-the-model.md) | 组装完整 `PhoenixMiniLM` 并共享词嵌入 / 输出头权重 | `src/phoenix_mini_llm/models/transformer.py` | 模型前向能输出 `logits`、`loss` 和 `past_key_values` |
+| [07. 写正式训练器与 Checkpoint 链路](/tutorials/07-build-training-and-checkpointing.md) | 写优化器、调度器、Checkpoint 与训练 CLI | `src/phoenix_mini_llm/training/*.py`, `src/phoenix_mini_llm/cli/train.py` | 能保存 `step-000250.pt` 这类检查点并支持恢复 |
+| [08. 写生成与采样逻辑](/tutorials/08-build-generation-and-sampling.md) | 写 top-k / top-p 采样和自回归生成 | `src/phoenix_mini_llm/inference/*.py`, `src/phoenix_mini_llm/cli/generate.py` | 能从 checkpoint 出发生成文本 |
+| [09. 补齐工程化细节、测试与命令](/tutorials/09-polish-tests-and-commands.md) | 整理脚本包装、设备检测、随机种子与测试矩阵 | `scripts/*.py`, `tests/**`, `src/phoenix_mini_llm/utils/*.py` | `uv run pytest` 全绿，CLI 行为稳定 |
+| [10. 跑出仓库对齐的基线结果](/tutorials/10-reproduce-the-baseline.md) | 用 `debug` / `dev` / `train` 配置跑出真实工件与检查点 | `configs/*.toml`, 运行命令与产物目录 | 你能独立复现实验，而不依赖现成输出 |
 
 ## 每一章都会交付什么
 
@@ -67,13 +67,13 @@ toc: content
 当你在教程里看到下面这些问题时，不要硬背结论，而是回到对应的知识档案：
 
 - 为什么 `pack_token_sequences()` 要按 `sequence_length + 1` 切块：
-  回到 [06. 语言模型训练目标](/learning/06-language-modeling-objective)。
+  回到 [卷八·03. 为什么训练目标表现成右移一位](/learning/volume-08-language-modeling-as-sequence-prediction/03-why-the-objective-looks-like-a-one-token-shift.md)。
 - 为什么 Attention 需要因果掩码和 KV Cache：
-  回到 [07. 从 MLP 到 Attention](/learning/07-from-mlp-to-attention) 和 [08. Transformer Block](/learning/08-transformer-blocks)。
+  回到 [卷九. 从记忆瓶颈到 Attention 的问题框架](/learning/volume-09-sequence-modeling-foundations/index.md) 和 [卷十. 从 Attention 到完整的 Decoder-only Transformer](/learning/volume-10-sequence-modeling-and-transformers/index.md)。
 - 为什么 `train/dev/debug` 三套配置要从第一天就固定：
-  回到 [10. 训练工程](/learning/10-training-engineering)。
+  回到 [卷十一. 训练一个小型语言模型](/learning/volume-11-training-a-small-language-model/index.md)。
 - 为什么 Mac 开发和 Windows CUDA 训练不能完全等价：
-  回到 [02. Python 环境与 uv](/learning/02-python-environment-and-uv) 与 [05. MPS 与 CUDA 的精度差异](/pitfalls/05-mps-vs-cuda-and-amp)。
+  回到 [01. 建立项目骨架](/tutorials/01-bootstrap-the-project.md) 与 [05. MPS 与 CUDA 的精度差异](/pitfalls/05-mps-vs-cuda-and-amp.md)。
 
 ## 推荐的工作节奏
 
@@ -106,6 +106,6 @@ git tag tutorial-step-01
 
 ## 现在从哪里开始
 
-如果你的目录还是空的，直接进入 [01. 建立项目骨架](/tutorials/01-bootstrap-the-project)。
+如果你的目录还是空的，直接进入 [01. 建立项目骨架](/tutorials/01-bootstrap-the-project.md)。
 
 如果你已经有一个 Python 项目，但目录结构、配置命名、CLI 入口都和这里不同，也建议从第 1 章重新梳理。这个项目的难点不只是模型本身，更是让每一层职责保持清晰。

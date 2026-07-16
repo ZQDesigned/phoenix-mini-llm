@@ -18,13 +18,12 @@ toc: content
 
 ## 时间线目录
 
-1. [01. uv 在 PATH 中缺失](/pitfalls/01-uv-path-and-project-python)
-2. [02. .gitignore 误伤 data 包](/pitfalls/02-gitignore-and-package-names)
-3. [03. 流式数据集与子集规模](/pitfalls/03-streaming-datasets-and-prep-scale)
-4. [04. Tokenizer 元数据同步](/pitfalls/04-tokenizer-metadata-sync)
-5. [05. MPS 与 CUDA 的精度差异](/pitfalls/05-mps-vs-cuda-and-amp)
-6. [06. 过度覆写 dumi 默认布局](/pitfalls/06-overriding-dumi-default-layout)
-7. [07. GitHub Pages 子路径构建](/pitfalls/07-github-pages-subpath-and-base-config)
+1. [01. uv 在 PATH 中缺失](/pitfalls/01-uv-path-and-project-python.md)
+2. [02. .gitignore 误伤 data 包](/pitfalls/02-gitignore-and-package-names.md)
+3. [03. 流式数据集与子集规模](/pitfalls/03-streaming-datasets-and-prep-scale.md)
+4. [04. Tokenizer 元数据同步](/pitfalls/04-tokenizer-metadata-sync.md)
+5. [05. MPS 与 CUDA 的精度差异](/pitfalls/05-mps-vs-cuda-and-amp.md)
+6. [06. GitHub Pages 子路径与静态站点构建](/pitfalls/06-github-pages-subpath-and-static-site-build.md)
 
 > **使用方式**
 >

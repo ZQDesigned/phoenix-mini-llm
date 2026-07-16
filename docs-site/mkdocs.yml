@@ -1,0 +1,213 @@
+site_name: Phoenix Mini LLM
+site_description: A beginner-friendly decoder-only language model project built from scratch.
+site_url: https://zqdesigned.github.io/phoenix-mini-llm/
+repo_url: https://github.com/ZQDesigned/phoenix-mini-llm
+repo_name: ZQDesigned/phoenix-mini-llm
+edit_uri: edit/main/docs-site/docs/
+docs_dir: docs
+site_dir: site
+strict: true
+
+validation:
+  links:
+    absolute_links: relative_to_docs
+
+theme:
+  name: material
+  language: zh
+  logo: assets/favicon.svg
+  favicon: assets/favicon.svg
+  font: false
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.action.edit
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  - redirects:
+      redirect_maps:
+        project-overview.md: index.md
+        pitfalls/07-github-pages-subpath-and-base-config.md: pitfalls/06-github-pages-subpath-and-static-site-build.md
+        learning/01-what-you-are-building.md: learning/volume-01-orientation/01-what-is-a-language-model.md
+        learning/02-python-environment-and-uv.md: tutorials/01-bootstrap-the-project.md
+        learning/03-tensors-and-linear-algebra.md: learning/volume-02-mathematical-prerequisites/02-scalars-vectors-matrices-tensors-and-shapes.md
+        learning/04-autograd-and-training-loop.md: learning/volume-06-optimization-and-generalization/01-gradients-backpropagation-and-optimization.md
+        learning/05-text-to-tokens.md: learning/volume-07-text-and-tokenization/index.md
+        learning/06-language-modeling-objective.md: learning/volume-08-language-modeling-as-sequence-prediction/03-why-the-objective-looks-like-a-one-token-shift.md
+        learning/07-from-mlp-to-attention.md: learning/volume-09-sequence-modeling-foundations/index.md
+        learning/08-transformer-blocks.md: learning/volume-10-sequence-modeling-and-transformers/index.md
+        learning/09-assembling-the-model.md: learning/volume-10-sequence-modeling-and-transformers/05-how-a-complete-decoder-only-model-is-assembled.md
+        learning/10-training-engineering.md: learning/volume-11-training-a-small-language-model/index.md
+        learning/11-inference-and-sampling.md: learning/volume-12-inference-evaluation-and-debugging/index.md
+        learning/12-debugging-and-evaluation.md: learning/volume-12-inference-evaluation-and-debugging/index.md
+        learning/part-1-orientation/index.md: learning/volume-01-orientation/index.md
+        learning/part-2-mathematical-prerequisites/index.md: learning/volume-02-mathematical-prerequisites/index.md
+        learning/part-3-functions-calculus-probability-and-information/index.md: learning/volume-03-functions-calculus-probability-and-information/index.md
+        learning/part-4-learning-from-data/index.md: learning/volume-04-learning-from-data/index.md
+        learning/part-5-neural-networks-and-optimization/index.md: learning/volume-05-neural-networks-and-optimization/index.md
+        learning/part-6-optimization-and-generalization/index.md: learning/volume-06-optimization-and-generalization/index.md
+        learning/part-4-text-and-tokenization/index.md: learning/volume-07-text-and-tokenization/index.md
+        learning/part-8-language-modeling-as-sequence-prediction/index.md: learning/volume-08-language-modeling-as-sequence-prediction/index.md
+        learning/part-7-sequence-modeling-foundations/index.md: learning/volume-09-sequence-modeling-foundations/index.md
+        learning/part-5-sequence-modeling-and-transformers/index.md: learning/volume-10-sequence-modeling-and-transformers/index.md
+        learning/part-6-training-a-small-language-model/index.md: learning/volume-11-training-a-small-language-model/index.md
+        learning/part-7-inference-evaluation-and-debugging/index.md: learning/volume-12-inference-evaluation-and-debugging/index.md
+        learning/part-8-where-to-go-next/index.md: learning/volume-13-where-to-go-next/index.md
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      name: GitHub 仓库
+      link: https://github.com/ZQDesigned/phoenix-mini-llm
+
+nav:
+  - 首页: index.md
+  - 学习主线:
+      - 总序: learning/index.md
+      - 卷一. 入门与学习地图:
+          - learning/volume-01-orientation/index.md
+          - 01. 什么是语言模型: learning/volume-01-orientation/01-what-is-a-language-model.md
+          - 02. 为什么应该先做一个小模型: learning/volume-01-orientation/02-why-start-with-a-small-model.md
+          - 03. 怎样使用这套知识档案: learning/volume-01-orientation/03-how-to-use-this-book.md
+      - 卷二. 数学对象、线性代数与表示空间:
+          - learning/volume-02-mathematical-prerequisites/index.md
+          - 01. 为什么学语言模型还要先学数学: learning/volume-02-mathematical-prerequisites/01-why-you-still-need-math-for-language-models.md
+          - 02. 标量、向量、矩阵、张量与 shape: learning/volume-02-mathematical-prerequisites/02-scalars-vectors-matrices-tensors-and-shapes.md
+          - 03. 矩阵乘法、线性变换与维度流动: learning/volume-02-mathematical-prerequisites/03-matrix-multiplication-linear-transformations-and-dimensional-flow.md
+          - 04. 长度、点积、相似度与几何直觉: learning/volume-02-mathematical-prerequisites/04-length-dot-products-similarity-and-geometric-intuition.md
+      - 卷三. 函数、概率、信息与导数:
+          - learning/volume-03-functions-calculus-probability-and-information/index.md
+          - 01. 函数、复合与非线性为什么重要: learning/volume-03-functions-calculus-probability-and-information/01-functions-composition-and-why-nonlinearity-matters.md
+          - 02. 概率分布、期望与不确定性: learning/volume-03-functions-calculus-probability-and-information/02-probability-distributions-expectation-and-uncertainty.md
+          - 03. 对数、信息量与为什么损失常写成对数概率: learning/volume-03-functions-calculus-probability-and-information/03-logarithms-information-and-why-loss-uses-log-probability.md
+          - 04. 导数、偏导数与局部变化率: learning/volume-03-functions-calculus-probability-and-information/04-derivatives-partial-derivatives-and-local-change.md
+      - 卷四. 从数据到学习问题:
+          - learning/volume-04-learning-from-data/index.md
+          - 01. 机器学习到底在学什么: learning/volume-04-learning-from-data/01-what-does-it-mean-to-learn.md
+          - 02. 样本、特征、标签、batch 与张量布局: learning/volume-04-learning-from-data/02-vectors-matrices-and-tensors.md
+          - 03. 从线性模型到第一个神经网络: learning/volume-04-learning-from-data/03-from-linear-models-to-the-first-neural-network.md
+      - 卷五. 神经网络作为表示学习系统:
+          - learning/volume-05-neural-networks-and-optimization/index.md
+          - 01. 线性层、激活函数与表示空间: learning/volume-05-neural-networks-and-optimization/01-linear-layers-activations-and-representations.md
+          - 02. 概率、softmax 与交叉熵: learning/volume-05-neural-networks-and-optimization/02-probability-softmax-and-cross-entropy.md
+      - 卷六. 优化、噪声与泛化:
+          - learning/volume-06-optimization-and-generalization/index.md
+          - 01. 梯度、链式法则、反向传播与优化: learning/volume-06-optimization-and-generalization/01-gradients-backpropagation-and-optimization.md
+          - 02. 小批量梯度下降、噪声与训练的统计本性: learning/volume-06-optimization-and-generalization/02-mini-batch-gradient-descent-noise-and-why-training-is-statistical.md
+          - 03. 过拟合、泛化与验证集: learning/volume-06-optimization-and-generalization/03-overfitting-generalization-and-validation.md
+      - 卷七. 文本怎样进入模型：语料、编码与分词:
+          - learning/volume-07-text-and-tokenization/index.md
+          - 01. 语料、样本与数据分布: learning/volume-07-text-and-tokenization/01-corpora-samples-and-data-distribution.md
+          - 02. Unicode、字节与文本规范化: learning/volume-07-text-and-tokenization/02-unicode-bytes-and-text-normalization.md
+          - 03. Token、词表与 special token: learning/volume-07-text-and-tokenization/03-tokens-vocabularies-and-special-tokens.md
+          - 04. 子词分词、BPE 与 tokenizer 训练: learning/volume-07-text-and-tokenization/04-subword-tokenization-bpe-and-tokenizer-training.md
+      - 卷八. 语言建模为什么本质上是序列条件概率问题:
+          - learning/volume-08-language-modeling-as-sequence-prediction/index.md
+          - 01. 为什么序列数据比普通表格数据更难: learning/volume-08-language-modeling-as-sequence-prediction/01-why-sequence-data-is-harder-than-tabular-data.md
+          - 02. 从 token 流到固定长度训练样本: learning/volume-08-language-modeling-as-sequence-prediction/02-from-token-streams-to-fixed-length-training-samples.md
+          - 03. 为什么训练目标表现成右移一位: learning/volume-08-language-modeling-as-sequence-prediction/03-why-the-objective-looks-like-a-one-token-shift.md
+      - 卷九. 从记忆瓶颈到 Attention 的问题框架:
+          - learning/volume-09-sequence-modeling-foundations/index.md
+          - 01. 为什么早期序列建模会遇到瓶颈: learning/volume-09-sequence-modeling-foundations/01-why-earlier-sequence-models-hit-limits.md
+          - 02. Attention 真正要解决什么问题: learning/volume-09-sequence-modeling-foundations/02-what-problem-attention-actually-solves.md
+      - 卷十. 从 Attention 到完整的 Decoder-only Transformer:
+          - learning/volume-10-sequence-modeling-and-transformers/index.md
+          - 01. Query、Key、Value 与加权读取: learning/volume-10-sequence-modeling-and-transformers/01-query-key-value-and-weighted-reading.md
+          - 02. 因果注意力与 mask: learning/volume-10-sequence-modeling-and-transformers/02-causal-attention-and-masking.md
+          - 03. 位置方法到底在补什么: learning/volume-10-sequence-modeling-and-transformers/03-what-positional-methods-actually-add.md
+          - 04. Transformer block 为什么能反复堆叠: learning/volume-10-sequence-modeling-and-transformers/04-why-transformer-blocks-stack-so-well.md
+          - 05. 一个完整 decoder-only 模型怎样组装: learning/volume-10-sequence-modeling-and-transformers/05-how-a-complete-decoder-only-model-is-assembled.md
+      - 卷十一. 训练一个小型语言模型:
+          - learning/volume-11-training-a-small-language-model/index.md
+          - 01. batch、token、step 与 epoch 到底在统计什么: learning/volume-11-training-a-small-language-model/01-what-batches-tokens-steps-and-epochs-really-count.md
+          - 02. 优化器到底在改什么: learning/volume-11-training-a-small-language-model/02-what-the-optimizer-is-actually-changing.md
+          - 03. 学习率、warmup 与为什么训练会在早期崩掉: learning/volume-11-training-a-small-language-model/03-learning-rate-warmup-and-why-early-training-breaks.md
+          - 04. 小显存下为什么要做梯度累积: learning/volume-11-training-a-small-language-model/04-why-gradient-accumulation-matters-under-small-vram.md
+          - 05. 混合精度、GradScaler 与设备差异: learning/volume-11-training-a-small-language-model/05-mixed-precision-gradscaler-and-device-differences.md
+          - 06. 梯度裁剪、NaN 与不稳定更新: learning/volume-11-training-a-small-language-model/06-gradient-clipping-nan-and-unstable-updates.md
+          - 07. checkpoint、验证集与实验记录: learning/volume-11-training-a-small-language-model/07-checkpoints-validation-and-experiment-records.md
+      - 卷十二. 推理、评估与调试:
+          - learning/volume-12-inference-evaluation-and-debugging/index.md
+          - 01. 自回归生成、prefill 与 decode: learning/volume-12-inference-evaluation-and-debugging/01-autoregressive-generation-prefill-and-decode.md
+          - 02. 从 logits 到下一个 token: learning/volume-12-inference-evaluation-and-debugging/02-from-logits-to-the-next-token.md
+          - 03. greedy、temperature、top-k 与 top-p 各在控制什么: learning/volume-12-inference-evaluation-and-debugging/03-what-greedy-temperature-top-k-and-top-p-actually-control.md
+          - 04. EOS、停止条件与重复问题: learning/volume-12-inference-evaluation-and-debugging/04-eos-stopping-criteria-and-repetition.md
+          - 05. KV cache 到底缓存了什么: learning/volume-12-inference-evaluation-and-debugging/05-what-kv-cache-is-actually-saving.md
+          - 06. 为什么训练 loss 与生成质量不总同步: learning/volume-12-inference-evaluation-and-debugging/06-why-training-loss-and-generation-quality-do-not-always-move-together.md
+          - 07. 困惑度、验证集与定性样例怎样一起评估: learning/volume-12-inference-evaluation-and-debugging/07-how-to-use-perplexity-validation-and-qualitative-samples-together.md
+          - 08. 极小样本过拟合与系统化排错: learning/volume-12-inference-evaluation-and-debugging/08-overfit-a-tiny-batch-and-debug-the-whole-pipeline.md
+      - 卷十三. 从小模型走向更大的模型世界:
+          - learning/volume-13-where-to-go-next/index.md
+          - 01. 预训练、微调与任务适配: learning/volume-13-where-to-go-next/01-pretraining-finetuning-and-task-adaptation.md
+  - 复刻教程:
+      - 复刻总览: tutorials/index.md
+      - 01. 建立项目骨架: tutorials/01-bootstrap-the-project.md
+      - 02. 准备语料与数据管线: tutorials/02-prepare-the-corpus.md
+      - 03. 训练 Tokenizer: tutorials/03-train-the-tokenizer.md
+      - 04. 写最小训练闭环: tutorials/04-build-a-tiny-training-loop.md
+      - 05. 实现 Attention 与 Transformer Block: tutorials/05-implement-attention-and-blocks.md
+      - 06. 拼出主模型: tutorials/06-assemble-the-model.md
+      - 07. 写正式训练器与 Checkpoint 链路: tutorials/07-build-training-and-checkpointing.md
+      - 08. 写生成与采样逻辑: tutorials/08-build-generation-and-sampling.md
+      - 09. 补齐工程化细节、测试与命令: tutorials/09-polish-tests-and-commands.md
+      - 10. 跑出仓库对齐的基线结果: tutorials/10-reproduce-the-baseline.md
+  - 踩坑记录:
+      - 踩坑记录总览: pitfalls/index.md
+      - 01. uv 在 PATH 中缺失: pitfalls/01-uv-path-and-project-python.md
+      - 02. .gitignore 误伤 data 包: pitfalls/02-gitignore-and-package-names.md
+      - 03. 流式数据集与子集规模: pitfalls/03-streaming-datasets-and-prep-scale.md
+      - 04. Tokenizer 元数据同步: pitfalls/04-tokenizer-metadata-sync.md
+      - 05. MPS 与 CUDA 的精度差异: pitfalls/05-mps-vs-cuda-and-amp.md
+      - 06. GitHub Pages 子路径与静态站点构建: pitfalls/06-github-pages-subpath-and-static-site-build.md

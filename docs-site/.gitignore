@@ -1,5 +1,6 @@
+.venv/
+site/
 node_modules/
-.dumi/tmp/
-.dumi/tmp-production/
 dist/
+.cache/
 .DS_Store

@@ -353,7 +353,7 @@ uv run phoenix-evaluate --config configs/debug.toml --checkpoint latest
 
 > **相关学习章节**
 >
->   如果你对学习率 warmup、梯度累积和 checkpoint 的意义还不够稳，回到 [10. 训练工程](/learning/10-training-engineering)。
+>   如果你对学习率 warmup、梯度累积和 checkpoint 的意义还不够稳，回到 [卷十一. 训练一个小型语言模型](/learning/volume-11-training-a-small-language-model/index.md)。
 
 ## 本章完成后的阶段检查点
 

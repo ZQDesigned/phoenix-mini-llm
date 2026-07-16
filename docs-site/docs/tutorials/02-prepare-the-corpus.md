@@ -325,7 +325,7 @@ PY
 
 > **相关学习章节**
 >
->   如果你对“为什么目标序列是左移一位”还不够牢，回到 [06. 语言模型训练目标](/learning/06-language-modeling-objective)。如果你对打包后的形状还没有直觉，回到 [04. 自动求导与训练闭环](/learning/04-autograd-and-training-loop)。
+>   如果你对“为什么目标序列是右移一位”还不够牢，回到 [卷八·03. 为什么训练目标表现成右移一位](/learning/volume-08-language-modeling-as-sequence-prediction/03-why-the-objective-looks-like-a-one-token-shift.md)。如果你对打包后的张量形状还没有直觉，回到 [卷四·02. 样本、特征、标签、batch 与张量布局](/learning/volume-04-learning-from-data/02-vectors-matrices-and-tensors.md)。
 
 ## 本章完成后的阶段检查点
 

@@ -264,7 +264,7 @@ PY
 
 > **相关学习章节**
 >
->   如果你对反向传播、梯度、loss 的数值路径还不够稳定，回到 [04. 自动求导与训练闭环](/learning/04-autograd-and-training-loop)。
+>   如果你对反向传播、梯度和 loss 的数值路径还不够稳定，回到 [卷六·01. 梯度、链式法则、反向传播与优化](/learning/volume-06-optimization-and-generalization/01-gradients-backpropagation-and-optimization.md)。
 
 ## 本章完成后的阶段检查点
 

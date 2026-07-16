@@ -349,7 +349,7 @@ PY
 
 > **相关学习章节**
 >
->   如果你对为什么要先有 Attention 再有完整模型还不够稳，回到 [07. 从 MLP 到 Attention](/learning/07-from-mlp-to-attention) 和 [08. Transformer Block](/learning/08-transformer-blocks)。
+>   如果你对为什么要先有 Attention 再有完整模型还不够稳，回到 [卷九. 从记忆瓶颈到 Attention 的问题框架](/learning/volume-09-sequence-modeling-foundations/index.md) 和 [卷十. 从 Attention 到完整的 Decoder-only Transformer](/learning/volume-10-sequence-modeling-and-transformers/index.md)。
 
 ## 本章完成后的阶段检查点
 

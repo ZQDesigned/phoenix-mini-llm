@@ -295,7 +295,7 @@ PY
 
 > **相关学习章节**
 >
->   如果你还不确定为什么输出头要接在 final norm 之后，回到 [09. 把模型拼起来](/learning/09-assembling-the-model)。
+>   如果你还不确定为什么输出头要接在 final norm 之后，回到 [卷十·05. 一个完整 decoder-only 模型怎样组装](/learning/volume-10-sequence-modeling-and-transformers/05-how-a-complete-decoder-only-model-is-assembled.md)。
 
 ## 本章完成后的阶段检查点
 

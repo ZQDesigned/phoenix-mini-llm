@@ -1,0 +1,15 @@
+[project]
+name = "phoenix-mini-llm-docs"
+version = "0.1.0"
+description = "Material for MkDocs site for phoenix-mini-llm."
+requires-python = ">=3.11,<3.13"
+dependencies = [
+  "jieba>=0.42.1,<0.43",
+  "mkdocs>=1.6.1,<2.0.0",
+  "mkdocs-material>=9.6.15,<10.0.0",
+  "mkdocs-minify-plugin>=0.8.0,<1.0.0",
+  "mkdocs-redirects>=1.2.2,<2.0.0",
+]
+
+[tool.uv]
+package = false

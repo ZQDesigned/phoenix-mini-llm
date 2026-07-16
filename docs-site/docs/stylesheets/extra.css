@@ -1,0 +1,63 @@
+:root {
+  --md-primary-fg-color: #ffffff;
+  --md-primary-fg-color--light: #ffffff;
+  --md-primary-fg-color--dark: #fff7ed;
+  --md-accent-fg-color: #d9480f;
+  --md-typeset-a-color: #d9480f;
+  --md-default-fg-color--light: #6b7280;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+}
+
+code,
+pre,
+.md-typeset code {
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+.md-header {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.md-grid {
+  max-width: 82rem;
+}
+
+.md-content {
+  line-height: 1.78;
+}
+
+.md-content__inner {
+  margin-bottom: 3rem;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h1 {
+  font-weight: 750;
+}
+
+.md-typeset h2 {
+  margin-top: 2.6rem;
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.92rem;
+}
+
+.md-typeset blockquote {
+  border-left-color: #d9480f;
+}
+
+.md-nav__title,
+.md-nav__link--active,
+.md-tabs__link--active {
+  font-weight: 650;
+}

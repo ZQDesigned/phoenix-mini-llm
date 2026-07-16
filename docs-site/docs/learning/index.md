@@ -75,7 +75,7 @@ toc: content
 
 ### 序篇：学习方法、问题意识与全书地图
 
-- [卷一. 入门与学习地图](/learning/part-1-orientation)
+- [卷一. 入门与学习地图](/learning/volume-01-orientation/index.md)
 
 这一卷不急着讲公式，也不急着讲工程命令。
 它先回答方向问题：
@@ -87,8 +87,8 @@ toc: content
 
 ### 第一编：数学与数值世界
 
-- [卷二. 数学对象、线性代数与表示空间](/learning/part-2-mathematical-prerequisites)
-- [卷三. 函数、概率、信息与导数](/learning/part-3-functions-calculus-probability-and-information)
+- [卷二. 数学对象、线性代数与表示空间](/learning/volume-02-mathematical-prerequisites/index.md)
+- [卷三. 函数、概率、信息与导数](/learning/volume-03-functions-calculus-probability-and-information/index.md)
 
 这一编负责建立所有后续章节共享的共同语言。
 它先不谈 Transformer，而先解决：
@@ -104,9 +104,9 @@ toc: content
 
 ### 第二编：机器学习与神经网络
 
-- [卷四. 从数据到学习问题](/learning/part-4-learning-from-data)
-- [卷五. 神经网络作为表示学习系统](/learning/part-5-neural-networks-and-optimization)
-- [卷六. 优化、噪声与泛化](/learning/part-6-optimization-and-generalization)
+- [卷四. 从数据到学习问题](/learning/volume-04-learning-from-data/index.md)
+- [卷五. 神经网络作为表示学习系统](/learning/volume-05-neural-networks-and-optimization/index.md)
+- [卷六. 优化、噪声与泛化](/learning/volume-06-optimization-and-generalization/index.md)
 
 这一编负责回答“学习为什么会发生、神经网络到底在干什么”。
 它把常常被混成一团的三层问题拆开：
@@ -119,8 +119,8 @@ toc: content
 
 ### 第三编：文本、分词与语言建模
 
-- [卷七. 文本怎样进入模型：语料、编码与分词](/learning/part-4-text-and-tokenization)
-- [卷八. 语言建模为什么本质上是序列条件概率问题](/learning/part-8-language-modeling-as-sequence-prediction)
+- [卷七. 文本怎样进入模型：语料、编码与分词](/learning/volume-07-text-and-tokenization/index.md)
+- [卷八. 语言建模为什么本质上是序列条件概率问题](/learning/volume-08-language-modeling-as-sequence-prediction/index.md)
 
 这一编负责把自然语言真正送进机器。
 它先后回答两件不同层级的问题：
@@ -132,8 +132,8 @@ toc: content
 
 ### 第四编：序列建模、注意力与 Transformer
 
-- [卷九. 从记忆瓶颈到 Attention 的问题框架](/learning/part-7-sequence-modeling-foundations)
-- [卷十. 从 Attention 到完整的 Decoder-only Transformer](/learning/part-5-sequence-modeling-and-transformers)
+- [卷九. 从记忆瓶颈到 Attention 的问题框架](/learning/volume-09-sequence-modeling-foundations/index.md)
+- [卷十. 从 Attention 到完整的 Decoder-only Transformer](/learning/volume-10-sequence-modeling-and-transformers/index.md)
 
 这一编才真正进入现代语言模型主体。
 而且这里不会把 QKV 当作第一句话，而会先解释：
@@ -145,8 +145,8 @@ toc: content
 
 ### 第五编：训练、推理、评估与调试
 
-- [卷十一. 训练一个小型语言模型](/learning/part-6-training-a-small-language-model)
-- [卷十二. 推理、评估与调试](/learning/part-7-inference-evaluation-and-debugging)
+- [卷十一. 训练一个小型语言模型](/learning/volume-11-training-a-small-language-model/index.md)
+- [卷十二. 推理、评估与调试](/learning/volume-12-inference-evaluation-and-debugging/index.md)
 
 这一编负责把模型放到真实时间轴上。
 它会系统展开：
@@ -159,7 +159,7 @@ toc: content
 
 ### 第六编：迁移、扩展与更大的模型世界
 
-- [卷十三. 从小模型走向更大的模型世界](/learning/part-8-where-to-go-next)
+- [卷十三. 从小模型走向更大的模型世界](/learning/volume-13-where-to-go-next/index.md)
 
 这一编的职责不是再塞热门名词，而是把已经建立的小模型理解接回更大地图：
 
@@ -278,21 +278,6 @@ toc: content
 > 这套理解在一个真实仓库里最终怎样被实现。
 
 完整教学任务由 `learning` 与 `tutorials` 共同承担。
-
-## 关于附录里的“项目速读与回看路径”
-
-站内仍保留 `12` 篇速读页。
-
-它们现在只承担辅助职责：
-
-- 提纲式回顾
-- 快速回看
-- 跨章节压缩导航
-
-如果你是完全初学者，不建议把它们当正文替代。
-
-正文要解决的是“学懂”；
-附录更多是在你已经学过之后帮助你“压缩”和“回想”。
 
 ## 后续扩写原则
 

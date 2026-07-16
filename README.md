@@ -54,7 +54,7 @@ If `uv` is already in your shell PATH, you can drop the explicit `~/.local/bin/`
 
 ## Documentation Site
 
-The dumi documentation site now lives inside this repository at:
+The Material for MkDocs documentation site lives inside this repository at:
 
 ```text
 docs-site/
@@ -70,8 +70,9 @@ Typical site commands:
 
 ```bash
 cd docs-site
-npm install
-npm run build
+~/.local/bin/uv sync --python 3.12
+~/.local/bin/uv run mkdocs serve
+~/.local/bin/uv run mkdocs build --strict
 ```
 
 ## Tooling

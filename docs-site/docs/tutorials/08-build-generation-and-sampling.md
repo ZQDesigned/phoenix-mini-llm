@@ -203,7 +203,7 @@ uv run phoenix-generate --config configs/debug.toml --checkpoint latest --prompt
 
 > **相关学习章节**
 >
->   如果你对 top-k、top-p、temperature 各自改变的是什么还不稳，回到 [11. 推理与采样](/learning/11-inference-and-sampling)。
+>   如果你对 top-k、top-p、temperature 各自改变的是什么还不稳，回到 [卷十二. 推理、评估与调试](/learning/volume-12-inference-evaluation-and-debugging/index.md)。
 
 ## 本章完成后的阶段检查点
 

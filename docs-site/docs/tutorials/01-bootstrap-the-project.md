@@ -202,7 +202,7 @@ htmlcov/
 
 > **相关踩坑**
 >
->   如果你把这里写成 `data/`，后面在实现 `src/phoenix_mini_llm/data/` 时很容易碰上 Git 不追踪文件的问题。具体诊断过程见 [02. .gitignore 误伤 data 包](/pitfalls/02-gitignore-and-package-names)。
+>   如果你把这里写成 `data/`，后面在实现 `src/phoenix_mini_llm/data/` 时很容易碰上 Git 不追踪文件的问题。具体诊断过程见 [02. .gitignore 误伤 data 包](/pitfalls/02-gitignore-and-package-names.md)。
 
 ## 第四步：先把配置模型写出来
 
@@ -623,7 +623,7 @@ uv run python -c "from pathlib import Path; print((Path('src') / 'phoenix_mini_l
 
 > **相关学习章节**
 >
->   如果你对 `uv`、路径解析、配置分层的意义还不够稳，回到 [02. Python 环境与 uv](/learning/02-python-environment-and-uv) 和 [10. 训练工程](/learning/10-training-engineering)。
+>   如果你对 `uv`、路径解析、配置分层的意义还不够稳，回到 [卷十一. 训练一个小型语言模型](/learning/volume-11-training-a-small-language-model/index.md) 并对照 [02. .gitignore 误伤 data 包](/pitfalls/02-gitignore-and-package-names.md)。
 
 ## 本章完成后的阶段检查点
 
