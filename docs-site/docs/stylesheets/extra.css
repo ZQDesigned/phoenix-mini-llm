@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700;800&family=Noto+Serif+SC:wght@600;700;900&display=swap");
+
 :root {
   --md-primary-fg-color: #ffffff;
   --md-primary-fg-color--light: #ffffff;
@@ -5,11 +7,21 @@
   --md-accent-fg-color: #d9480f;
   --md-typeset-a-color: #d9480f;
   --md-default-fg-color--light: #6b7280;
+  --phoenix-ink: #111827;
+  --phoenix-ink-soft: #475569;
+  --phoenix-ember: #c2410c;
+  --phoenix-amber: #d97706;
+  --phoenix-sand: #fbf6ee;
+  --phoenix-paper: #fffdfa;
+  --phoenix-line: rgba(148, 163, 184, 0.22);
+  --phoenix-cyan: #0f766e;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  background: linear-gradient(180deg, #fffdf8 0%, #fffaf3 100%);
+  color: var(--phoenix-ink);
+  font-family: "Inter Tight", "Noto Sans SC", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", sans-serif;
 }
 
 code,
@@ -37,6 +49,8 @@ pre,
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
+  color: var(--phoenix-ink);
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
   letter-spacing: -0.01em;
 }
 
@@ -60,4 +74,402 @@ pre,
 .md-nav__link--active,
 .md-tabs__link--active {
   font-weight: 650;
+}
+
+.md-tabs {
+  backdrop-filter: blur(18px);
+  background: rgba(255, 251, 245, 0.78);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.phoenix-home-hero {
+  overflow: hidden;
+  padding: 4.5rem 0 2rem;
+  position: relative;
+}
+
+.phoenix-home-hero::before,
+.phoenix-home-hero::after {
+  border-radius: 999px;
+  content: "";
+  filter: blur(18px);
+  position: absolute;
+}
+
+.phoenix-home-hero::before {
+  animation: phoenix-drift 18s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.2), transparent 68%);
+  height: 26rem;
+  right: -4rem;
+  top: -3rem;
+  width: 26rem;
+}
+
+.phoenix-home-hero::after {
+  animation: phoenix-drift 22s ease-in-out infinite alternate-reverse;
+  background: radial-gradient(circle, rgba(15, 118, 110, 0.16), transparent 72%);
+  height: 18rem;
+  left: -5rem;
+  top: 7rem;
+  width: 18rem;
+}
+
+.phoenix-home-hero__grid {
+  align-items: end;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1.45fr) minmax(18rem, 0.95fr);
+  position: relative;
+  z-index: 1;
+}
+
+.phoenix-home-eyebrow,
+.phoenix-home-kicker {
+  color: var(--phoenix-cyan);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  margin: 0 0 0.85rem;
+  text-transform: uppercase;
+}
+
+.phoenix-home-hero__copy h1 {
+  font-size: clamp(2.8rem, 6vw, 5.1rem);
+  line-height: 1.03;
+  margin: 0;
+  max-width: 12ch;
+}
+
+.phoenix-home-summary {
+  color: var(--phoenix-ink-soft);
+  font-size: 1.08rem;
+  line-height: 1.85;
+  margin: 1.35rem 0 0;
+  max-width: 43rem;
+}
+
+.phoenix-home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.65rem;
+}
+
+.phoenix-home-actions .md-button {
+  border-radius: 999px;
+  font-weight: 700;
+  margin: 0;
+  padding: 0.82rem 1.3rem;
+}
+
+.phoenix-home-actions .md-button--primary {
+  background: linear-gradient(135deg, #d97706 0%, #c2410c 100%);
+  border-color: transparent;
+  box-shadow: 0 18px 38px rgba(194, 65, 12, 0.18);
+  color: #fffaf6;
+}
+
+.phoenix-home-actions .md-button:not(.md-button--primary) {
+  background: rgba(255, 255, 255, 0.82);
+  border-color: rgba(148, 163, 184, 0.28);
+  color: var(--phoenix-ink);
+}
+
+.phoenix-home-hero__panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 250, 243, 0.96)),
+    linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(15, 118, 110, 0.08));
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 1.8rem;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+  padding: 1.45rem;
+}
+
+.phoenix-home-signal {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 1.2rem;
+  padding: 1rem 1rem 1.15rem;
+}
+
+.phoenix-home-signal__label {
+  color: var(--phoenix-cyan);
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+.phoenix-home-signal strong {
+  display: block;
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.phoenix-home-signal p {
+  color: var(--phoenix-ink-soft);
+  font-size: 0.95rem;
+  margin: 0.65rem 0 0;
+}
+
+.phoenix-home-stats {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 1rem 0 0;
+}
+
+.phoenix-home-stats div {
+  background: rgba(17, 24, 39, 0.03);
+  border-radius: 1rem;
+  padding: 0.95rem 1rem;
+}
+
+.phoenix-home-stats dt {
+  color: var(--phoenix-ember);
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.phoenix-home-stats dd {
+  color: var(--phoenix-ink-soft);
+  font-size: 0.88rem;
+  margin: 0.45rem 0 0;
+}
+
+.phoenix-home__surface {
+  display: grid;
+  gap: 1.5rem;
+  padding: 0 0 3rem;
+}
+
+.phoenix-home-section {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--phoenix-line);
+  border-radius: 1.7rem;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.04);
+  padding: 1.8rem;
+}
+
+.phoenix-home-section__heading {
+  margin-bottom: 1.4rem;
+}
+
+.phoenix-home-section__heading h2 {
+  font-size: clamp(1.8rem, 3vw, 2.65rem);
+  line-height: 1.15;
+  margin: 0;
+  max-width: 18ch;
+}
+
+.phoenix-home-section__heading p:last-child {
+  color: var(--phoenix-ink-soft);
+  margin: 0.9rem 0 0;
+  max-width: 44rem;
+}
+
+.phoenix-home-card-grid,
+.phoenix-home-outcomes {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.phoenix-home-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 247, 237, 0.82));
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 1.4rem;
+  color: inherit;
+  display: block;
+  min-height: 100%;
+  padding: 1.35rem;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.phoenix-home-card:hover {
+  border-color: rgba(217, 119, 6, 0.32);
+  box-shadow: 0 18px 40px rgba(194, 65, 12, 0.08);
+  transform: translateY(-4px);
+}
+
+.phoenix-home-card__index {
+  color: rgba(15, 118, 110, 0.76);
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.phoenix-home-card h3,
+.phoenix-home-outcomes h3,
+.phoenix-home-roadmap__step h3,
+.phoenix-home-boundary__panel h2 {
+  font-family: "Noto Serif SC", "Noto Sans SC", serif;
+}
+
+.phoenix-home-card h3 {
+  font-size: 1.45rem;
+  margin: 0.4rem 0 0.8rem;
+}
+
+.phoenix-home-card p,
+.phoenix-home-outcomes p,
+.phoenix-home-roadmap__step p,
+.phoenix-home-boundary__panel li,
+.phoenix-home-quickstart__copy p {
+  color: var(--phoenix-ink-soft);
+}
+
+.phoenix-home-card ul,
+.phoenix-home-boundary__panel ul {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+}
+
+.phoenix-home-card li,
+.phoenix-home-boundary__panel li {
+  margin-bottom: 0.45rem;
+}
+
+.phoenix-home-roadmap {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.phoenix-home-roadmap__step {
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.92), rgba(255, 255, 255, 0.86));
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 1.35rem;
+  padding: 1.3rem;
+}
+
+.phoenix-home-roadmap__step span {
+  color: var(--phoenix-ember);
+  display: inline-flex;
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.phoenix-home-roadmap__step h3 {
+  font-size: 1.35rem;
+  margin: 0.55rem 0 0.7rem;
+}
+
+.phoenix-home-outcomes div {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  border-radius: 1.2rem;
+  padding: 1.15rem;
+}
+
+.phoenix-home-outcomes h3 {
+  font-size: 1.15rem;
+  margin: 0 0 0.55rem;
+}
+
+.phoenix-home-boundary {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.phoenix-home-boundary__panel {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 1.35rem;
+  padding: 1.35rem;
+}
+
+.phoenix-home-boundary__panel--muted {
+  background: linear-gradient(180deg, rgba(255, 251, 245, 0.82), rgba(248, 250, 252, 0.92));
+}
+
+.phoenix-home-boundary__panel h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0.8rem;
+}
+
+.phoenix-home-quickstart {
+  align-items: center;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+}
+
+.phoenix-home-command {
+  background: #121826;
+  border-radius: 1.3rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: #f8fafc;
+  margin: 0;
+  overflow-x: auto;
+  padding: 1.2rem 1.3rem;
+}
+
+.phoenix-home-command code {
+  color: inherit;
+  display: block;
+  line-height: 1.7;
+}
+
+@keyframes phoenix-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(1rem, 1.2rem, 0) scale(1.08);
+  }
+}
+
+@media (max-width: 76.1875em) {
+  .phoenix-home-hero__grid,
+  .phoenix-home-card-grid,
+  .phoenix-home-roadmap,
+  .phoenix-home-outcomes,
+  .phoenix-home-boundary,
+  .phoenix-home-quickstart {
+    grid-template-columns: 1fr;
+  }
+
+  .phoenix-home-hero {
+    padding-top: 3.5rem;
+  }
+
+  .phoenix-home-hero__copy h1 {
+    max-width: none;
+  }
+}
+
+@media (max-width: 44.9375em) {
+  .phoenix-home-hero {
+    padding-top: 2.75rem;
+  }
+
+  .phoenix-home-section,
+  .phoenix-home-hero__panel {
+    border-radius: 1.3rem;
+    padding: 1.2rem;
+  }
+
+  .phoenix-home-section__heading h2 {
+    max-width: none;
+  }
+
+  .phoenix-home-actions .md-button {
+    width: 100%;
+  }
 }

@@ -1,5 +1,6 @@
 .venv/
 site/
+.dumi/
 node_modules/
 dist/
 .cache/
