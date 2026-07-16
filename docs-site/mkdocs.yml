@@ -33,7 +33,7 @@ theme:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: white
-      accent: deep orange
+      accent: blue
 
 plugins:
   - search
