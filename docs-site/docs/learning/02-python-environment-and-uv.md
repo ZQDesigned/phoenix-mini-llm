@@ -1,8 +1,8 @@
 ---
 title: 02. Python、命令行与最小实验环境
 group:
-  title: 学习主线
-  order: 0
+  title: 快速导读（12讲总览）
+  order: 99
 order: 1
 toc: content
 ---

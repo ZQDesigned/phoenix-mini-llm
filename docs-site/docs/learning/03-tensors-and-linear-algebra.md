@@ -1,8 +1,8 @@
 ---
 title: 03. Tensor 与线性代数直觉
 group:
-  title: 学习主线
-  order: 0
+  title: 快速导读（12讲总览）
+  order: 99
 order: 2
 toc: content
 ---

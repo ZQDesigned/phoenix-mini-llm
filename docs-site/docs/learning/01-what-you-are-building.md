@@ -1,8 +1,8 @@
 ---
 title: 01. 你到底在做什么
 group:
-  title: 学习主线
-  order: 0
+  title: 快速导读（12讲总览）
+  order: 99
 order: 0
 toc: content
 ---

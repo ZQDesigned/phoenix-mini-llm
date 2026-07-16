@@ -1,276 +1,309 @@
 ---
-title: 学习主线总览
+title: Phoenix Mini LLM 学习知识档案总序
 nav:
   title: 学习主线
   order: 2
 group:
-  title: 学习主线
+  title: 总序与阅读说明
   order: 0
 toc: content
 ---
 
-# 学习主线总览
+# Phoenix Mini LLM 学习知识档案总序
 
-这一部分现在不再把自己定义成“一组围绕项目的补充说明”，而是把目标抬高到一本真正可连续阅读的入门书稿：
+这份 `learning` 不应该再被理解成“项目说明的加强版”，也不应该继续被理解成“围绕仓库目录解释源码”的陪衬材料。
 
-> 一个完全从零开始的读者，在按顺序读完这套知识档案之后，应该能够真正理解并亲手实现一个小型语言模型。
+它真正要承担的角色，应该更接近一本持续扩写的教材。
 
-这意味着它必须承担三层任务：
+而且它面对的读者，不应该只是假定为“已经学过机器学习、神经网络和 Transformer，只是来回顾一下的人”，而应该首先面对下面这类读者：
 
-- 先补齐进入大模型之前真正缺失的基础知识
-- 再把语言模型自己的概念体系讲成一条连续链路
-- 最后把这些知识自然连接到训练、推理、调试与后续扩展
+- 以前没有系统学过机器学习
+- 对神经网络只有零散印象，甚至只停留在名词层
+- 听过 Transformer、Attention、Tokenizer 这些词，但还没有能力把它们接成因果链
+- 希望最后不仅能运行项目，还能从空目录重新做出同类模型
+- 希望学到的不是“这一个仓库怎么跑”，而是“小型语言模型为什么会长成这样、从零该怎样一步步把它做出来”
 
-如果这三层没有被分开，文档就会出现典型失真：
+所以 `learning` 的目标必须重新写得更严格：
 
-- 工程命令写了很多，但模型本体没有讲透
-- token、Attention、KV cache 这些词出现得太早
-- 初学者知道术语，却无法解释它们为什么存在
+> 把“从零开始理解并亲手做出一个小型语言模型”这件事，写成一部可以长期扩充到十万字级别、甚至继续向更大体量生长，但仍然保持认知顺序稳定的系统教材。
 
-## 为什么原先的架构还不够
+这里真正重要的不是“更长”，而是“更像一本书”。
 
-问题并不只是“每章字数不够”，而是章节结构本身会直接限制文档最终能长成什么样。
+如果目录骨架本身不合理，那么单纯把每一章写长，只会得到一套更厚的散页，而不会自动变成一本能让初学者顺序读懂、读完还能保有解释能力的书。
 
-如果把整套内容压在少量粗颗粒章节里，会发生几件事：
+## 为什么这一轮先重构骨架，而不是继续沿用旧目录扩写
 
-- 前置层次会被压扁，神经网络、概率、优化这些地基会来不及讲透
-- 工程与概念会互相缠住，读者容易误以为“学大模型”主要是在学工具
-- 后续即使继续扩写，也只是在不稳定的骨架上堆字数
+面向项目交付的目录，通常会优先按照开发动作排序：
 
-所以这一部分现在改成更接近书稿的组织方式：
+1. 配环境
+2. 准备数据
+3. 训练 tokenizer
+4. 写模型
+5. 跑训练
+6. 做推理
 
-> 不是“12 章串起来的项目预备知识”，而是“8 个分册逐层展开的语言模型基础课程”。
+这对“快速把东西做出来”很有效，但对“从零建立理解”并不稳定。
 
-## 新的设计原则
+因为初学者真正缺的，常常不是操作顺序，而是认知顺序。
 
-新的 `learning` 主线按下面几个原则组织。
+更准确地说，读者需要先知道：
 
-### 第一，先讲会反复复用的基础，再讲专属于 LLM 的结构
+- 模型内部为什么必须先把世界写成数值对象
+- 学习为什么首先是参数化函数的修正过程
+- 神经网络为什么会变成表示学习系统
+- 文本为什么必须先被切成离散单位
+- 语言建模为什么会落成条件概率预测
+- 序列困难为什么最终逼出了 attention 与 Transformer
+- 训练与推理为什么不是后期“工程补充”，而是模型理解本身的一部分
 
-读者在进入 tokenizer、Transformer 之前，必须先稳住：
+如果这些依赖关系没有排稳，读者就会陷入两种常见假象：
 
-- 数值表示
-- 维度与矩阵运算
+- 术语堆积：认识越来越多的词，但词与词之间互相解释不了。
+- 工程幻觉：命令会跑、脚本会改，却无法从原理解释模型为何长成现在这样。
+
+所以 `learning` 的第一原则必须非常明确：
+
+> 按认知依赖排，不按仓库动作排；按“为什么必须这样”排，不按“先做哪一步”排；按读者的大脑能否承接排，不按源码目录能否对齐排。
+
+## 新总纲：序篇、六编、十三卷，再配附录与教程
+
+从这一轮开始，主线不再沿用此前更像“实现材料集合”的组织方式，而改成更适合长期教材化扩写的形态：
+
+> 序篇 + 六编正文 + 十三卷主线 + 若干附录与教程支线
+
+这样做的目的，不是让目录看起来更复杂，而是让每一卷只承担一种明确的认知责任，让整套书在未来继续扩到十万字乃至更大体量时，仍然不会失去秩序。
+
+### 序篇：学习方法、问题意识与全书地图
+
+- [卷一. 入门与学习地图](/learning/part-1-orientation)
+
+这一卷不急着讲公式，也不急着讲工程命令。
+它先回答方向问题：
+
+- 你到底在学什么系统
+- 为什么初学者应该从小而完整的模型起步
+- 这整套材料应该怎样顺序阅读
+- 学习目标为什么应该是“建立解释能力”，而不只是“把脚本跑通”
+
+### 第一编：数学与数值世界
+
+- [卷二. 数学对象、线性代数与表示空间](/learning/part-2-mathematical-prerequisites)
+- [卷三. 函数、概率、信息与导数](/learning/part-3-functions-calculus-probability-and-information)
+
+这一编负责建立所有后续章节共享的共同语言。
+它先不谈 Transformer，而先解决：
+
+- 标量、向量、矩阵、张量与 shape
+- 线性变换、相似度、投影与表示空间
 - 函数复合与非线性
-- 概率分布与对数概率
-- 梯度、优化和泛化
+- 概率分布、期望、不确定性
+- 对数、信息量、损失与导数
 
-如果这层不稳，后面所有“看起来更高级”的部分都只会沦为记名词。
+也就是说，这一编不是“数学预习”。
+它是在建立模型内部真正使用的语言。
 
-### 第二，把“文本处理”视为模型定义的一部分
+### 第二编：机器学习与神经网络
 
-很多入门资料会把 tokenizer 和数据组织当成预处理小节，仿佛真正重要的是模型结构。
+- [卷四. 从数据到学习问题](/learning/part-4-learning-from-data)
+- [卷五. 神经网络作为表示学习系统](/learning/part-5-neural-networks-and-optimization)
+- [卷六. 优化、噪声与泛化](/learning/part-6-optimization-and-generalization)
 
-这会误导读者。
+这一编负责回答“学习为什么会发生、神经网络到底在干什么”。
+它把常常被混成一团的三层问题拆开：
 
-对语言模型来说：
+1. 原始世界怎样被改写成训练样本、输入、目标与监督。
+2. 神经网络怎样把输入逐层改写成表示，并输出 logits 与概率。
+3. 误差怎样沿着梯度传回参数，训练为什么带噪声，又为什么会过拟合。
 
-- 文本怎样编码
-- 怎样切 token
-- special token 怎样设计
-- 样本怎样打包
-- 目标怎样右移
+这三层如果不拆，初学者很容易看见所有术语，却始终说不清模型到底在学什么、靠什么学、为什么有时会学歪。
 
-这些定义本身就在决定模型到底学什么。
+### 第三编：文本、分词与语言建模
 
-### 第三，把“能实现”与“能解释”都当成目标
+- [卷七. 文本怎样进入模型：语料、编码与分词](/learning/part-4-text-and-tokenization)
+- [卷八. 语言建模为什么本质上是序列条件概率问题](/learning/part-8-language-modeling-as-sequence-prediction)
 
-这套知识档案不是源码导读，也不是纯理论讲义。
+这一编负责把自然语言真正送进机器。
+它先后回答两件不同层级的问题：
 
-它的目标是让读者同时获得两种能力：
+- 文本怎样被编码、规范化、切分、映射成 token id
+- 这些 token 序列怎样进一步长成一个 next-token prediction 问题
 
-- 看见某个结构时，知道它为什么存在
-- 动手实现时，知道它在训练链路里的输入、输出与风险点
+这样，读者不会把 tokenizer、样本窗口和“右移一位”混成同一层的工程手法，而会知道它们各自回答的是什么问题。
 
-## 现在的主结构：八个分册
+### 第四编：序列建模、注意力与 Transformer
 
-### Part 1. 入门与学习地图
+- [卷九. 从记忆瓶颈到 Attention 的问题框架](/learning/part-7-sequence-modeling-foundations)
+- [卷十. 从 Attention 到完整的 Decoder-only Transformer](/learning/part-5-sequence-modeling-and-transformers)
 
-- [分册总览](/learning/part-1-orientation)
-- [01. 什么是语言模型](/learning/part-1-orientation/01-what-is-a-language-model)
-- [02. 为什么应该先做一个小模型](/learning/part-1-orientation/02-why-start-with-a-small-model)
-- [03. 怎样使用这套知识档案](/learning/part-1-orientation/03-how-to-use-this-book)
+这一编才真正进入现代语言模型主体。
+而且这里不会把 QKV 当作第一句话，而会先解释：
 
-这一分册负责先把目标摆正。它不讲实现细节，而是先回答：
+- 早期序列模型为什么在长依赖上吃亏
+- attention 到底在解决什么“读取谁”的问题
+- 为什么 query、key、value 会成为自然表示
+- 为什么位置方法、causal mask 与 block 堆叠会长成今天的样子
 
-- 语言模型的任务定义是什么
-- 为什么学习阶段应该追求“小而完整”
-- 怎样阅读这套知识档案才不会走成术语记忆路线
+### 第五编：训练、推理、评估与调试
 
-### Part 2. 数学预备、表示与概率直觉
+- [卷十一. 训练一个小型语言模型](/learning/part-6-training-a-small-language-model)
+- [卷十二. 推理、评估与调试](/learning/part-7-inference-evaluation-and-debugging)
 
-- [分册总览](/learning/part-2-mathematical-prerequisites)
-- [01. 为什么学语言模型还要先学数学](/learning/part-2-mathematical-prerequisites/01-why-you-still-need-math-for-language-models)
-- [02. 标量、向量、矩阵、张量与 shape](/learning/part-2-mathematical-prerequisites/02-scalars-vectors-matrices-tensors-and-shapes)
-- [03. 矩阵乘法、线性变换与维度流动](/learning/part-2-mathematical-prerequisites/03-matrix-multiplication-linear-transformations-and-dimensional-flow)
-- [04. 函数、复合与非线性为什么重要](/learning/part-2-mathematical-prerequisites/04-functions-composition-and-why-nonlinearity-matters)
-- [05. 概率分布、期望与不确定性](/learning/part-2-mathematical-prerequisites/05-probability-distributions-expectation-and-uncertainty)
-- [06. 对数、信息量与为什么损失常写成对数概率](/learning/part-2-mathematical-prerequisites/06-logarithms-information-and-why-loss-uses-log-probability)
+这一编负责把模型放到真实时间轴上。
+它会系统展开：
 
-这是新的真正前置层。它不假设读者已经能把“向量”“对数概率”“分布预测”这些词稳定地连成一条线，而是从头建立：
+- batch、token、step 与 epoch 分别在统计什么
+- 小显存如何改写训练节奏
+- 学习率、混合精度、梯度裁剪为什么影响稳定性
+- 推理为什么是一 token 一 token 地做条件决策
+- loss、perplexity、样例质量与调试步骤应该怎样一起解释
 
-- 对象怎样被写成数
-- 数怎样按维度组织
-- 为什么神经网络本质上不断做线性变换与非线性复合
-- 为什么语言模型最后会写成一个条件分布预测问题
+### 第六编：迁移、扩展与更大的模型世界
 
-### Part 3. 机器学习、张量与神经网络基础
+- [卷十三. 从小模型走向更大的模型世界](/learning/part-8-where-to-go-next)
 
-- [分册总览](/learning/part-3-machine-learning-and-neural-networks)
-- [01. 机器学习到底在学什么](/learning/part-3-machine-learning-and-neural-networks/01-what-does-it-mean-to-learn)
-- [02. 向量、矩阵、张量与 shape](/learning/part-3-machine-learning-and-neural-networks/02-vectors-matrices-and-tensors)
-- [03. 线性层、激活函数与表示空间](/learning/part-3-machine-learning-and-neural-networks/03-linear-layers-activations-and-representations)
-- [04. 概率、softmax 与交叉熵](/learning/part-3-machine-learning-and-neural-networks/04-probability-softmax-and-cross-entropy)
-- [05. 梯度、反向传播与优化](/learning/part-3-machine-learning-and-neural-networks/05-gradients-backpropagation-and-optimization)
-- [06. 过拟合、泛化与验证集](/learning/part-3-machine-learning-and-neural-networks/06-overfitting-generalization-and-validation)
-- [07. 为什么序列数据比普通表格数据更难](/learning/part-3-machine-learning-and-neural-networks/07-why-sequence-data-is-harder-than-tabular-data)
+这一编的职责不是再塞热门名词，而是把已经建立的小模型理解接回更大地图：
 
-如果说 Part 2 在解决“数学对象是什么”，那么 Part 3 解决的就是：
+- 预训练
+- 微调
+- LoRA
+- 量化
+- 部署
+- 进一步阅读与实践路线
 
-- 模型怎样从数据中学习
-- 线性层和激活函数为什么能组成神经网络
-- logits、softmax、cross-entropy 之间怎样连起来
-- 梯度和优化器为什么能驱动参数改变
+## 为什么这套新结构更适合长成十万字级别的教材
 
-这部分读完之后，读者应该已经能理解一个基础神经网络训练闭环。
+如果一套材料想扩到十万字以上，最怕的不是字少，而是层次混写。
 
-### Part 4. 文本、编码与 Tokenizer
+一旦下面这些内容没有拆层：
 
-- [分册总览](/learning/part-4-text-and-tokenization)
-- [01. 语料、样本与数据分布](/learning/part-4-text-and-tokenization/01-corpora-samples-and-data-distribution)
-- [02. Unicode、字节与文本规范化](/learning/part-4-text-and-tokenization/02-unicode-bytes-and-text-normalization)
-- [03. Token、词表与 special token](/learning/part-4-text-and-tokenization/03-tokens-vocabularies-and-special-tokens)
-- [04. 子词分词、BPE 与 tokenizer 训练](/learning/part-4-text-and-tokenization/04-subword-tokenization-bpe-and-tokenizer-training)
-- [05. 从 token 流到固定长度训练样本](/learning/part-4-text-and-tokenization/05-from-token-streams-to-fixed-length-training-samples)
-- [06. 为什么训练目标表现成右移一位](/learning/part-4-text-and-tokenization/06-why-the-objective-looks-like-a-one-token-shift)
+- 数学对象与训练机制
+- 表示学习与优化动力学
+- 文本预处理与语言建模目标
+- 序列难点与 Transformer 细节
+- 训练运行与更高层的扩展主题
 
-这一分册开始把视角转向语言数据本身，解释：
+那么每多写一章，都只是在加厚混乱。
 
-- 文本为什么不能直接进神经网络
-- token 化为什么是一种建模选择
-- tokenizer 为什么属于模型定义的一部分
-- next-token prediction 怎样在数据层面真正落地
+现在这套骨架有一个更清楚的扩写逻辑：
 
-### Part 5. 序列建模、Attention 与 Transformer
+1. 先把对象与数学语言建立稳。
+2. 再把学习问题和神经网络语言建立稳。
+3. 然后把文本世界与语言建模目标建立稳。
+4. 再进入注意力、Transformer 与序列结构主体。
+5. 最后把训练、推理、调试与扩展接回同一台模型。
 
-- [分册总览](/learning/part-5-sequence-modeling-and-transformers)
-- [01. 为什么早期序列建模会遇到瓶颈](/learning/part-5-sequence-modeling-and-transformers/01-why-earlier-sequence-models-hit-limits)
-- [02. Attention 真正要解决什么问题](/learning/part-5-sequence-modeling-and-transformers/02-what-problem-attention-actually-solves)
-- [03. Query、Key、Value 与加权读取](/learning/part-5-sequence-modeling-and-transformers/03-query-key-value-and-weighted-reading)
-- [04. 因果注意力与 mask](/learning/part-5-sequence-modeling-and-transformers/04-causal-attention-and-masking)
-- [05. 位置方法到底在补什么](/learning/part-5-sequence-modeling-and-transformers/05-what-positional-methods-actually-add)
-- [06. Transformer block 为什么能反复堆叠](/learning/part-5-sequence-modeling-and-transformers/06-why-transformer-blocks-stack-so-well)
-- [07. 一个完整 decoder-only 模型怎样组装](/learning/part-5-sequence-modeling-and-transformers/07-how-a-complete-decoder-only-model-is-assembled)
+这意味着后面继续扩写时，每一章都知道自己应该回答哪一种问题，而不是和相邻章节互相抢职责。
 
-这一分册负责讲清模型主体为什么会长成今天这个样子。重点不是背公式，而是建立完整问题链：
+更重要的是，这种骨架允许我们在未来继续扩写更多真正适合初学者的基础内容，而不破坏主线，例如：
 
-- 为什么序列建模天生困难
-- Attention 的真实任务是什么
-- causal mask、位置方法、残差和 FFN 分别在补什么
-- 一个完整 decoder-only 模型的张量流怎样从 token ids 走到 logits
+- 更细的神经网络历史与感知机起点
+- 更完整的微积分、链式法则和优化直觉
+- 更细的统计学习与经验风险最小化
+- 更丰富的文本编码、语料质量与分布偏差案例
+- 更完整的推理、缓存、量化与部署说明
 
-### Part 6. 训练一个小型语言模型
+也就是说，后续扩体量时不必再“往哪一章里硬塞”，而是可以自然向既有分部里增长。
 
-- [分册总览](/learning/part-6-training-a-small-language-model)
-- [01. batch、token、step 与 epoch 到底在统计什么](/learning/part-6-training-a-small-language-model/01-what-batches-tokens-steps-and-epochs-really-count)
-- [02. 优化器到底在改什么](/learning/part-6-training-a-small-language-model/02-what-the-optimizer-is-actually-changing)
-- [03. 学习率、warmup 与为什么训练会在早期崩掉](/learning/part-6-training-a-small-language-model/03-learning-rate-warmup-and-why-early-training-breaks)
-- [04. 小显存下为什么要做梯度累积](/learning/part-6-training-a-small-language-model/04-why-gradient-accumulation-matters-under-small-vram)
-- [05. 混合精度、GradScaler 与设备差异](/learning/part-6-training-a-small-language-model/05-mixed-precision-gradscaler-and-device-differences)
-- [06. 梯度裁剪、NaN 与不稳定更新](/learning/part-6-training-a-small-language-model/06-gradient-clipping-nan-and-unstable-updates)
-- [07. checkpoint、验证集与实验记录](/learning/part-6-training-a-small-language-model/07-checkpoints-validation-and-experiment-records)
+## 谁应该怎样使用这套知识档案
 
-这里开始把视角从结构转向训练系统。后续会系统展开：
+### 如果你是真正的零基础读者
 
-- batch、tokens、steps、epochs 到底分别在统计什么
-- optimizer、learning rate、warmup 怎样共同定义训练动力学
-- 梯度累积、混合精度、裁剪和检查点分别在解决什么约束
-- 小显存环境下怎样建立可靠、可重复的实验链路
+建议严格顺序阅读：
 
-### Part 7. 推理、评估与调试
+1. 卷一到卷三
+2. 卷四到卷六
+3. 卷七到卷十
+4. 卷十一到卷十三
 
-- [分册总览](/learning/part-7-inference-evaluation-and-debugging)
-- [01. 自回归生成、prefill 与 decode](/learning/part-7-inference-evaluation-and-debugging/01-autoregressive-generation-prefill-and-decode)
-- [02. 从 logits 到下一个 token](/learning/part-7-inference-evaluation-and-debugging/02-from-logits-to-the-next-token)
-- [03. greedy、temperature、top-k 与 top-p 各在控制什么](/learning/part-7-inference-evaluation-and-debugging/03-what-greedy-temperature-top-k-and-top-p-actually-control)
-- [04. EOS、停止条件与重复问题](/learning/part-7-inference-evaluation-and-debugging/04-eos-stopping-criteria-and-repetition)
-- [05. KV cache 到底缓存了什么](/learning/part-7-inference-evaluation-and-debugging/05-what-kv-cache-is-actually-saving)
-- [06. 为什么训练 loss 与生成质量不总同步](/learning/part-7-inference-evaluation-and-debugging/06-why-training-loss-and-generation-quality-do-not-always-move-together)
-- [07. 困惑度、验证集与定性样例怎样一起评估](/learning/part-7-inference-evaluation-and-debugging/07-how-to-use-perplexity-validation-and-qualitative-samples-together)
-- [08. 极小样本过拟合与系统化排错](/learning/part-7-inference-evaluation-and-debugging/08-overfit-a-tiny-batch-and-debug-the-whole-pipeline)
+不要为了更快接触 Transformer 而跳过前面的基础卷。
 
-模型训练完并不意味着理解就完成了。这里处理：
+你现在最缺的通常不是“热点术语接触得不够快”，而是一条以后不会反复塌掉的解释链。
 
-- 自回归生成的真正执行过程
-- greedy、temperature、top-k、top-p 的差异
-- KV cache 为什么会出现
-- loss、perplexity、样例观测与链路调试如何互相配合
+### 如果你已经学过一些数学或机器学习
 
-### Part 8. 从小模型走向更大世界
+也仍然建议从卷二和卷三至少通读一遍。
 
-- [分册总览](/learning/part-8-where-to-go-next)
+理由不是复习公式，而是把那些你“在别处学过”的对象重新放回语言模型的语境里。
 
-最后一卷负责给读者更宽的地图，让他知道从这个学习项目继续往前，会自然遇到：
+很多人并不是完全不会数学，而是不会用语言模型的问题去重新组织数学。
 
-- 预训练与微调
-- 指令跟随与对齐
-- LoRA、量化、部署
-- 更长上下文、更高效注意力与更复杂训练系统
+### 如果你是为了完整复刻项目而来
 
-## 推荐阅读方式
+仍然应该把 `learning` 放在 `tutorials` 前面。
 
-### 第一遍：按主线顺序完整走一遍
+`tutorials` 负责带你把同一个模型从零做出来；
+`learning` 负责保证你知道每一个实现动作背后的原理位置。
 
-不要跳到你觉得“最酷”的部分，直接按分册顺序阅读：
+没有后一层，前一层的复刻很容易停留在模仿。
 
-1. Part 1：先理解任务和学习目标  
-2. Part 2：补齐数学与概率直觉  
-3. Part 3：建立神经网络与训练闭环  
-4. Part 4：理解文本如何变成监督信号  
-5. Part 5：进入 Transformer 本体  
-6. Part 6：再看训练系统  
-7. Part 7：最后进入推理、评估与调试  
+## `learning`、`tutorials`、`pitfalls` 与源码各自负责什么
 
-### 第二遍：结合复刻教程回查
+### `learning`
 
-当你已经开始照着复刻教程动手时，阅读方式会自然改变：
+主体书稿，而且它不应该被源码目录牵着走。
 
-- 写 tokenizer 时回查 Part 4
-- 写模型主体时回查 Part 5
-- 写训练器时回查 Part 3 和 Part 6
-- 调生成与排障时回查 Part 7
+它负责：
 
-这时知识会从“能读懂”进入“能拿来判断与修正”。
+- 建立概念
+- 铺开因果链
+- 提供从零到小型语言模型主体的连续阅读路径
+- 尽量减少对项目实现细节和源码文件名的依赖
 
-## 这套知识档案与项目源码的边界
+### `tutorials`
 
-知识档案的职责不是注释当前仓库，而是建立一套可迁移的理解。
+复刻路线。
 
-它应该尽量做到：
+它负责：
 
-- 即使不看当前项目源码，也能独立阅读
-- 即使将来换一个小型 LLM 项目，核心概念仍然成立
-- 即使读者暂时还没开始实现，也能先建立判断标准
+- 从空目录逐步把同一个模型做出来
+- 在需要时把实现动作指回 `learning` 的对应章节
+- 让读者不仅能“运行项目”，还能自己重建项目
 
-源码、复刻教程和踩坑记录当然都重要，但它们是另外三类材料：
+### `pitfalls`
 
-- 知识档案：解释“为什么会有这些概念”
-- 复刻教程：解释“怎样一步步把项目做出来”
-- 踩坑记录：解释“实际实现过程中哪些地方最容易错”
+踩坑档案。
 
-这三者应该互相指向，但不应该互相替代。
+它负责：
 
-## 它接下来会长成什么样
+- 记录开发过程中真实出现过的错误
+- 解释错误为什么会发生
+- 保存后续可以复用的排查与修复方式
 
-这一版重构的重点不是机械加字，而是先把文档变成一个可持续扩写的书稿架构。
+### 源码
 
-接下来会继续往前推进的方向包括：
+源码是最终落地形态，不是完整教学文本。
 
-- 把 Part 6 拆成真正完整的训练分册
-- 把 Part 7 扩成推理、评估与调试的操作型知识库
-- 在 Part 2 和 Part 3 继续补更多“从零基础可读”的解释层
-- 让复刻教程严格对应到知识档案里的章节前置要求
+它回答的是：
 
-目标不是把文档堆成一大堆页面，而是把它写成：
+> 这套理解在一个真实仓库里最终怎样被实现。
 
-> 一个初学者可以按顺序读，读完之后真正理解小型语言模型从零实现路径的长篇知识体系。
+完整教学任务由 `learning` 与 `tutorials` 共同承担。
+
+## 关于附录里的“项目速读与回看路径”
+
+站内仍保留 `12` 篇速读页。
+
+它们现在只承担辅助职责：
+
+- 提纲式回顾
+- 快速回看
+- 跨章节压缩导航
+
+如果你是完全初学者，不建议把它们当正文替代。
+
+正文要解决的是“学懂”；
+附录更多是在你已经学过之后帮助你“压缩”和“回想”。
+
+## 后续扩写原则
+
+从现在开始，`learning` 的扩写不再以“哪里还没写”作为首要标准，而要以“哪里还缺教材级展开”作为首要标准。
+
+这意味着后续扩写会遵守三条规则：
+
+1. 优先补最基础、最会被后文反复依赖的章节。
+2. 任何新增内容都必须服从当前“序篇 + 六编十三卷”的认知顺序。
+3. 章节正文要尽量写成连续教材，而不是短促的项目提示、实现清单或源码导读。
+
+如果这份知识档案最终真的长成一部可长期复用的大书，那么它最重要的特征不该只是信息多，而应该是：
+
+> 一个完全初学者按顺序读下去，能够从神经网络、概率、文本表示、序列建模一路走到小型语言模型实现，并在离开本仓库后仍然保有解释与重建能力。

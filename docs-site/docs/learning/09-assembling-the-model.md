@@ -1,8 +1,8 @@
 ---
 title: 09. 一个完整小型语言模型由什么组成
 group:
-  title: 学习主线
-  order: 0
+  title: 快速导读（12讲总览）
+  order: 99
 order: 8
 toc: content
 ---

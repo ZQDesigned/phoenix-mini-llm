@@ -1,8 +1,8 @@
 ---
 title: 07. 为什么要有 Attention
 group:
-  title: 学习主线
-  order: 0
+  title: 快速导读（12讲总览）
+  order: 99
 order: 6
 toc: content
 ---
