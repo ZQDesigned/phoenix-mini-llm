@@ -374,9 +374,9 @@ PY
 
 这会直接导致后续模型 embedding 尺寸和真实 tokenizer 输出之间可能出现偏差。
 
-<Callout title="相关踩坑" tone="warning">
-  如果后面模型初始化或加载 checkpoint 时出现维度不匹配，优先检查 `prepare_metadata.json` 是否存在，以及训练和推理入口是否真的调用了 `apply_prepare_metadata()`。具体见 [04. Tokenizer 元数据同步](/pitfalls/04-tokenizer-metadata-sync)。
-</Callout>
+> **相关踩坑**
+>
+>   如果后面模型初始化或加载 checkpoint 时出现维度不匹配，优先检查 `prepare_metadata.json` 是否存在，以及训练和推理入口是否真的调用了 `apply_prepare_metadata()`。具体见 [04. Tokenizer 元数据同步](/pitfalls/04-tokenizer-metadata-sync)。
 
 ## 本章完成后的阶段检查点
 

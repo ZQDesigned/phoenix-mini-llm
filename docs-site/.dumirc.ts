@@ -1,5 +1,10 @@
 import { defineConfig } from 'dumi';
 
+import {
+  learningAllPaths,
+  learningSidebarGroups,
+} from './src/content/learning';
+
 const docsBase = process.env.DOCS_SITE_BASE || '/';
 const githubRepo = process.env.GITHUB_REPOSITORY || 'ZQDesigned/phoenix-mini-llm';
 const buildHash = process.env.GITHUB_SHA || 'local-build';
@@ -127,25 +132,6 @@ const staleBundleRecoveryScript = `
 })();
 `;
 
-const learningChapters = [
-  { title: '学习主线总览', link: '/learning' },
-  { title: '01. 你到底在做什么', link: '/learning/01-what-you-are-building' },
-  { title: '02. Python 环境与 uv', link: '/learning/02-python-environment-and-uv' },
-  { title: '03. Tensor 与线性代数直觉', link: '/learning/03-tensors-and-linear-algebra' },
-  { title: '04. 自动求导与训练闭环', link: '/learning/04-autograd-and-training-loop' },
-  { title: '05. 从文本到 Token', link: '/learning/05-text-to-tokens' },
-  {
-    title: '06. 语言模型训练目标',
-    link: '/learning/06-language-modeling-objective',
-  },
-  { title: '07. 从 MLP 到 Attention', link: '/learning/07-from-mlp-to-attention' },
-  { title: '08. Transformer Block', link: '/learning/08-transformer-blocks' },
-  { title: '09. 把模型拼起来', link: '/learning/09-assembling-the-model' },
-  { title: '10. 训练工程', link: '/learning/10-training-engineering' },
-  { title: '11. 推理与采样', link: '/learning/11-inference-and-sampling' },
-  { title: '12. 调试与评估', link: '/learning/12-debugging-and-evaluation' },
-];
-
 const tutorialStages = [
   { title: '复刻总览', link: '/tutorials' },
   { title: '01. 建立项目骨架', link: '/tutorials/01-bootstrap-the-project' },
@@ -184,7 +170,7 @@ const docsRoutePaths = Array.from(
   new Set([
     '/',
     projectOverviewPath,
-    ...learningChapters.map((item) => item.link),
+    ...learningAllPaths,
     ...tutorialStages.map((item) => item.link),
     ...pitfalls.map((item) => item.link),
   ]),
@@ -242,12 +228,7 @@ export default defineConfig({
       { title: '项目源码', link: `https://github.com/${githubRepo}` },
     ],
     sidebar: {
-      '/learning': [
-        {
-          title: '按顺序学习',
-          children: learningChapters,
-        },
-      ],
+      '/learning': learningSidebarGroups,
       '/tutorials': [
         {
           title: '按阶段复刻',

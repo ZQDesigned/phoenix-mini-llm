@@ -6,24 +6,10 @@ import { Helmet } from 'dumi';
 
 import Link from '../../theme/common/Link';
 import LinkButton from '../../theme/common/LinkButton';
+import { learningBookOverviewLinks } from '../../../src/content/learning';
 import BannerRecommends from './components/BannerRecommends';
 import Group from './components/Group';
 import PreviewBanner from './components/PreviewBanner';
-
-const learningChapters = [
-  { title: '01. 你到底在做什么', link: '/learning/01-what-you-are-building' },
-  { title: '02. Python 环境与 uv', link: '/learning/02-python-environment-and-uv' },
-  { title: '03. Tensor 与线性代数直觉', link: '/learning/03-tensors-and-linear-algebra' },
-  { title: '04. 自动求导与训练闭环', link: '/learning/04-autograd-and-training-loop' },
-  { title: '05. 从文本到 Token', link: '/learning/05-text-to-tokens' },
-  { title: '06. 语言模型训练目标', link: '/learning/06-language-modeling-objective' },
-  { title: '07. 从 MLP 到 Attention', link: '/learning/07-from-mlp-to-attention' },
-  { title: '08. Transformer Block', link: '/learning/08-transformer-blocks' },
-  { title: '09. 把模型拼起来', link: '/learning/09-assembling-the-model' },
-  { title: '10. 训练工程', link: '/learning/10-training-engineering' },
-  { title: '11. 推理与采样', link: '/learning/11-inference-and-sampling' },
-  { title: '12. 调试与评估', link: '/learning/12-debugging-and-evaluation' },
-];
 
 const tutorialStages = [
   { title: '01. 建立项目骨架', link: '/tutorials/01-bootstrap-the-project' },
@@ -146,16 +132,19 @@ const Homepage: React.FC = () => {
         <Group
           id="learning"
           title="学习主线"
-          description="12 章基础知识档案，覆盖从文本与 token 到训练工程与推理采样的完整前置知识。"
+          description="按“分册 + 章节”组织的书籍化知识档案，从语言模型概念、神经网络基础、文本数据、Transformer、训练、推理到调试逐步展开。"
           background="#ffffff"
           collapse
         >
           <div className={styles.denseGrid}>
-            {learningChapters.map((chapter) => (
-              <Card key={chapter.link} className={styles.chapterCard}>
-                <Typography.Title level={5}>{chapter.title}</Typography.Title>
-                <Link to={chapter.link} className={styles.sectionLink}>
-                  进入章节
+            {learningBookOverviewLinks.map((part) => (
+              <Card key={part.link} className={styles.chapterCard}>
+                <Typography.Title level={5}>{part.title}</Typography.Title>
+                <Typography.Paragraph style={{ marginBottom: 0 }}>
+                  {part.description}
+                </Typography.Paragraph>
+                <Link to={part.link} className={styles.sectionLink}>
+                  进入分册
                   <ArrowRightOutlined />
                 </Link>
               </Card>

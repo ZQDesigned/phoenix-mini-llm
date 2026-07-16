@@ -26,6 +26,6 @@ toc: content
 6. [06. 过度覆写 dumi 默认布局](/pitfalls/06-overriding-dumi-default-layout)
 7. [07. GitHub Pages 子路径构建](/pitfalls/07-github-pages-subpath-and-base-config)
 
-<Callout title="使用方式" tone="note">
-  如果你正在做某个具体阶段，优先先完成当前阶段的“本章检查”，再来查踩坑记录。不要把这部分当成提前记忆的负担，而要把它当成定位问题和理解约束的参考库。
-</Callout>
+> **使用方式**
+>
+>   如果你正在做某个具体阶段，优先先完成当前阶段的“本章检查”，再来查踩坑记录。不要把这部分当成提前记忆的负担，而要把它当成定位问题和理解约束的参考库。

@@ -34,9 +34,9 @@ toc: content
   - [08. Transformer Block](/learning/08-transformer-blocks)
   - [10. 训练工程](/learning/10-training-engineering)
 
-<Callout title="正确的阅读方式" tone="warning">
-  这不是一套适合“跳读复制”的教程。请按顺序推进，并在每一章结束时真的运行命令、看输出、做测试。只有这样，你得到的才是可调试、可解释的工程能力。
-</Callout>
+> **正确的阅读方式**
+>
+>   这不是一套适合“跳读复制”的教程。请按顺序推进，并在每一章结束时真的运行命令、看输出、做测试。只有这样，你得到的才是可调试、可解释的工程能力。
 
 ## 10 个阶段与最终产物的对应关系
 

@@ -293,9 +293,9 @@ PY
 
 如果你把它设计成单层 tuple、字典或混合结构，后面生成阶段几乎一定会变得混乱。
 
-<Callout title="相关学习章节" tone="note">
-  如果你还不确定为什么输出头要接在 final norm 之后，回到 [09. 把模型拼起来](/learning/09-assembling-the-model)。
-</Callout>
+> **相关学习章节**
+>
+>   如果你还不确定为什么输出头要接在 final norm 之后，回到 [09. 把模型拼起来](/learning/09-assembling-the-model)。
 
 ## 本章完成后的阶段检查点
 

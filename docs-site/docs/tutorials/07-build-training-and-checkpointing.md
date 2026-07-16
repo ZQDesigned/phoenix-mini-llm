@@ -351,9 +351,9 @@ uv run phoenix-evaluate --config configs/debug.toml --checkpoint latest
 
 如果真实 tokenizer 词表大小和配置值不一致，模型 embedding 维度会直接错。
 
-<Callout title="相关学习章节" tone="note">
-  如果你对学习率 warmup、梯度累积和 checkpoint 的意义还不够稳，回到 [10. 训练工程](/learning/10-training-engineering)。
-</Callout>
+> **相关学习章节**
+>
+>   如果你对学习率 warmup、梯度累积和 checkpoint 的意义还不够稳，回到 [10. 训练工程](/learning/10-training-engineering)。
 
 ## 本章完成后的阶段检查点
 

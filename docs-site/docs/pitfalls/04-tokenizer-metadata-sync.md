@@ -70,6 +70,6 @@ model_config.vocab_size
 - tokenizer 工件一旦生成，就把它当成模型配置的一部分事实来源。
 - 如果输出异常，先查 metadata，再怀疑模型。
 
-<Callout title="这是最隐蔽的一类问题之一" tone="warning">
-  因为它常常不会让程序立即报错，只会让训练目标和生成行为 quietly drift。对初学者来说，这比直接报错更危险。
-</Callout>
+> **这是最隐蔽的一类问题之一**
+>
+>   因为它常常不会让程序立即报错，只会让训练目标和生成行为 quietly drift。对初学者来说，这比直接报错更危险。

@@ -201,9 +201,9 @@ uv run phoenix-generate --config configs/debug.toml --checkpoint latest --prompt
 
 当前项目生成入口会把 prompt token 序列前置 `bos`。如果缺这一步，训练分布和推理分布就不一致。
 
-<Callout title="相关学习章节" tone="note">
-  如果你对 top-k、top-p、temperature 各自改变的是什么还不稳，回到 [11. 推理与采样](/learning/11-inference-and-sampling)。
-</Callout>
+> **相关学习章节**
+>
+>   如果你对 top-k、top-p、temperature 各自改变的是什么还不稳，回到 [11. 推理与采样](/learning/11-inference-and-sampling)。
 
 ## 本章完成后的阶段检查点
 

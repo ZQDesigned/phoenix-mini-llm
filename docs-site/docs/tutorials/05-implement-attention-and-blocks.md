@@ -347,9 +347,9 @@ PY
 
 这种错误应该尽量在 `ModelConfig.__post_init__()` 和 attention 初始化阶段就暴露，而不是等到前向时随机炸掉。
 
-<Callout title="相关学习章节" tone="note">
-  如果你对为什么要先有 Attention 再有完整模型还不够稳，回到 [07. 从 MLP 到 Attention](/learning/07-from-mlp-to-attention) 和 [08. Transformer Block](/learning/08-transformer-blocks)。
-</Callout>
+> **相关学习章节**
+>
+>   如果你对为什么要先有 Attention 再有完整模型还不够稳，回到 [07. 从 MLP 到 Attention](/learning/07-from-mlp-to-attention) 和 [08. Transformer Block](/learning/08-transformer-blocks)。
 
 ## 本章完成后的阶段检查点
 

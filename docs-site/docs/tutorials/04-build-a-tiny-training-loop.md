@@ -262,9 +262,9 @@ PY
 
 当前项目的策略是：只有 CUDA 才默认走 `torch.autocast(..., dtype=torch.float16)`。Mac 的 MPS 不在这里直接假装完全等价。
 
-<Callout title="相关学习章节" tone="note">
-  如果你对反向传播、梯度、loss 的数值路径还不够稳定，回到 [04. 自动求导与训练闭环](/learning/04-autograd-and-training-loop)。
-</Callout>
+> **相关学习章节**
+>
+>   如果你对反向传播、梯度、loss 的数值路径还不够稳定，回到 [04. 自动求导与训练闭环](/learning/04-autograd-and-training-loop)。
 
 ## 本章完成后的阶段检查点
 

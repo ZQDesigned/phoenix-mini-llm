@@ -207,9 +207,9 @@ uv run python scripts/evaluate.py --config configs/debug.toml --checkpoint lates
 
 一旦分叉，后续你修 bug 会修两遍，而且很容易漏掉一个入口。
 
-<Callout title="相关踩坑" tone="warning">
-  如果你在 Mac 上能跑、到 Windows 上就出问题，先看 [05. MPS 与 CUDA 的精度差异](/pitfalls/05-mps-vs-cuda-and-amp)。
-</Callout>
+> **相关踩坑**
+>
+>   如果你在 Mac 上能跑、到 Windows 上就出问题，先看 [05. MPS 与 CUDA 的精度差异](/pitfalls/05-mps-vs-cuda-and-amp)。
 
 ## 本章完成后的阶段检查点
 

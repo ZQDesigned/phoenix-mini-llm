@@ -323,9 +323,9 @@ PY
 
 后面训练循环直接使用 `torch.Tensor`，这里就应完成转换。
 
-<Callout title="相关学习章节" tone="note">
-  如果你对“为什么目标序列是左移一位”还不够牢，回到 [06. 语言模型训练目标](/learning/06-language-modeling-objective)。如果你对打包后的形状还没有直觉，回到 [04. 自动求导与训练闭环](/learning/04-autograd-and-training-loop)。
-</Callout>
+> **相关学习章节**
+>
+>   如果你对“为什么目标序列是左移一位”还不够牢，回到 [06. 语言模型训练目标](/learning/06-language-modeling-objective)。如果你对打包后的形状还没有直觉，回到 [04. 自动求导与训练闭环](/learning/04-autograd-and-training-loop)。
 
 ## 本章完成后的阶段检查点
 

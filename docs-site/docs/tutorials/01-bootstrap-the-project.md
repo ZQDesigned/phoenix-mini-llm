@@ -200,9 +200,9 @@ htmlcov/
 
 注意上面的 `/data/`、`/artifacts/` 都带了前导 `/`。这表示“只忽略仓库根目录下的生成目录”，不会误伤 `src/phoenix_mini_llm/data/` 或 `tests/data/`。
 
-<Callout title="相关踩坑" tone="warning">
-  如果你把这里写成 `data/`，后面在实现 `src/phoenix_mini_llm/data/` 时很容易碰上 Git 不追踪文件的问题。具体诊断过程见 [02. .gitignore 误伤 data 包](/pitfalls/02-gitignore-and-package-names)。
-</Callout>
+> **相关踩坑**
+>
+>   如果你把这里写成 `data/`，后面在实现 `src/phoenix_mini_llm/data/` 时很容易碰上 Git 不追踪文件的问题。具体诊断过程见 [02. .gitignore 误伤 data 包](/pitfalls/02-gitignore-and-package-names)。
 
 ## 第四步：先把配置模型写出来
 
@@ -621,9 +621,9 @@ uv run python -c "from pathlib import Path; print((Path('src') / 'phoenix_mini_l
 
 如果现在还在想“以后再说命令名”，后面文档、脚本和 README 都会不断改动。工程化项目里，命令面本身就是公共接口。
 
-<Callout title="相关学习章节" tone="note">
-  如果你对 `uv`、路径解析、配置分层的意义还不够稳，回到 [02. Python 环境与 uv](/learning/02-python-environment-and-uv) 和 [10. 训练工程](/learning/10-training-engineering)。
-</Callout>
+> **相关学习章节**
+>
+>   如果你对 `uv`、路径解析、配置分层的意义还不够稳，回到 [02. Python 环境与 uv](/learning/02-python-environment-and-uv) 和 [10. 训练工程](/learning/10-training-engineering)。
 
 ## 本章完成后的阶段检查点
 

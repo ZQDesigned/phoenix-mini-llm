@@ -73,6 +73,6 @@ git check-ignore -v tests/data/test_pack.py
 2. 新建 `src/.../data/` 或 `tests/data/` 后，先看一次 `git status`。
 3. 发现文件“凭空消失”时，先用 `git check-ignore -v`，不要靠猜。
 
-<Callout title="这类问题会直接污染教程体验" tone="warning">
-  如果你的复刻教程要求读者创建 `src/.../data/`，但 `.gitignore` 把它吞掉了，读者会误以为自己目录建错了。工程层的小疏忽会直接伤害教学质量。
-</Callout>
+> **这类问题会直接污染教程体验**
+>
+>   如果你的复刻教程要求读者创建 `src/.../data/`，但 `.gitignore` 把它吞掉了，读者会误以为自己目录建错了。工程层的小疏忽会直接伤害教学质量。
